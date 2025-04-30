@@ -299,7 +299,7 @@ The macro action to perform. The available macro actions are:
 * `change_A_to_B` : Modify the current value or state of A into a target value or state B.
 * `navigate_to` : Display the map route from the current location to the specified target destination.
 * `add_A_to_B` : Add a target item A into list B.
-* `filter_route` : Filter the route.
+* `filter_route` : Apply specific conditions to limit and display only matching navigation routes.
 * `show` : Show a certain list.
 * `terminate`: Terminate the current task and report its completion status.
 """.strip(),
