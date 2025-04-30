@@ -19,35 +19,67 @@ import json
 from PIL import Image
 from agent_function_call import MobileUse
 
-def start_emulator(avd_name="pixel7_api36_google", snapshot="map"):
-    """
-    ANDROID_SDK_ROOT/emulator/emulator 를 이용해 AVD를 백그라운드로 실행
-    """
+def get_running_emulator_ports():
+    output = subprocess.check_output(['adb', 'devices']).decode()
+    lines = output.strip().split('\n')[1:]  # skip header
+    ports = []
+    for line in lines:
+        if line.startswith('emulator-'):
+            port = int(line.split()[0].split('-')[1])
+            ports.append(port)
+    return ports
+
+def wait_for_emulator(emulator_name, timeout=60):
+    """ADB에서 에뮬레이터가 'device' 상태가 될 때까지 대기"""
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            output = subprocess.check_output(['adb', '-s', emulator_name, 'shell', 'getprop', 'sys.boot_completed'])
+            if output.strip() == b'1':
+                print(f"{emulator_name} is ready.")
+                return True
+        except subprocess.CalledProcessError:
+            pass
+        time.sleep(2)
+    raise TimeoutError(f"Emulator {emulator_name} did not boot in time.")
+
+def start_emulator(args):
     sdk_root = os.environ.get("ANDROID_SDK_ROOT")
     if not sdk_root:
         raise RuntimeError("환경 변수 ANDROID_SDK_ROOT 가 설정되어 있지 않습니다.")
     emulator_bin = os.path.join(sdk_root, "emulator", "emulator")
+
+    # 기존 포트 목록 확인 및 다음 포트 결정
+    used_ports = get_running_emulator_ports()
+    base_port = 5554
+    while base_port in used_ports:
+        base_port += 2  # 2단위로 증가
+
+    args.emulator_port = base_port  # 추가 인자로 저장해두기
+    emulator_name = f"emulator-{base_port}"
+
     cmd = [
         emulator_bin,
-        "-avd", avd_name,
-        "-snapshot", snapshot,
+        "-avd", args.avd_name,
+        "-port", str(base_port),
+        "-snapshot", args.snapshot,
         "-no-skin",
         "-no-window",
         "-no-audio",
         "-gpu", "swiftshader_indirect"
     ]
-    # 백그라운드 실행
+
     subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    # subprocess.run(['adb', 'exec-out', 'screencap', '-p'], stdout=open(image_path, 'wb'))
-    # 에뮬레이터가 완전히 부팅될 때까지 충분히 대기
-    print(f"Starting emulator {avd_name}…")
-    time.sleep(15)
     
-    # set location
-    subprocess.run(["adb","emu","geo","fix", str(127.0283), str(37.4672)], check=True)
+    print(f"Starting emulator {args.avd_name} at port {base_port}…")
+
+    # 에뮬레이터 부팅 완료까지 기다림
+    wait_for_emulator(emulator_name)
+
+    subprocess.run(["adb", "-s", emulator_name, "emu", "geo", "fix", str(127.0283), str(37.4672)], check=True)
     
-def get_screenshot(image_path):
-    subprocess.run(['adb', 'exec-out', 'screencap', '-p'], stdout=open(image_path, 'wb'))
+def get_screenshot(image_path, emulator_name):
+    subprocess.run(['adb', '-s', emulator_name, 'exec-out', 'screencap', '-p'], stdout=open(image_path, 'wb'))
 
 def get_action(model, processor, task_text, image_path):
 
@@ -114,72 +146,70 @@ def get_action(model, processor, task_text, image_path):
         status = action["arguments"]["status"]
         
         return "terminate", status
-
-def execute_action(action, arguments):
     
+    else:
+        print(f"Model action output: {action}")
+        subprocess.run(['adb', 'emu', 'kill'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        raise ValueError(f"Unknown action type: {action_type}")
+
+def execute_action(action, arguments, emulator_name):
+    base_cmd = ['adb', '-s', emulator_name, 'shell', 'input']
     if action == 'click':
-        x = arguments[0]
-        y = arguments[1]
-        subprocess.run(['adb', 'shell', 'input', 'tap', str(x), str(y)])
-        
+        subprocess.run(base_cmd + ['tap', str(arguments[0]), str(arguments[1])])
     elif action == "swipe":
-        x1 = arguments[0][0]
-        y1 = arguments[0][1]
-        x2 = arguments[1][0]
-        y2 = arguments[1][1]
-        subprocess.run(['adb', 'shell', 'input', 'swipe', str(x1), str(y1), str(x2), str(y2)])
-        
+        subprocess.run(base_cmd + ['swipe', str(arguments[0][0]), str(arguments[0][1]), str(arguments[1][0]), str(arguments[1][1])])
     elif action == "type":
-        text = arguments.replace(" ", "%s")
-        subprocess.run(['adb', 'shell', 'input', 'text', text])
-        
+        text = arguments.replace(" ", "%s").replace("&", r"\&")
+        subprocess.run(base_cmd + ['text', text])
     print(f"Executed action: {action} with arguments: {arguments}")
     
-def main(task_text, output_path):
-    
-    start_emulator()
+def main(args):
+    start_emulator(args)
+    emulator_name = f"emulator-{args.emulator_port}"
     
     model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
-    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
+    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+        model_path,
+        torch_dtype=torch.bfloat16,
+        attn_implementation="flash_attention_2",
+        device_map="auto"
+    )
     processor = AutoProcessor.from_pretrained(model_path)
-    
-    os.makedirs(output_path, exist_ok=True)
-    
-    for i in range(10):    
-        
-        image_path = os.path.join(output_path, f"step_{i}_screenshot.png")
-        
-        get_screenshot(image_path)
+
+    os.makedirs(args.output_path, exist_ok=True)
+
+    for i in range(args.max_steps):    
+        image_path = os.path.join(args.output_path, f"step_{i}_screenshot.png")
+        get_screenshot(image_path, emulator_name)
+        print(f">>>> Saved screenshot\n")
         time.sleep(3)
-        
-        action, arguments = get_action(model, processor, task_text, image_path)
-        
-        print(f"<Model Output> # Step {i+1}: # Action={action}, # Args={arguments}")
-        
+
+        action, arguments = get_action(model, processor, args.task_text, image_path)
+        print(f">>>> <Model Output> # Step {i+1}: # Action={action}, # Args={arguments}\n")
+
         if action == "terminate":
-            print("Terminating the process.")
+            print(">>>>>Terminating the process.")
             break
-        
-        execute_action(action, arguments)
-        
+
+        execute_action(action, arguments, emulator_name)
         time.sleep(3)
-        
-    print(f"Process completed within {i+1} steps.")
-    
-    # 3) 에뮬레이터 종료
-    print("Shutting down emulator…")
-    # adb 명령으로 graceful하게 종료
-    subprocess.run(['adb', 'emu', 'kill'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    # 프로세스가 살아있다면 강제 종료
-    emulator_proc.terminate()
-    emulator_proc.wait(timeout=5)
+
+    get_screenshot(os.path.join(args.output_path, "step_10_screenshot.png"), emulator_name)
+    print(f">>>>> Process completed within {i+1} steps.\n")
+
+    print(">>>>> Shutting down emulator…")
+    subprocess.run(['adb', '-s', emulator_name, 'emu', 'kill'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
 if __name__ == "__main__":
     # 스크린샷을 찍고, 이미지를 처리하여 작업을 수행하는 파이프라인
     
     parser = argparse.ArgumentParser(description="Qwen Moblie Agent Pipeline")
     parser.add_argument('--task_text', type=str, required=True, help='Task text for the VLM pipeline')
-    parser.add_argument('--output_path', type=str, default="qwen_screenshot/", help='Path to save screenshots')
+    parser.add_argument('--output_path', type=str, required=True, help='Path to save screenshots')
+    parser.add_argument('--avd_name', type=str, default="pixel7_api36_google", help='Name of the AVD to start')
+    parser.add_argument('--snapshot', type=str, default="google_login", help='Snapshot name for the AVD')
+    parser.add_argument('--max_steps', type=int, default=10, help='Maximum number of steps to execute')
+    
     args = parser.parse_args()
     
-    main(args.task_text, args.output_path)
+    main(args)
