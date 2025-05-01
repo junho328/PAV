@@ -142,6 +142,12 @@ def get_action(model, processor, task_text, image_path):
         
         return "type", text
     
+    elif action_type == "system_button":
+        
+        button = action["arguments"]["button"]
+        
+        return "system_button", button
+    
     elif action_type == "terminate":
         status = action["arguments"]["status"]
         
@@ -161,6 +167,16 @@ def execute_action(action, arguments, emulator_name):
     elif action == "type":
         text = arguments.replace(" ", "%s").replace("&", r"\&")
         subprocess.run(base_cmd + ['text', text])
+    elif action == "system_button":
+        button = arguments
+        if button == "Back":
+            subprocess.run(base_cmd + ['keyevent', '4'])
+        elif button == "Home":
+            subprocess.run(base_cmd + ['keyevent', '3'])
+        elif button == "Menu":
+            subprocess.run(base_cmd + ['keyevent', '82'])
+        elif button == "Enter":
+            subprocess.run(base_cmd + ['keyevent', '66'])
     print(f"Executed action: {action} with arguments: {arguments}")
     
 def main(args):
@@ -182,6 +198,7 @@ def main(args):
         image_path = os.path.join(args.output_path, f"step_{i}_screenshot.png")
         get_screenshot(image_path, emulator_name)
         print(f">>>> Saved screenshot\n")
+        time.sleep(3)
         time.sleep(3)
 
         action, arguments = get_action(model, processor, args.task_text, image_path)
