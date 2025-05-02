@@ -75,6 +75,7 @@ adb devices   # should list your AVD, e.g. emulator‑5554
   - <img src="assets/mcdelivery.png" width="200"/>
 
 ### 3-B. Run the client script
+- **Don't forget that the server (`uvicorn baseline_server:app --host 0.0.0.0 --port 8000`) is already on run**
 ```bash
 python client.py \
   --server http://<SERVER_IP>:8000/predict \
