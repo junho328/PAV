@@ -73,6 +73,8 @@ adb devices   # should list your AVD, e.g. emulator‑5554
   - <img src="assets/google_maps.png" width="200"/>
 - For McDelivery task, set the starting point should be below image
   - <img src="assets/mcdelivery.png" width="200"/>
+  
+**You can set the starting point easily with Snapshot in Android Studio!!**
 
 ### 3-B. Run the client script
 - **Don't forget that the server (`uvicorn baseline_server:app --host 0.0.0.0 --port 8000`) is already on run**
