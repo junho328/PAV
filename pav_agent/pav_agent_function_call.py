@@ -25,25 +25,33 @@ Use a touchscreen to interact with a mobile device, and take screenshots.
             "action": {
                 "description": """
 The action to perform. The available actions are:
+* `key`: Perform a key event on the mobile device.
+    - This supports adb's `keyevent` syntax.
+    - Examples: "volume_up", "volume_down", "power", "camera", "clear".
 * `click`: Click the point on the screen with coordinate (x, y).
+* `long_press`: Press the point on the screen with coordinate (x, y) for specified seconds.
 * `swipe`: Swipe from the starting point with coordinate (x, y) to the end point with coordinates2 (x2, y2).
 * `type`: Input the specified text into the activated input box.
-* `press`: Press the system button.
+* `system_button`: Press the system button.
+* `open`: Open an app on the device.
 * `wait`: Wait specified seconds for the change to happen.
 * `terminate`: Terminate the current task and report its completion status.
 """.strip(),
                 "enum": [
+                    "key",
                     "click",
+                    "long_press",
                     "swipe",
                     "type",
-                    "press",
+                    "system_button",
+                    "open",
                     "wait",
                     "terminate",
                 ],
                 "type": "string",
             },
             "coordinate": {
-                "description": "(x, y): The x (pixels from the left edge) and y (pixels from the top edge) coordinates to move the mouse to. Required only by `action=click` and `action=swipe`.",
+                "description": "(x, y): The x (pixels from the left edge) and y (pixels from the top edge) coordinates to move the mouse to. Required only by `action=click`, `action=long_press`, and `action=swipe`.",
                 "type": "array",
             },
             "coordinate2": {
@@ -51,7 +59,7 @@ The action to perform. The available actions are:
                 "type": "array",
             },
             "text": {
-                "description": "Required only by `action=type`.",
+                "description": "Required only by `action=key`, `action=type`, and `action=open`.",
                 "type": "string",
             },
             "time": {
@@ -59,7 +67,7 @@ The action to perform. The available actions are:
                 "type": "number",
             },
             "button": {
-                "description": "Back means returning to the previous interface, Home means returning to the home screen, Menu means opening the application background menu, and Enter means pressing the enter. Required only by `action=press`",
+                "description": "Back means returning to the previous interface, Home means returning to the desktop, Menu means opening the application background menu, and Enter means pressing the enter. Required only by `action=system_button`",
                 "enum": [
                     "Back",
                     "Home",
@@ -86,9 +94,15 @@ The action to perform. The available actions are:
     def call(self, params: Union[str, dict], **kwargs):
         params = self._verify_json_format_args(params)
         action = params["action"]
-        if action == "click":
+        if action == "key":
+            return self._key(params["text"])
+        elif action == "click":
             return self._click(
                 coordinate=params["coordinate"]
+            )
+        elif action == "long_press":
+            return self._long_press(
+                coordinate=params["coordinate"], time=params["time"]
             )
         elif action == "swipe":
             return self._swipe(
@@ -96,8 +110,10 @@ The action to perform. The available actions are:
             )
         elif action == "type":
             return self._type(params["text"])
-        elif action == "press":
+        elif action == "system_button":
             return self._system_button(params["button"])
+        elif action == "open":
+            return self._open(params["text"])
         elif action == "wait":
             return self._wait(params["time"])
         elif action == "terminate":
