@@ -70,9 +70,9 @@ adb devices   # should list your AVD, e.g. emulator‑5554
 - Set location to the designated place (Seoul Ai Hub)
 - Login Google Account
 - For Google Maps task, set the starting point should be below image
-  - ![Google Maps](assets/google_maps.png)
+  - <img src="assets/google_maps.png" width="200"/>
 - For McDelivery task, set the starting point should be below image
-  - ![McDelivery](assets/mcdelivery.png)
+  - <img src="assets/mcdelivery.png" width="200"/>
 
 ### 3-B. Run the client script
 ```bash
