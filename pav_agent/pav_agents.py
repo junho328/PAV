@@ -1,4 +1,3 @@
-
 import json
 import re
 import ast
@@ -447,7 +446,7 @@ class Actor():
         self.visualize_click(action)
         return action
     
-    def to_emulator(action):
+    def to_emulator(self, action):
         action_type = action["arguments"]["action"]
         if action_type == "click":
             coordinate = action["arguments"]["coordinate"]
