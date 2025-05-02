@@ -2,6 +2,7 @@ import base64, io, subprocess, tempfile, requests, json, time
 import argparse
 from pathlib import Path
 from PIL import Image
+import shlex
 
 def take_screenshot(args, step: int) -> bytes:
     """
@@ -102,8 +103,7 @@ def run_adb_action(device_id: str, response: dict) -> str:
             print("type requires [text]")
             return action_type
         
-        text = text.replace(" ", "%s")
-        adb_shell("input", "text", text)
+        adb_shell("input", "text", shlex.quote(text))
 
     elif action_type == "long_click":
         
@@ -160,6 +160,7 @@ def run_adb_action(device_id: str, response: dict) -> str:
 
 def main(args):
     for step in range(args.max_steps):
+        
         print(f"\nStep {step}: Taking screenshot...")
         image_bytes = take_screenshot(args, step)
         
@@ -174,7 +175,7 @@ def main(args):
             print("Task complete. Exiting.")
             break
         
-        time.sleep(1)
+        time.sleep(3)
 
     # 마지막 결과 스크린샷
     final_step = step + 1
@@ -183,10 +184,10 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VLM Mobile Agent")
-    parser.add_argument("--server", type=str, default="http://<서버_IP>:8000/predict", help="Server URL")
+    parser.add_argument("--server", type=str, default="http://143.248.158.22:8000/predict", help="Server URL") # loki1: 143.248.158.22 / loki2: 143.248.158.71
     parser.add_argument("--device_id", type=str, default="emulator-5554", help="ADB Device ID")
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
-    parser.add_argument("--image_path", type=str, default="images", help="Path to save screenshots")
+    parser.add_argument("--image_path", type=str, default="qwen_7b_baseline_screenshots", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
 
     args = parser.parse_args()
