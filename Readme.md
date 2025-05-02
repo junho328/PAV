@@ -34,7 +34,7 @@ conda activate agent
 
 # 1‑B. Install deps
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu118
-pip install -r qwen_requirments.txt
+pip install -r qwen_requirements.txt
 
 # 1‑C. (one‑time) login to Hugging Face – needed for Qwen‑VL
 huggingface-cli login
