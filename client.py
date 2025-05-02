@@ -43,78 +43,114 @@ def run_adb_action(device_id: str, response: dict) -> str:
     """
     서버 응답에 따라 ADB 명령 실행
     """
-    action_type = response.get("action_type", "")
-    arguments = response.get("arguments", [])
+    action_type = response.get("action", "")
 
     def adb_shell(*args):
         subprocess.run(["adb", "-s", device_id, "shell"] + list(args), check=True)
 
     if action_type == "system_button":
-        if not arguments:
-            print("⚠️ system_button requires arguments")
+        
+        button = response.get("button")
+        if not button:
+            print("system_button requires [button]")
             return action_type
+        
         key_map = {
             "HOME": "3",
             "BACK": "4",
             "MENU": "82",
             "ENTER": "66"
         }
-        key_code = key_map.get(arguments[0].upper())
+        key_code = key_map.get(button.upper())
         if key_code:
             adb_shell("input", "keyevent", key_code)
         else:
-            print(f"Unknown system button: {arguments[0]}")
+            print(f"Unknown system button: {button}")
 
     elif action_type == "click":
-        if len(arguments) < 2:
+        
+        coordinate = response.get("coordinate")
+        
+        if len(coordinate) < 2:
             print("click requires [x, y]")
             return action_type
-        x, y = int(arguments[0]), int(arguments[1])
+        
+        x, y = int(coordinate[0]), int(coordinate[1])
         adb_shell("input", "tap", str(x), str(y))
 
     elif action_type == "swipe":
-        if len(arguments) < 4:
-            print("swipe requires [x1, y1, x2, y2]")
+        
+        coordinate = response.get("coordinate")
+        
+        if len(coordinate) < 2:
+            print("swipe requires coordinate [x, y]")
             return action_type
-        x1, y1, x2, y2 = map(int, arguments)
+        
+        coordinate2 = response.get("coordinate2")
+        
+        if len(coordinate2) < 2:
+            print("swipe requires coordinate2 [x, y]")
+            return action_type
+        
+        x1, y1, x2, y2 = int(coordinate[0]), int(coordinate[1]), int(coordinate2[0]), int(coordinate2[1])
         adb_shell("input", "swipe", str(x1), str(y1), str(x2), str(y2))
 
     elif action_type == "type":
-        if not arguments:
+        
+        text = response.get("text")
+        if not text:
             print("type requires [text]")
             return action_type
-        text = arguments[0].replace(" ", "%s")
+        
+        text = text.replace(" ", "%s")
         adb_shell("input", "text", text)
 
     elif action_type == "long_click":
-        if len(arguments) < 2:
-            print("long_click requires [x, y]")
+        
+        duration = response.get("time")
+        
+        if not duration:
+            print("long_click requires [time]")
             return action_type
-        x, y = int(arguments[0]), int(arguments[1])
-        adb_shell("input", "swipe", str(x), str(y), str(x), str(y), "1000")
+
+        adb_shell("input", "swipe", str(x), str(y), str(x), str(y), str(duration))
 
     elif action_type == "key":
-        if not arguments:
-            print("key requires [key_code]")
+        
+        key_num = response.get("text")
+        if not key_num:
+            print("key requires [text]")
             return action_type
-        adb_shell("input", "keyevent", str(arguments[0]))
+        
+        adb_shell("input", "keyevent", str(key_num))
 
     elif action_type == "open":
-        if not arguments:
-            print("open requires [package_name]")
+        
+        package_name = response.get("text")
+        if not package_name:
+            print("open requires [text]")
             return action_type
-        package_name = arguments[0]
+        
         adb_shell("monkey", "-p", package_name, "-c", "android.intent.category.LAUNCHER", "1")
 
     elif action_type == "wait":
-        if not arguments:
-            print("wait requires [seconds]")
+        
+        seconds = response.get("time")
+        
+        if not seconds:
+            print("wait requires [time]")
             return action_type
-        seconds = int(arguments[0])
+        
+        seconds = int(seconds)
         time.sleep(seconds)
 
     elif action_type == "terminate":
-        status = arguments[0] if arguments else "unknown"
+        
+        status = response.get("status")
+        if not status:
+            print("terminate requires [status]")
+            return action_type
+        
         print(f"Task terminated with status: {status}")
 
     else:
