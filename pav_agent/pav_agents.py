@@ -1,4 +1,3 @@
-
 import json
 import re
 import ast
@@ -186,7 +185,7 @@ You are provided with function signatures within <tools></tools> XML tags:
     * `show` : Show a certain list.
     * `terminate`: Terminate the current task and report its completion status.
     When you want to add a location to a list, you should usually search the location, select the save button, select the list you want to save the location to, and than select the Done button.
-    
+    When you want to add or change a side menu, you should usually select the change button.
     ]
 
 * macro_action enum : [
