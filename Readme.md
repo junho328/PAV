@@ -1,4 +1,4 @@
-# 📱 Vision‑Language Mobile Agent Demo
+# 📱 Vision‑Language Mobile Agent with Planner-Actor-Verifier Method
 
 This repo shows an end‑to‑end pipeline that
 
