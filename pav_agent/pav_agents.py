@@ -1,3 +1,4 @@
+
 import json
 import re
 import ast
@@ -17,6 +18,26 @@ def agent_preprocess(processor, screenshot):
         min_pixels=processor.image_processor.min_pixels,
         max_pixels=processor.image_processor.max_pixels,)
     return dummy_image, resized_height, resized_width
+
+
+def extract_json_blocks(text):
+    blocks = []
+    stack = []
+    start_idx = None
+
+    for idx, char in enumerate(text):
+        if char == '{':
+            if not stack:
+                start_idx = idx
+            stack.append(char)
+        elif char == '}':
+            if stack:
+                stack.pop()
+                if not stack:
+                    block = text[start_idx:idx + 1]
+                    blocks.append(block)
+    return blocks
+
 
 class Planner():
     def planner_prompt(self):
@@ -325,17 +346,22 @@ You are provided with function signatures within <tools></tools> XML tags:
         output_ids = model.generate(**inputs, max_new_tokens=2048)
         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
         output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
-        print('planner output : ', output_text)
+        # print('planner output : ', output_text)
 
         # Extract Macro Actions
-        macro_action_json_blocks = re.findall(r"```json\s*(.*?)\s*```", output_text, re.DOTALL)
+        # matches = re.findall(r"```json\s*(.*?)\s*```", output_text, re.DOTALL)
+        # if not matches:
+        #     matches = re.findall(r'\{.*?\}', output_text, re.DOTALL)
+        matches = extract_json_blocks(output_text)
+        print(matches)
+
         macro_actions = []
-        for macro_action in macro_action_json_blocks:
+        for macro_action in matches:
             print(macro_action)
             try:
                 macro_actions.append(json.loads(macro_action))
             except json.JSONDecodeError as e:
-                print(f"Error: {e}")
+                print(f"")
         
         # Refine Macro Actions to input Actor
         macro_actions = self.to_actor(macro_actions)
@@ -346,7 +372,7 @@ You are provided with function signatures within <tools></tools> XML tags:
         refined_macro_action_plan = []
         for action in macro_actions:
             action_str = json.dumps(action)
-            # print("action : ", action)
+            print("action : ", action)
             parsed_action = ast.literal_eval(action_str)
 
             refined_macro_action = parsed_action.get("macro-actions")
@@ -381,7 +407,7 @@ You are provided with function signatures within <tools></tools> XML tags:
             if refined_argument.get("status") != None:
                 refined_macro_action_plan.append(refined_argument.get("status"))
         return refined_macro_action_plan
-
+    
             
 class Actor():
     def actor(self, model, processor, screenshot, curr_macro_action):
@@ -520,11 +546,12 @@ Think step by step and provide the final answer. And return the answer in the fo
         print('verifier output : ', output_text)
 
         # Extract Verification Information
-        verification_info = re.findall(r"```json\s*(.*?)\s*```", output_text, re.DOTALL)
-        print(verification_info)
-        verification_info_str = ast.literal_eval(verification_info[0])
-        verification = verification_info_str.get("action_completed")
-        reason = verification_info_str.get("reason")
+        matches = extract_json_blocks(output_text)
+        print(matches)
+        
+        parsed = json.loads(matches[0])
+        verification = parsed["action_completed"]
+        reason = parsed["reason"]
         print("verify : ", verification)
         print("reason : ", reason)
         return int(verification)
