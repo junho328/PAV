@@ -64,6 +64,7 @@ def PAV(task_text, image_path):
             if macro_mask[step] == True:    # Achieve macro action
                 step += 1
                 next_screenshot.save(backup_screenshot_path)
+                previous_macro_action_plan.append(curr_macro_action)
                 trial = 0
 
             if trial > 5:                   # Fail macro action
