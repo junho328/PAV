@@ -53,8 +53,8 @@ Model loaded successfully.
 ## 2. Local Client setup (`client.py`)
 ```bash
 # 2‑A. Create venv
-conda create -n vlm_cli python=3.10 -y
-conda activate vlm_cli
+conda create -n agent_cli python=3.10 -y
+conda activate agent_cli
 
 # 2‑B. Install deps
 pip install requests pillow
