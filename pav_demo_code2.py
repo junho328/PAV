@@ -43,15 +43,17 @@ def PAV(task_text, image_path):
         macro_mask = [False] * len(macro_action_plan)
         trial = 0   # micro action trial
         backup_screenshot_path = "curr_screenshot.png"
+        initial_screenshot = Image.open(initial_screenshot)
         initial_screenshot.save(backup_screenshot_path)
         curr_screenshot = "curr_screenshot.png"
         while not all(macro_mask):
             curr_macro_action = macro_action_plan[step]
             micro_action_plan = act.actor(model, processor, curr_screenshot, curr_macro_action)
-            print(micro_action_plan)
+            print("micro_action_plan : ", micro_action_plan)
 
             # Interact with Emulator
             action_type, action_coord = act.to_emulator(micro_action_plan)
+            print("action type : ", action_type, ", action_coord : ", action_coord)
             execute_action(action_type, action_coord)
             get_screenshot()
             trial += 1
