@@ -1,4 +1,4 @@
-# 📱 Vision‑Language Mobile Agent with Planner-Actor-Verifier Method
+# 📱 Vision‑Language Mobile Agent
 
 This repo shows an end‑to‑end pipeline that
 
@@ -25,7 +25,7 @@ The two main entry‑point files are:
 
 ---
 
-## 1. Server setup  (`baseline_server.py` or `pav_server.py`(not yet))
+## 1. Server setup  (`qwen_server.py`,`uitars_server.py`,`pav_server.py`(not yet))
 
 ```bash
 # 1‑A. Create & activate venv / conda env
@@ -41,7 +41,7 @@ huggingface-cli login
 # paste your HF access‑token (READ scope)
 
 # 1‑D. Launch the server
-uvicorn baseline_server:app --host 0.0.0.0 --port 8000
+uvicorn qwen_server:app --host 0.0.0.0 --port 8000
 ```
 
 If everything loads correctly you should see:
@@ -77,12 +77,12 @@ adb devices   # should list your AVD, e.g. emulator‑5554
 **You can set the starting point easily with Snapshot in Android Studio!!**
 
 ### 3-B. Run the client script
-- **Don't forget that the server (`uvicorn baseline_server:app --host 0.0.0.0 --port 8000`) is already on run**
+- **Don't forget that the server (`uvicorn qwen_server:app --host 0.0.0.0 --port 8000`) is already on run**
 ```bash
 python client.py \
   --server http://<SERVER_IP>:8000/predict \
   --device_id emulator-5554 \
   --task "Please display the route to Gwanghwamun Square." \
-  --image_path "qwen_7b_baseline_screenshots" \
+  --image_path "qwen_7b_baseline_google_screenshots" \
   --max_steps 10
 ```
