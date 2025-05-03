@@ -443,7 +443,6 @@ class Actor():
 
         # Extract Micro Actions
         action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-        self.visualize_click(action)
         return action
     
     def to_emulator(self, action):
@@ -460,42 +459,6 @@ class Actor():
             text = action["arguments"]["text"]
             
             return "type", text
-        
-    def draw_point(self, image: Image.Image, point: list, color=None):
-        from copy import deepcopy
-        if isinstance(color, str):
-            try:
-                color = ImageColor.getrgb(color)
-                color = color + (128,)  
-            except ValueError:
-                color = (255, 0, 0, 128)  
-        else:
-            color = (255, 0, 0, 128)  
-    
-        overlay = Image.new('RGBA', image.size, (255, 255, 255, 0))
-        overlay_draw = ImageDraw.Draw(overlay)
-        radius = min(image.size) * 0.05
-        x, y = point
-
-        overlay_draw.ellipse(
-            [(x - radius, y - radius), (x + radius, y + radius)],
-            fill=color  # Red with 50% opacity
-        )
-
-        image = image.convert('RGBA')
-        combined = Image.alpha_composite(image, overlay)
-
-        return combined.convert('RGB')
-    
-    def visualize_click(self, action):
-        # Visualize Micro Action "click" : Draw a green circle onto the image.
-        display_image = self.dummy_image.resize((self.resized_width, self.resized_height))
-        if action['arguments']['action'] == "click":
-            display_image = self.draw_point(self.dummy_image, action['arguments']['coordinate'], color='green')
-            display(display_image)
-        else:
-            display(display_image)
-
 
 class Verifier():
     def verifier_prompt(self):
