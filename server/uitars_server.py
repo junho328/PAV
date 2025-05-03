@@ -2,6 +2,7 @@ import base64
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from PIL import Image
+import os
 
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
@@ -36,45 +37,43 @@ finished(content='xxx') # Use escape characters \\', \\", and \\n in content par
 {instruction}
 """ 
 
-def parse_action_string(output):
-    # 정규식 패턴 정의
-    patterns = {
-        'click': r"click\(start_box='<\|box_start\|\>\((\d+),(\d+)\)<\|box_end\|\>'\)",
-        'long_press': r"long_press\(start_box='<\|box_start\|\>\((\d+),(\d+)\)<\|box_end\|\>'\)",
-        'type': r"type\(content='(.*?)'\)",
-        'scroll': r"scroll\(start_box='<\|box_start\|\>\((\d+),(\d+)\)<\|box_end\|\>', direction='(down|up|left|right)'\)",
-        'open_app': r"open_app\(app_name='(.*?)'\)",
-        'drag': r"drag\(start_box='<\|box_start\|\>\((\d+),(\d+)\)<\|box_end\|\>', end_box='<\|box_start\|\>\((\d+),(\d+)\)<\|box_end\|\>'\)",
-        'press_home': r"press_home\(\)",
-        'press_back': r"press_back\(\)",
-        'finished': r"finished\(content='(.*?)'\)",
-    }
 
-    for action_type, pattern in patterns.items():
-        match = re.search(pattern, output)
-        if match:
-            if action_type in ['click', 'long_press']:
-                return {'action_type': action_type, 'start_box': [int(match.group(1)), int(match.group(2))]}
-            elif action_type == 'scroll':
-                return {'action_type': action_type, 'start_box': [int(match.group(1)), int(match.group(2))], 'direction': match.group(3)}
-            elif action_type == 'type':
-                return {'action_type': action_type, 'content': match.group(1)}
-            elif action_type == 'open_app':
-                return {'action_type': action_type, 'app_name': match.group(1)}
-            elif action_type == 'drag':
-                return {
-                    'action_type': action_type,
-                    'start_box': [int(match.group(1)), int(match.group(2))],
-                    'end_box': [int(match.group(3)), int(match.group(4))]
-                }
-            elif action_type in ['press_home', 'press_back']:
-                return {'action_type': action_type}
-            elif action_type == 'finished':
-                return {'action_type': action_type, 'content': match.group(1)}
+def parse_action_string(model_output) -> dict | None:
+    """
+    Parse a model output string containing an Action, e.g.
+      "Thought: ...\nAction: click(start_box='(986,1899)')"
+    Returns a dict like:
+      {"action_type": "click", "start_box": (986, 1899)}
+    or for argument‐less actions:
+      {"action_type": "press_home"}
+    """
+    # 1) Pull out the “Action: …” portion
+    m = re.search(r"Action:\s*(\w+\(.*\))", model_output)
+    if not m:
+        return None
+    cmd = m.group(1)
     
-    # 매치되는 action이 없으면 None 반환
-    return None
-
+    # 2) Split into action_type and inner args
+    m2 = re.match(r"^(\w+)\((.*)\)$", cmd)
+    if not m2:
+        return None
+    action_type, args_str = m2.group(1), m2.group(2).strip()
+    
+    result = {"action_type": action_type}
+    if not args_str:
+        return result
+    
+    # 3) Extract key='value' pairs
+    for key, val in re.findall(r"(\w+)=['\"]([^'\"]*)['\"]", args_str):
+        if key in ("start_box", "end_box", "coordinate"):
+            # parse "(x,y)" → (int(x), int(y))
+            nums = list(map(int, re.findall(r"-?\d+", val)))
+            result[key] = tuple(nums)
+        else:
+            result[key] = val
+    
+    return result
+    
 model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
@@ -93,10 +92,14 @@ def predict(query: Query):
     # 1) 입력 이미지 디코딩
     image_bytes = base64.b64decode(query.image_base64)
     
+    os.makedirs("./uitars_screenshot", exist_ok=True)
+    
     screenshot_path = f"./uitars_screenshot/screenshot_{query.step}.png"
         
     with open(screenshot_path, "wb") as f:
         f.write(image_bytes)
+        
+    screenshot = Image.open(screenshot_path)
     
     messages = [
             {
@@ -104,7 +107,7 @@ def predict(query: Query):
                 "content": [
                     {
                         "type": "image",
-                        "image": screenshot_path,
+                        "image": screenshot,
                     },
                     {"type": "text", "text": MOBILE_USE.format(instruction=query.task)},
                 ],
@@ -135,6 +138,8 @@ def predict(query: Query):
         generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
     )
     
+    print(f">>output_text: {output_text}")
+    
     # Qwen will perform action thought function call
     
     action_dict = parse_action_string(output_text[0])
@@ -144,7 +149,7 @@ def predict(query: Query):
     # ex) {"name": "ui_tars", "arguments": {"action_type": "click", "start_box": [434, 226]}}
     response = {
         "name" : "ui_tars",
-        "aguments": action_dict
+        "arguments": action_dict
     }
     
     return response
