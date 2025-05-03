@@ -14,7 +14,7 @@ def take_screenshot(args, step: int) -> bytes:
     # adb로 임시 스크린샷 생성
     with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp_file:
         subprocess.run(
-            ["adb", "-s", args.device_id, "exec-out", "screencap", "-p"],
+            ["adb", "-s", "emulator-5554", "exec-out", "screencap", "-p"],
             stdout=tmp_file,
             check=True
         )
