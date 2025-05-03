@@ -62,7 +62,13 @@ pip install requests pillow
 # 2‑C. Make sure `adb` is in PATH
 
 adb devices   # should list your AVD, e.g. emulator‑5554
+
+# ADB path set
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+source ~/.zshrc # or source ~/.bashrc
 ```
+
 
 ## 3. Usage
 ### 3-A. Start Android emulator
