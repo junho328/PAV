@@ -11,7 +11,7 @@ The two main entry‑point files are:
 
 | file | role |
 |------|------|
-| `baseline_server.py` | FastAPI server that loads **Qwen‑2.5-VL** (or any other VLM) and returns an action JSON |
+| `<<model>>_server.py` | FastAPI server that loads **Qwen‑2.5-VL** (or any other VLM) and returns an action JSON |
 | `client.py` | Laptop‑side script: captures screenshots, calls the server, and translates the JSON into `adb` commands |
 
 ---
