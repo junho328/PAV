@@ -47,7 +47,7 @@ def qwen_action(response: dict) -> str:
     
     response = response["arguments"]
     
-    action_type = response.get("action_type", "")
+    action_type = response.get("action", "")
     
     if action_type == "system_button":
         
@@ -303,9 +303,9 @@ def pav(args):
         if step == 0:
             role = "planner"
             response = send_to_server(args, args.task, initial_image_bytes, step, role)
-            print(f">>>Planner Output: {response["macro_action_plan"]}\n")
+            print(">>>Planner Output:", response["macro_action_plan"])
             
-            print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
+            print("\n>>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
             
             action_type = run_adb_action(response)
             
@@ -330,7 +330,7 @@ def pav(args):
             role = "verifier"
             response = send_to_server(args, args.task, next_image_bytes, step, role)
             
-            print(f">>>Verifier Output: {response}")
+            print(f"\n>>>Verifier Output: {response}")
             
             image_bytes = next_image_bytes
             
