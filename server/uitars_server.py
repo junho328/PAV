@@ -1,6 +1,6 @@
 import base64
 from fastapi import FastAPI, HTTPException
-from pydantic import BaㄴseModel
+from pydantic import BaseModel
 from PIL import Image
 
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
@@ -149,4 +149,4 @@ def predict(query: Query):
     
     return response
 
-# uvicorn baseline_server:app --host 0.0.0.0 --port 8000 --workers 1
+# uvicorn uitars_server:app --host 0.0.0.0 --port 8000

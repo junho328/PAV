@@ -83,3 +83,5 @@ def predict(query: Query):
     response = action['arguments']
     
     return response
+
+# uvicorn qwen_server:app --host 0.0.0.0 --port 8000
