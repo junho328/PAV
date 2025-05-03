@@ -439,26 +439,10 @@ class Actor():
         output_ids = model.generate(**inputs, max_new_tokens=2048)
         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
         output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
-        print('output : ', output_text)
 
         # Extract Micro Actions
         action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
         return action
-    
-    def to_emulator(self, action):
-        action_type = action["arguments"]["action"]
-        if action_type == "click":
-            coordinate = action["arguments"]["coordinate"]
-            
-            return "click", coordinate
-        elif action_type == "swipe":
-            coordinate1 = action["arguments"]["coordinate"]
-            coordinate2 = action["arguments"]["coordinate2"]
-            return "swipe", (coordinate1, coordinate2)
-        elif action_type == "type":
-            text = action["arguments"]["text"]
-            
-            return "type", text
 
 class Verifier():
     def verifier_prompt(self):
@@ -516,4 +500,4 @@ Think step by step and provide the final answer. And return the answer in the fo
         reason = parsed["reason"]
         print("verify : ", verification)
         print("reason : ", reason)
-        return int(verification)
+        return bool(verification)

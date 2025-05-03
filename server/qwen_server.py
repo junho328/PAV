@@ -15,7 +15,8 @@ from PAV.server.agent_function_call import MobileUse
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
-model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
+model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
+#model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
@@ -25,13 +26,14 @@ class Query(BaseModel):
     task: str
     image_base64: str
     step: int
+    role: str
 
 @app.post("/predict")
 def predict(query: Query):
     # 1) 입력 이미지 디코딩
     image_bytes = base64.b64decode(query.image_base64)
     
-    screenshot_path = f"./qwen_screenshot/screenshot_{query.step}.png"
+    screenshot_path = f"./qwen_data/screenshot_{query.step}.png"
         
     with open(screenshot_path, "wb") as f:
         f.write(image_bytes)
@@ -78,9 +80,12 @@ def predict(query: Query):
     # Qwen will perform action thought function call
     action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
 
-    # ex) {"name": "mobile_use", "arguments": {"action": "click", "coordinate": [935, 406]}}
-    response["name"] = "qwen"
-    response = action['arguments']
+    # ex) {"name": "qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
+    
+    response = {
+        "name" : "qwen",
+        "arguments": action["arguments"]
+    }
     
     return response
 

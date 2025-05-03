@@ -86,6 +86,7 @@ class Query(BaseModel):
     task: str
     image_base64: str
     step: int
+    role: str
 
 @app.post("/predict")
 def predict(query: Query):
@@ -94,7 +95,7 @@ def predict(query: Query):
     
     os.makedirs("./uitars_screenshot", exist_ok=True)
     
-    screenshot_path = f"./uitars_screenshot/screenshot_{query.step}.png"
+    screenshot_path = f"./uitars_data/screenshot_{query.step}.png"
         
     with open(screenshot_path, "wb") as f:
         f.write(image_bytes)
