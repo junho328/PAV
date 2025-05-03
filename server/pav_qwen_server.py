@@ -50,10 +50,8 @@ def pav(query: Query):
         
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
-            
-        screenshot = Image.open(screenshot_path)
-        
-        macro_action_plan = planner.planner(model, processor, user_query,screenshot)
+
+        macro_action_plan = planner.planner(model=model, processor=processor, screenshot=screenshot_path, user_query=user_query)
         
         print(f">>>Planner Output: {macro_action_plan}")
         
@@ -62,7 +60,7 @@ def pav(query: Query):
             
         current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.actor(model, processor, screenshot, current_macro_action)
+        micro_action = actor.actor(model=model, processor=processor, screenshot=screenshot_path, curr_macro_action=current_macro_action)
         print(">>>Actor Output:", micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
@@ -81,14 +79,12 @@ def pav(query: Query):
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
             
-        screenshot = Image.open(screenshot_path)
-            
         with open("./pav_data/macro_plans.json", "r") as f:
             macro_action_plan = json.load(f)
         
-        curr_macro_action = macro_action_plan[0]
+        current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.actor(model, processor, screenshot, curr_macro_action)
+        micro_action = actor.actor(model=model, processor=processor, screenshot=screenshot_path, curr_macro_action=current_macro_action)
         print(">>>Actor Output:", micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
@@ -105,7 +101,7 @@ def pav(query: Query):
             
         current_macro_action = macro_action_plan[0]
         
-        previous_screensho_path = f"./pav_data/screenshot_{step}.png"
+        previous_screenshot_path = f"./pav_data/screenshot_{step}.png"
         
         current_image_bytes = base64.b64decode(query.image_base64)
         
@@ -114,7 +110,7 @@ def pav(query: Query):
             
         current_screenshot_path = f"./pav_data/verifier_screenshot_{step}.png"
         
-        response = bool(verifier.verifier(model, processor, previous_screensho_path, current_screenshot_path, current_macro_action))
+        response = bool(verifier.verifier(model=model, processor=processor, screenshot1=previous_screenshot_path, screenshot2=current_screenshot_path, macro_action=current_macro_action))
         
         if response == True:
             print(f">>>Verifier Output: <{current_macro_action}> Done!")

@@ -20,6 +20,8 @@ model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
+os.makedirs("./qwen_data", exist_ok=True)
+
 app = FastAPI()
 
 class Query(BaseModel):

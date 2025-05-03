@@ -40,133 +40,133 @@ def extract_json_blocks(text):
 
 class Planner():
     def planner_prompt(self):
-        prompt = f"""
-Use a touchscreen to interact with a mobile device, and take screenshots.
+#         prompt = f"""
+# Use a touchscreen to interact with a mobile device, and take screenshots.
 
-* This is an interface to a mobile device with touchscreen. You are a Planner Agent and you to plan the macro actions in order to achieve the given instruction.
+# * This is an interface to a mobile device with touchscreen. You are a Planner Agent and you to plan the macro actions in order to achieve the given instruction.
 
-* Instruction is the main goal to achieve. The instruction for you is {self.user_query}
-* Macro actions are long-term actions such as 'Open the browser.', 'Search cafes nearby Samsung Seoul R&D Campus', 'Navigate to the bookstore' etc.
-* Micro actions are short-term actions like clicking and typing that are directly performed on the device.
+# * Instruction is the main goal to achieve. The instruction for you is {self.user_query}
+# * Macro actions are long-term actions such as 'Open the browser.', 'Search cafes nearby Samsung Seoul R&D Campus', 'Navigate to the bookstore' etc.
+# * Micro actions are short-term actions like clicking and typing that are directly performed on the device.
 
-* The macro action sequence plays a crucial role in guiding the actor toward executing more precise micro actions to accomplish the final instruction.
-* The planned future macro action sequence should be provided to the user at the end.
+# * The macro action sequence plays a crucial role in guiding the actor toward executing more precise micro actions to accomplish the final instruction.
+# * The planned future macro action sequence should be provided to the user at the end.
 
-* The planned macro actions for previous steps are {self.prev_macro_action_plan_str}.
-* You have to first determine your current status and than plan the next macro actions till the end of the 
-* The screen's resolution is {self.resized_width}x{self.resized_height}.
+# * The planned macro actions for previous steps are {self.prev_macro_action_plan_str}.
+# * You have to first determine your current status and than plan the next macro actions till the end of the 
+# * The screen's resolution is {self.resized_width}x{self.resized_height}.
 
-* Never output micro actions!!
-* Make sure to provide specific names of any applications, items, icons, locations, options. Make sure to provide macro action 'Done_Actions' at the end of action sequence if you are done planning.
+# * Never output micro actions!!
+# * Make sure to provide specific names of any applications, items, icons, locations, options. Make sure to provide macro action 'Done_Actions' at the end of action sequence if you are done planning.
 
-Plan the next macro action sequence to achieve the instruction using the below tools.
+# Plan the next macro action sequence to achieve the instruction using the below tools.
 
-# Tools
-You are provided with function signatures within <tools></tools> XML tags:
-<tools>
-* macro_action description : [
-    The macro action to perform. The available macro actions are:
-    * `open`: Open an app on the device.
-    * `install` : Install an app on the device.
-    * `search` : Search and item or location, menu the user is interested in.
-    * `select` : Choose an option, item, location, etc.
-    * `set_A_to_B` : Assign a specific target value or status B to a setting or parameter A.
-    * `change_A_to_B` : Modify the current value or state of A into a target value or state B.
-    * `navigate_to` : Display the map route from the current location to the specified target destination.
-    * `add_A_to_B` : Add a target item A into list B.
-    * `filter_route` : Apply specific conditions to limit and display only matching navigation routes.
-    * `show` : Show a certain list.
-    * `terminate`: Terminate the current task and report its completion status.
-    ]
-* macro_action enum : [
-    "open",
-    "install",
-    "search",
-    "select"
-    "set_A_to_B",
-    "change_A_to_B",
-    "navigate_to",
-    "add_A_to_B",
-    "filter_route",
-    "show"
-    "terminate",
-    ],
-* macro_action type : string
-* macro_action parameters : [
-    "app": [
-        "description": "Provide the name of the necessary application. Required only by 'macro_action=open' and 'macro_action=install'.",
-        "type": "string",
-    ],
-    "target": [
-        "description": "Provide the specific name of the location or item. Required only by 'macro_action=search', 'macro_action=select', 'macro_action=add', and 'macro_action=navigate_to'.",
-        "type": "string",
-    ],
-    "list": [
-        "description": "'Cart' means a list of selected items to purchase, 'Menu' means a list of available options or functions that the user can select, 'Want to go list' means a list of places the user intends to visit in the future functioning like a wishlist for locations, and 'Favorite list' means a personalized collection of frequently accessed or preferred items by the user. Required only by 'macro_action=add' and 'macro_action=show'.",
-        "enum": [
-            "Cart",
-            "Menu",
-            "Want to go list"
-            "Favorite list"
-        ],
-        "type": "string",
-    ],
-    "button": [
-        "description": "'Save' means a button used to store or retain selected items, 'Cart' means an icon representing a shopping cart which is used to view or access items selected for purchase, 'Menu' means a button that opens a list of navigation or action options, 'Direction' means a button for navigation guidance that helps the user reach a destination, and 'Done' means a button to finally add an element to a list. Required only by 'macro_action=select'.",
-        "enum": [
-            "Save",
-            "Cart",
-            "Menu",
-            "Direction"
-        ],
-        "type": "string",
-    ],
-    "food_set_option": [
-        "description": "'A la carte' means ordering individual dishes separately from the menu, 'Extra value meal' means a meal combo that includes a main item, side, and drink at a discounted price, and 'Large extra value meal' means a meal combo in large size that includes a main item, side, and drink at a discounted price. Required only by 'macro_action=select'.",
-        "enum": [
-            "A la carte",
-            "Extra value meal",
-            "Large extra value meal",
-        ],
-        "type": "string",
-    ],
-    "food_side_option": [
-        "description": "'Side menu' means a sliding panel or secondary menu such as fries, 'Drink' means a beverage item such as cola or coffee, and 'Dessert' means a sweet dish usually served at the end of a meal such as pie. Required only by 'macro_action=select', 'macro_action=set', and 'macro_action=change'.",
-        "enum": [
-            "Side menu",
-            "Drink",
-            "Dessert",
-        ],
-        "type": "string",
-    ],
-    "route_option": [
-        "description": "'Nearby' means located within a short distance, 'Wheelchair-accessible route' means a route that can be used by people in wheelchairs, 'Less walking route' means a route that requires less walking distance, and 'Fewer transfers route' means a route that involves fewer transfers between lines or vehicles. Required only by 'macro_action=show_route'.",
-        "enum": [
-            "Nearby",
-            "Wheelchair-accessible route",
-            "Less walking route",
-            "Fewer transfers route",
-        ],
-        "type": "string",
-    ],
-    "status": [
-        "description": "The status of the task. Required only by 'macro_action=terminate'.",
-        "type": "string",
-        "enum": ["Done_Actions", "Replan_Actions"],
-    ]
-]
-</tools>
+# # Tools
+# You are provided with function signatures within <tools></tools> XML tags:
+# <tools>
+# * macro_action description : [
+#     The macro action to perform. The available macro actions are:
+#     * `open`: Open an app on the device.
+#     * `install` : Install an app on the device.
+#     * `search` : Search and item or location, menu the user is interested in.
+#     * `select` : Choose an option, item, location, etc.
+#     * `set_A_to_B` : Assign a specific target value or status B to a setting or parameter A.
+#     * `change_A_to_B` : Modify the current value or state of A into a target value or state B.
+#     * `navigate_to` : Display the map route from the current location to the specified target destination.
+#     * `add_A_to_B` : Add a target item A into list B.
+#     * `filter_route` : Apply specific conditions to limit and display only matching navigation routes.
+#     * `show` : Show a certain list.
+#     * `terminate`: Terminate the current task and report its completion status.
+#     ]
+# * macro_action enum : [
+#     "open",
+#     "install",
+#     "search",
+#     "select"
+#     "set_A_to_B",
+#     "change_A_to_B",
+#     "navigate_to",
+#     "add_A_to_B",
+#     "filter_route",
+#     "show"
+#     "terminate",
+#     ],
+# * macro_action type : string
+# * macro_action parameters : [
+#     "app": [
+#         "description": "Provide the name of the necessary application. Required only by 'macro_action=open' and 'macro_action=install'.",
+#         "type": "string",
+#     ],
+#     "target": [
+#         "description": "Provide the specific name of the location or item. Required only by 'macro_action=search', 'macro_action=select', 'macro_action=add', and 'macro_action=navigate_to'.",
+#         "type": "string",
+#     ],
+#     "list": [
+#         "description": "'Cart' means a list of selected items to purchase, 'Menu' means a list of available options or functions that the user can select, 'Want to go list' means a list of places the user intends to visit in the future functioning like a wishlist for locations, and 'Favorite list' means a personalized collection of frequently accessed or preferred items by the user. Required only by 'macro_action=add' and 'macro_action=show'.",
+#         "enum": [
+#             "Cart",
+#             "Menu",
+#             "Want to go list"
+#             "Favorite list"
+#         ],
+#         "type": "string",
+#     ],
+#     "button": [
+#         "description": "'Save' means a button used to store or retain selected items, 'Cart' means an icon representing a shopping cart which is used to view or access items selected for purchase, 'Menu' means a button that opens a list of navigation or action options, 'Direction' means a button for navigation guidance that helps the user reach a destination, and 'Done' means a button to finally add an element to a list. Required only by 'macro_action=select'.",
+#         "enum": [
+#             "Save",
+#             "Cart",
+#             "Menu",
+#             "Direction"
+#         ],
+#         "type": "string",
+#     ],
+#     "food_set_option": [
+#         "description": "'A la carte' means ordering individual dishes separately from the menu, 'Extra value meal' means a meal combo that includes a main item, side, and drink at a discounted price, and 'Large extra value meal' means a meal combo in large size that includes a main item, side, and drink at a discounted price. Required only by 'macro_action=select'.",
+#         "enum": [
+#             "A la carte",
+#             "Extra value meal",
+#             "Large extra value meal",
+#         ],
+#         "type": "string",
+#     ],
+#     "food_side_option": [
+#         "description": "'Side menu' means a sliding panel or secondary menu such as fries, 'Drink' means a beverage item such as cola or coffee, and 'Dessert' means a sweet dish usually served at the end of a meal such as pie. Required only by 'macro_action=select', 'macro_action=set', and 'macro_action=change'.",
+#         "enum": [
+#             "Side menu",
+#             "Drink",
+#             "Dessert",
+#         ],
+#         "type": "string",
+#     ],
+#     "route_option": [
+#         "description": "'Nearby' means located within a short distance, 'Wheelchair-accessible route' means a route that can be used by people in wheelchairs, 'Less walking route' means a route that requires less walking distance, and 'Fewer transfers route' means a route that involves fewer transfers between lines or vehicles. Required only by 'macro_action=show_route'.",
+#         "enum": [
+#             "Nearby",
+#             "Wheelchair-accessible route",
+#             "Less walking route",
+#             "Fewer transfers route",
+#         ],
+#         "type": "string",
+#     ],
+#     "status": [
+#         "description": "The status of the task. Required only by 'macro_action=terminate'.",
+#         "type": "string",
+#         "enum": ["Done_Actions", "Replan_Actions"],
+#     ]
+# ]
+# </tools>
 
-For each function call, return json objects with function name and arguments within <tool_call></tool_call> XML tags:
-<tool_call>
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-{{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
-</tool_call>"""
+# For each function call, return json objects with function name and arguments within <tool_call></tool_call> XML tags:
+# <tool_call>
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# {{"macro-actions": <macro-actions>, "arguments": <args-json-object>}}
+# </tool_call>"""
         prompt2 = f"""
 Use a touchscreen to interact with a mobile device, and take screenshots.
 
@@ -179,8 +179,7 @@ Use a touchscreen to interact with a mobile device, and take screenshots.
 * The macro action sequence plays a crucial role in guiding the actor toward executing more precise micro actions to accomplish the final instruction.
 * The planned future macro action sequence should be provided to the user at the end.
 
-* The planned macro actions for previous steps are {self.prev_macro_action_plan_str}.
-* You have to first determine your current status and than plan the next macro actions till the end of the 
+* You have to first determine your current status and than plan the next macro actions till the end of the task.
 * The screen's resolution is {self.resized_width}x{self.resized_height}.
 
 * Never output micro actions!!
@@ -303,10 +302,9 @@ You are provided with function signatures within <tools></tools> XML tags:
         
         return prompt2
 
-    def planner(self, model, processor, screenshot, user_query, prev_macro_action_plan):
+    def planner(self, model, processor, screenshot, user_query):
         self.user_query = user_query
         self.dummy_image, self.resized_height, self.resized_width = agent_preprocess(processor, screenshot)
-        self.prev_macro_action_plan_str = "\n".join(prev_macro_action_plan)
 
         # Build Messages
 

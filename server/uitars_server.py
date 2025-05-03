@@ -36,8 +36,23 @@ finished(content='xxx') # Use escape characters \\', \\", and \\n in content par
 ## User Instruction
 {instruction}
 """ 
+    
+model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
+model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
+processor = AutoProcessor.from_pretrained(model_path)
 
+os.makedirs("./uitars_data", exist_ok=True)
 
+print("Model loaded successfully.")
+
+app = FastAPI()
+
+class Query(BaseModel):
+    task: str
+    image_base64: str
+    step: int
+    role: str
+    
 def parse_action_string(model_output) -> dict | None:
     """
     Parse a model output string containing an Action, e.g.
@@ -73,20 +88,6 @@ def parse_action_string(model_output) -> dict | None:
             result[key] = val
     
     return result
-    
-model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
-model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
-processor = AutoProcessor.from_pretrained(model_path)
-
-print("Model loaded successfully.")
-
-app = FastAPI()
-
-class Query(BaseModel):
-    task: str
-    image_base64: str
-    step: int
-    role: str
 
 @app.post("/predict")
 def predict(query: Query):
