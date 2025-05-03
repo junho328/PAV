@@ -30,7 +30,13 @@ class Query(BaseModel):
 def predict(query: Query):
     # 1) 입력 이미지 디코딩
     image_bytes = base64.b64decode(query.image_base64)
-    screenshot = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    
+    screenshot_path = f"./qwen_screenshot/screenshot_{query.step}.png"
+        
+    with open(screenshot_path, "wb") as f:
+        f.write(image_bytes)
+        
+    screenshot = Image.open(screenshot_path)
 
     # The operation history can be orgnized by Step x: [action]; Step x+1: [action]...
     user_query = f'The user query: {query.task}'
@@ -51,7 +57,7 @@ def predict(query: Query):
             Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
             Message(role="user", content=[
                 ContentItem(text=user_query),
-                ContentItem(image=f"file://{screenshot}")
+                ContentItem(image=f"file://{screenshot_path}")
             ]),
         ],
         functions=[mobile_use.function],
@@ -73,6 +79,7 @@ def predict(query: Query):
     action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
 
     # ex) {"name": "mobile_use", "arguments": {"action": "click", "coordinate": [935, 406]}}
+    response["name"] = "qwen"
     response = action['arguments']
     
     return response

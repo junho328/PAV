@@ -93,12 +93,10 @@ def predict(query: Query):
     # 1) 입력 이미지 디코딩
     image_bytes = base64.b64decode(query.image_base64)
     
-    screenshot_path = f"./screenshot_{query.step}.png"
+    screenshot_path = f"./uitars_screenshot/screenshot_{query.step}.png"
         
     with open(screenshot_path, "wb") as f:
         f.write(image_bytes)
-
-    screenshot = Image.open(screenshot_path)
     
     messages = [
             {

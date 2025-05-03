@@ -40,15 +40,13 @@ def send_to_server(args, task: str, image_bytes: bytes, step: int) -> dict:
     r.raise_for_status()
     return r.json()
 
-def run_adb_action(device_id: str, response: dict) -> str:
-    """
-    서버 응답에 따라 ADB 명령 실행
-    """
-    action_type = response.get("action", "")
+def adb_shell(*args):
+    subprocess.run(["adb", "-s", "emulator-5554", "shell"] + list(args), check=True)
 
-    def adb_shell(*args):
-        subprocess.run(["adb", "-s", device_id, "shell"] + list(args), check=True)
-
+def qwen_action(response: dict) -> str:
+    
+    action_type = response.get("action_type", "")
+    
     if action_type == "system_button":
         
         button = response.get("button")
@@ -152,9 +150,116 @@ def run_adb_action(device_id: str, response: dict) -> str:
             return action_type
         
         print(f"Task terminated with status: {status}")
+        
+    else:
+        print(f"Unknown action type: {action_type}")
+        return action_type
+
+    return action_type
+
+
+def uitars_action(response: dict) -> str:
+    
+    action_type = response.get("action_type", "")
+
+    if action_type == "click":
+        coord = response.get("start_box")
+        if coord and len(coord) == 2:
+            x, y = map(int, coord)
+            adb_shell("input", "tap", str(x), str(y))
+        else:
+            print("click requires 'start_box': [x, y]")
+            return action_type
+
+    elif action_type == "long_press":
+        coord = response.get("start_box")
+        if coord and len(coord) == 2:
+            x, y = map(int, coord)
+            duration = 1000  # 1초간 long press
+            adb_shell("input", "swipe", str(x), str(y), str(x), str(y), str(duration))
+        else:
+            print("long_press requires 'start_box': [x, y]")
+            return action_type
+
+    elif action_type == "type":
+        text = response.get("content")
+        if text:
+            escaped_text = shlex.quote(text)
+            adb_shell("input", "text", escaped_text)
+        else:
+            print("type requires 'content'")
+            return action_type
+
+    elif action_type == "scroll":
+        coord = response.get("start_box")
+        direction = response.get("direction")
+        scroll_offset = 500  # 기본 스크롤 픽셀 이동량
+
+        if coord and len(coord) == 2 and direction in {"up", "down", "left", "right"}:
+            x1, y1 = map(int, coord)
+            if direction == "up":
+                x2, y2 = x1, y1 - scroll_offset
+            elif direction == "down":
+                x2, y2 = x1, y1 + scroll_offset
+            elif direction == "left":
+                x2, y2 = x1 - scroll_offset, y1
+            else:  # right
+                x2, y2 = x1 + scroll_offset, y1
+            adb_shell("input", "swipe", str(x1), str(y1), str(x2), str(y2), "300")
+        else:
+            print("scroll requires 'start_box' and valid 'direction'")
+            return action_type
+
+    elif action_type == "open_app":
+        package_name = response.get("app_name")
+        if package_name:
+            adb_shell("monkey", "-p", package_name, "-c", "android.intent.category.LAUNCHER", "1")
+        else:
+            print("open_app requires 'app_name'")
+            return action_type
+
+    elif action_type == "drag":
+        start = response.get("start_box")
+        end = response.get("end_box")
+        if start and end and len(start) == 2 and len(end) == 2:
+            x1, y1 = map(int, start)
+            x2, y2 = map(int, end)
+            adb_shell("input", "swipe", str(x1), str(y1), str(x2), str(y2), "300")
+        else:
+            print("drag requires 'start_box' and 'end_box'")
+            return action_type
+
+    elif action_type == "press_home":
+        adb_shell("input", "keyevent", "3")
+
+    elif action_type == "press_back":
+        adb_shell("input", "keyevent", "4")
+
+    elif action_type == "finished":
+        content = response.get("content", "")
+        print(f"[FINISHED]: {content}")
 
     else:
         print(f"Unknown action_type: {action_type}")
+
+    return action_type
+
+def gemma_action(action_type: str, response: dict) -> str:
+    
+    pass
+
+def run_adb_action(response: dict) -> str:
+    """
+    서버 응답에 따라 ADB 명령 실행
+    """
+    if response["name"] == "qwen":
+        action_type = qwen_action(response)
+        
+    elif response["name"] == "ui_tars":
+        action_type = uitars_action(response)
+        
+    # elif response["name"] == "gemma":
+    #       action_type = gemma_action(response)
 
     return action_type
 
@@ -169,7 +274,7 @@ def main(args):
         
         print("Model Output:", json.dumps(response, indent=2, ensure_ascii=False))
         
-        action_type = run_adb_action(args.device_id, response)
+        action_type = run_adb_action(response)
         
         if action_type == "terminate":
             print("Task complete. Exiting.")
@@ -185,7 +290,6 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VLM Mobile Agent")
     parser.add_argument("--server", type=str, default="http://143.248.158.22:8000/predict", help="Server URL") # loki1: 143.248.158.22 / loki2: 143.248.158.71
-    parser.add_argument("--device_id", type=str, default="emulator-5554", help="ADB Device ID")
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
     parser.add_argument("--image_path", type=str, default="qwen_7b_baseline_screenshots", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
