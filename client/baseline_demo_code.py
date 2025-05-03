@@ -17,7 +17,7 @@ from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
 from qwen_vl_utils import smart_resize
 import json
 from PIL import Image
-from agent_function_call import MobileUse
+from PAV.server.agent_function_call import MobileUse
 
 def get_running_emulator_ports():
     output = subprocess.check_output(['adb', 'devices']).decode()
