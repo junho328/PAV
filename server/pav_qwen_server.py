@@ -3,6 +3,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from PIL import Image
 
+import os
+
 from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
     NousFnCallPrompt,
     Message,
@@ -24,6 +26,8 @@ processor = AutoProcessor.from_pretrained(model_path)
 planner = Planner()
 actor = Actor()
 verifier = Verifier()
+
+os.makedirs("./pav_data", exist_ok=True)
 
 app = FastAPI()
 
