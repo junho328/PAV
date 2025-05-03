@@ -1,20 +1,14 @@
 from typing import Union, Tuple, List
 
-from qwen_agent.tools.base import BaseTool, register_tool, TOOL_REGISTRY
+from qwen_agent.tools.base import BaseTool, register_tool
 
-if 'planner_use' in TOOL_REGISTRY:
-    del TOOL_REGISTRY['planner_use']
-if 'actor_use' in TOOL_REGISTRY:
-    del TOOL_REGISTRY['actor_use']
-
-
-@register_tool("actor_use")
-class ActorUse(BaseTool):
+@register_tool("mobile_use")
+class MobileUse(BaseTool):
     @property
     def description(self):
         return f"""
 Use a touchscreen to interact with a mobile device, and take screenshots.
-* This is an interface to a mobile device with touchscreen. You can perform actions like clicking, typing, scrolling, etc.
+* This is an interface to a mobile device with touchscreen. You can perform actions like clicking, typing, swiping, etc.
 * Some applications may take time to start or process actions, so you may need to wait and take successive screenshots to see the results of your actions.
 * The screen's resolution is {self.display_width_px}x{self.display_height_px}.
 * Make sure to click any buttons, links, icons, etc with the cursor tip in the center of the element. Don't click boxes on their edges unless asked.
@@ -120,8 +114,14 @@ The action to perform. The available actions are:
             return self._terminate(params["status"])
         else:
             raise ValueError(f"Unknown action: {action}")
+
+    def _key(self, text: str):
+        raise NotImplementedError()
         
     def _click(self, coordinate: Tuple[int, int]):
+        raise NotImplementedError()
+
+    def _long_press(self, coordinate: Tuple[int, int], time: int):
         raise NotImplementedError()
 
     def _swipe(self, coordinate: Tuple[int, int], coordinate2: Tuple[int, int]):
@@ -130,7 +130,10 @@ The action to perform. The available actions are:
     def _type(self, text: str):
         raise NotImplementedError()
 
-    def _press(self, button: str):
+    def _system_button(self, button: str):
+        raise NotImplementedError()
+
+    def _open(self, text: str):
         raise NotImplementedError()
 
     def _wait(self, time: int):
@@ -138,7 +141,6 @@ The action to perform. The available actions are:
 
     def _terminate(self, status: str):
         raise NotImplementedError()
-    
 
 @register_tool("planner_use")
 class PlannerUse(BaseTool):

@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from PIL import Image
 
 import os
+import shutil
 
 from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
     NousFnCallPrompt,
@@ -13,7 +14,7 @@ from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
 
 from qwen_vl_utils import smart_resize
 
-from pav_agent.pav_agents import Planner, Actor, Verifier
+from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
@@ -51,7 +52,7 @@ def pav(query: Query):
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
 
-        macro_action_plan = planner.planner(model=model, processor=processor, screenshot=screenshot_path, user_query=user_query)
+        macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, screenshot_path=screenshot_path)
         
         print(f">>>Planner Output: {macro_action_plan}")
         
@@ -60,7 +61,7 @@ def pav(query: Query):
             
         current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.actor(model=model, processor=processor, screenshot=screenshot_path, curr_macro_action=current_macro_action)
+        micro_action = actor.act(model=model, processor=processor, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
         print(">>>Actor Output:", micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
@@ -84,7 +85,7 @@ def pav(query: Query):
         
         current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.actor(model=model, processor=processor, screenshot=screenshot_path, curr_macro_action=current_macro_action)
+        micro_action = actor.act(model=model, processor=processor, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
         print(">>>Actor Output:", micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
@@ -110,15 +111,27 @@ def pav(query: Query):
             
         current_screenshot_path = f"./pav_data/verifier_screenshot_{step}.png"
         
-        response = bool(verifier.verifier(model=model, processor=processor, screenshot1=previous_screenshot_path, screenshot2=current_screenshot_path, macro_action=current_macro_action))
+        response = verifier.verify(model=model, processor=processor, macro_action=current_macro_action, previous_screenshot_path=previous_screenshot_path, current_screenshot_path=current_screenshot_path)
+        verification  = response["task_completed"]
         
-        if response == True:
-            print(f">>>Verifier Output: <{current_macro_action}> Done!")
-            macro_action_plan.pop(0)
-            with open("./pav_data/macro_plans.json", "w") as f:
-                json.dump(macro_action_plan, f)
+        print(f">>>Verifier Output: {response}")
+        
+        if verification:
+            
+            print(f"<{current_macro_action}> completed!")
+            
+            if len(macro_action_plan) > 1:
+                macro_action_plan.pop(0)
+
+                with open("./pav_data/macro_plans.json", "w") as f:
+                    json.dump(macro_action_plan, f)
+                    
+            else:
+                
+                return {"task_completed": -1, "reason": "All macro actions completed!"}
         else:
-            print(f">>>Verifier Output: <{current_macro_action}> still in progress!")
+            
+            print(f"<{current_macro_action}> still in progress!")
             
     return response
 

@@ -320,7 +320,7 @@ def pav(args):
             action_type = run_adb_action(response)
             
             if action_type == "terminate" or action_type == "finished":
-                print("Task complete. Exiting.")
+                print("Task completed. Exiting.")
                 break
             
             time.sleep(3)
@@ -331,6 +331,11 @@ def pav(args):
             response = send_to_server(args, args.task, next_image_bytes, step, role)
             
             print(f"\n>>>Verifier Output: {response}")
+            
+            if response["task_completed"] == -1:
+                
+                print("All macro actions are completed.")
+                break
             
             image_bytes = next_image_bytes
             
