@@ -45,6 +45,8 @@ def adb_shell(*args):
 
 def qwen_action(response: dict) -> str:
     
+    response = response["arguments"]
+    
     action_type = response.get("action_type", "")
     
     if action_type == "system_button":
@@ -160,6 +162,8 @@ def qwen_action(response: dict) -> str:
 
 def uitars_action(response: dict) -> str:
     
+    response = response["arguments"]
+    
     action_type = response.get("action_type", "")
 
     if action_type == "click":
@@ -252,6 +256,7 @@ def run_adb_action(response: dict) -> str:
     """
     서버 응답에 따라 ADB 명령 실행
     """
+    
     if response["name"] == "qwen":
         action_type = qwen_action(response)
         
@@ -276,7 +281,7 @@ def main(args):
         
         action_type = run_adb_action(response)
         
-        if action_type == "terminate":
+        if action_type == "terminate" or action_type == "finished":
             print("Task complete. Exiting.")
             break
         
@@ -291,8 +296,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="VLM Mobile Agent")
     parser.add_argument("--server", type=str, default="http://143.248.158.22:8000/predict", help="Server URL") # loki1: 143.248.158.22 / loki2: 143.248.158.71
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
-    parser.add_argument("--image_path", type=str, default="qwen_7b_baseline_screenshots", help="Path to save screenshots")
+    parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
 
     args = parser.parse_args()
     main(args)
+    
+# ADB path
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+# source ~/.zshrc 
