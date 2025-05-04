@@ -37,7 +37,7 @@ The action to perform. The available actions are:
                     "long_press",
                     "swipe",
                     "type",
-                    "system_button",
+                    "system_button"
                     "open",
                     "wait",
                     "terminate",

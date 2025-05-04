@@ -29,12 +29,12 @@ def take_screenshot(args, step: int) -> bytes:
     tmp_path.unlink()
     return image_bytes
 
-def send_to_server(args, task: str, image_bytes: bytes, step: int, role: str) -> dict:
+def send_to_server(args, task, image_bytes, step, role, previous_action) -> dict:
     """
     서버로 task + base64 이미지 전송 → 응답 JSON 반환
     """
     b64 = base64.b64encode(image_bytes).decode("utf-8")
-    payload = {"task": task, "image_base64": b64, "step": step, "role": role}
+    payload = {"task": task, "image_base64": b64, "step": step, "role": role, "previous_action": previous_action}
 
     r = requests.post(args.server, json=payload, timeout=60)
     r.raise_for_status()
@@ -68,13 +68,13 @@ def qwen_action(response: dict) -> str:
         else:
             print(f"Unknown system button: {button}")
 
-    elif action_type == "click":
+    elif action_type == "click" or action_type == "left_click":
         
         coordinate = response.get("coordinate")
         
         if len(coordinate) < 2:
             print("click requires [x, y]")
-            return action_type
+            return "click"
         
         x, y = int(coordinate[0]), int(coordinate[1])
         adb_shell("input", "tap", str(x), str(y))
@@ -144,18 +144,18 @@ def qwen_action(response: dict) -> str:
         seconds = int(seconds)
         time.sleep(seconds)
 
-    elif action_type == "terminate":
+    # elif action_type == "terminate":
         
-        status = response.get("status")
-        if not status:
-            print("terminate requires [status]")
-            return action_type
+    #     status = response.get("status")
+    #     if not status:
+    #         print("terminate requires [status]")
+    #         return action_type
         
-        print(f"Task terminated with status: {status}")
+    #     print(f"Task terminated with status: {status}")
         
-    else:
-        print(f"Unknown action type: {action_type}")
-        return action_type
+    # else:
+    #     print(f"Unknown action type: {action_type}")
+    #     return action_type
 
     return action_type
 
@@ -276,7 +276,7 @@ def baseline(args):
         image_bytes = take_screenshot(args, step)
         
         print("Sending to server...")
-        response = send_to_server(args, args.task, image_bytes, step, "baseline")
+        response = send_to_server(args, args.task, image_bytes, step, "baseline", "")
         
         print("Model Output:", json.dumps(response, indent=2, ensure_ascii=False))
         
@@ -300,46 +300,55 @@ def pav(args):
     
     for step in range(args.max_steps):
         
+        print(f"### Step {step+1}")
+        
         if step == 0:
             role = "planner"
-            response = send_to_server(args, args.task, initial_image_bytes, step, role)
+            response = send_to_server(args, args.task, initial_image_bytes, step, role, "")
             print(">>>Planner Output:", response["macro_action_plan"])
             
             print("\n>>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
             
             action_type = run_adb_action(response)
             
+            previous_action = response["arguments"]
+            
+            time.sleep(4)
+            
             image_bytes = take_screenshot(args, step+1)
             
         else: # step 1, step 2, ...
             
             role = "actor"
-            response = send_to_server(args, args.task, image_bytes, step, role)
+            response = send_to_server(args, args.task, image_bytes, step, role, str(previous_action))
+            
+            previous_action = response["arguments"]
             
             print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
             action_type = run_adb_action(response)
             
             if action_type == "terminate" or action_type == "finished":
-                print("Task completed. Exiting.")
-                break
+                continue
             
-            time.sleep(3)
+            else:
             
-            next_image_bytes = take_screenshot(args, step+1)
-            
-            role = "verifier"
-            response = send_to_server(args, args.task, next_image_bytes, step, role)
-            
-            print(f"\n>>>Verifier Output: {response}")
-            
-            if response["task_completed"] == -1:
+                time.sleep(4)
                 
-                print("All macro actions are completed.")
-                break
+                next_image_bytes = take_screenshot(args, step+1)
+                
+                role = "verifier"
+                response = send_to_server(args, args.task, next_image_bytes, step, role, "")
+                
+                print(f"\n>>>Verifier Output: {response}")
+                
+                if response["task_completed"] == -1:
+                    
+                    print("All macro actions are completed.")
+                    break
+                
+                image_bytes = next_image_bytes
             
-            image_bytes = next_image_bytes
-            
-        time.sleep(3)
+        time.sleep(4)
         
     print(">>>Finished Task.")
 
@@ -364,3 +373,6 @@ if __name__ == "__main__":
 # export ANDROID_HOME=$HOME/Library/Android/sdk
 # export PATH=$PATH:$ANDROID_HOME/platform-tools
 # source ~/.zshrc 
+
+# echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.zshrc
+# echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc

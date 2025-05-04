@@ -37,6 +37,7 @@ class Query(BaseModel):
     image_base64: str
     step: int
     role: str
+    previous_action: str
 
 @app.post("/predict")    
 def pav(query: Query):
@@ -61,7 +62,7 @@ def pav(query: Query):
             
         current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.act(model=model, processor=processor, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
+        micro_action = actor.act(model=model, processor=processor, macro_action_plan=macro_action_plan, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
         print(">>>Actor Output:", micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
@@ -85,8 +86,15 @@ def pav(query: Query):
         
         current_macro_action = macro_action_plan[0]
         
-        micro_action = actor.act(model=model, processor=processor, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
+        micro_action = actor.act(model=model, processor=processor, macro_action_plan=macro_action_plan ,current_macro_action=current_macro_action, screenshot_path=screenshot_path, previous_micro_action=query.previous_action)
+        action_type = micro_action["arguments"]["action"]
+        
         print(">>>Actor Output:", micro_action["arguments"])
+        
+        if action_type == "terminate":
+            macro_action_plan.pop(0)
+            with open("./pav_data/macro_plans.json", "w") as f:
+                json.dump(macro_action_plan, f)
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
         

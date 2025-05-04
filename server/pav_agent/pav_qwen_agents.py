@@ -18,29 +18,62 @@ class Planner():
         You are given a screenshot of a mobile device and a task.
         You need to generate a macro action plan to complete the task.
         
+        Below are some examples of tasks and their corresponding macro action plans.
+        ---
         Example1:
         Task:
-        Please display the route to KAIST College of Engineering.
+        Please display the route to Jejujib.
         Macro Action Plan:
-        [Search for KAIST College of Engineering, Select directions to KAIST College of Engineering, Display route]
+        [Search for Jejujib, Show the routes]
         
         Example2:
         Task:
-        Show me a wheelchair-accessible route to Gyeongbokgung Palace.
+        Please display the route to Yori.
         Macro Action Plan:
-        [Search for Gyeongbokgung Palace, Select directions to Gyeongbokgung Palace, Filter wheelchair-accessible route, Display route]
+        [Search for Yori, Show the routes]
         
         Example3:
         Task:
-        Please add restaurant Yori to Favorites list.
+        Show me a wheelchair-accessible route to Seoul Forest Park.
         Macro Action Plan:
-        [Search for restaurant Yori, Select restaurant Yori, Add to Favorites list, Done actions]
+        [Search for Seoul Forest Park, Show the routes, Filter by wheelchair-accessible route, Show the filtered route]
         
         Example4:
         Task:
-        Show me the cafes nearby Seoul Station.
+        Show me a less walking route to Gangnam station.
         Macro Action Plan:
-        [Search for Seoul Station, Set location to Seoul Station, Search for cafes, Display cafes]
+        [Search for Gangnam station, Show the routes, Filter by less walking route, Show the filtered route]
+        
+        Example5:
+        Task:
+        Show me a fewer transfers route to Lotte Tower.
+        Macro Action Plan:
+        [Search for Lotte Tower, Show the routes, Filter by fewer transfers route, Show the filtered route]
+        
+        Example6:
+        Task:
+        Please add restaurant Gimgane to Favorites list.
+        Macro Action Plan:
+        [Search for restaurant Gimgane, Select restaurant Gimgane, Add to Favorites list]
+        
+        Example7:
+        Task:
+        Please add cafe Simjae to Want to go list.
+        Macro Action Plan:
+        [Search for cafe Simjae, Select cafe Simjae, Add to Want to go list]
+        
+        Example8:
+        Task:
+        Show me the restaurants nearby KAIST College of Business.
+        Macro Action Plan:
+        [Search for KAIST College of Business, Set location to KAIST College of Business, Search for restaurants, Display the restaurants]
+        
+        Example9:
+        Task:
+        Show me the cafes nearby Yangjae station.
+        Macro Action Plan:
+        [Search for Yangjae station, Set location to Yangjae Station, Search for cafes, Display the cafes]
+        ---
         
         Now you are given a task and a screenshot.
         Generae a macro action plan to complete the task.
@@ -95,9 +128,9 @@ class Planner():
         return macro_action_plan
             
 class Actor():
-    def act(self, model, processor, current_macro_action, screenshot_path):
+    def act(self, model, processor, macro_action_plan, current_macro_action, screenshot_path, previous_micro_action=None):
         
-        user_query = f"Task to achieve: {current_macro_action}"
+        user_query = f"The user query: {current_macro_action}. The previous action : {previous_micro_action}."
 
         dummy_image = Image.open(screenshot_path)
         resized_height, resized_width  = smart_resize(dummy_image.height,
@@ -142,18 +175,41 @@ class Actor():
 class Verifier():
     
     def __init__(self):
-        self.prompt = """You are a helpful mobile agent and a good verifier.
-You are given two screenshots of a mobile device and a task.
-Determine whether the task has been completed by examining the following two screenshots.
-If the task has not been completed yet, return 0. If the task has been completed, return 1.
+        self.prompt = """You are a strict mobile‑task verifier.
 
-current task: {macro_action}
+Input
+------
+• screenshot_before : the screen **right before** the agent’s last action  
+• screenshot_after  : the screen **right after** the agent’s last action  
+• current_task      : one high‑level instruction (macro action)
 
-Think step by step and provide the final answer. And return the answer in the following format:
+Definitions
+-----------
+• End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**  
+               – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART  
+• Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
+
+Your Goal
+---------
+Return **1** only if screenshot_after shows the End‑State.  
+If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
+
+Hidden Reasoning Steps
+----------------------
+1. Restate current_task in your own words.  
+2. Write explicit End‑State criteria for this task (what must be on‑screen).  
+3. List Intermediate‑States that would NOT qualify.  
+4. Compare screenshots and decide if End‑State is met.  
+5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
+
+Output
+------
+Respond **ONLY** with this JSON (no extra text):
+
 ```json
 {{
     "task_completed": 0 or 1,
-    "reason": "reason why the current task is completed or not"
+    "reason": "<one concise sentence explaining the key visual evidence>"
 }}
 ```
 """
