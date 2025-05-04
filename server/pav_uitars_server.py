@@ -19,8 +19,7 @@ from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
-# model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
-model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
+model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
