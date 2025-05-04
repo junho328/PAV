@@ -51,7 +51,6 @@ class Query(BaseModel):
     task: str
     image_base64: str
     step: int
-    role: str
     
 def parse_action_string(model_output) -> dict | None:
     """

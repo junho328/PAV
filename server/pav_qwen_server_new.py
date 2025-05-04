@@ -19,8 +19,8 @@ from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
-model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
-#model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
+# model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
+model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
@@ -93,6 +93,11 @@ def pav(query: Query):
         
         if action_type == "terminate":
             macro_action_plan.pop(0)
+            
+            if len(macro_action_plan) == 0:
+                print("All macro actions completed!")
+                return {"name": "pav_qwen", "arguments": {"action": "task_completed"}}
+            
             with open("./pav_data/macro_plans.json", "w") as f:
                 json.dump(macro_action_plan, f)
 
@@ -136,7 +141,7 @@ def pav(query: Query):
                     
             else:
                 
-                return {"task_completed": -1, "reason": "All macro actions completed!"}
+                return {"task_completed": -1 , "reason": "All macro actions are completed!"}
         else:
             
             print(f"<{current_macro_action}> still in progress!")

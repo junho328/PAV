@@ -20,59 +20,65 @@ class Planner():
         
         Below are some examples of tasks and their corresponding macro action plans.
         ---
-        Example1:
+        <Example 1>
         Task:
         Please display the route to Jejujib.
         Macro Action Plan:
         [Search for Jejujib, Show the routes]
         
-        Example2:
+        <Example 2>
         Task:
         Please display the route to Yori.
         Macro Action Plan:
         [Search for Yori, Show the routes]
         
-        Example3:
+        <Example 3>
         Task:
         Show me a wheelchair-accessible route to Seoul Forest Park.
         Macro Action Plan:
         [Search for Seoul Forest Park, Show the routes, Filter by wheelchair-accessible route, Show the filtered route]
         
-        Example4:
+        <Example 4>
         Task:
         Show me a less walking route to Gangnam station.
         Macro Action Plan:
         [Search for Gangnam station, Show the routes, Filter by less walking route, Show the filtered route]
         
-        Example5:
+        <Example 5>
         Task:
         Show me a fewer transfers route to Lotte Tower.
         Macro Action Plan:
         [Search for Lotte Tower, Show the routes, Filter by fewer transfers route, Show the filtered route]
         
-        Example6:
+        <Example 6>
         Task:
         Please add restaurant Gimgane to Favorites list.
         Macro Action Plan:
-        [Search for restaurant Gimgane, Select restaurant Gimgane, Add to Favorites list]
+        [Search for restaurant Gimgane, Add Gimgane to Favorites list]
         
-        Example7:
+        <Example 7>
         Task:
         Please add cafe Simjae to Want to go list.
         Macro Action Plan:
-        [Search for cafe Simjae, Select cafe Simjae, Add to Want to go list]
+        [Search for cafe Simjae, Add Simjae to Want to go list]
         
-        Example8:
+        <Example 8>
+        Task:
+        Show me the current rating of restaurant Sushiyoung.
+        Macro Action Plan:
+        [Search for restaurant Sushiyoung, Select restaurant Sushiyoung, Check the rating section]
+        
+        <Example 9>
         Task:
         Show me the restaurants nearby KAIST College of Business.
         Macro Action Plan:
-        [Search for KAIST College of Business, Set location to KAIST College of Business, Search for restaurants, Display the restaurants]
+        [Search for KAIST College of Business, Search for restaurants, Show the restaurants]
         
-        Example9:
+        <Example 10>
         Task:
         Show me the cafes nearby Yangjae station.
         Macro Action Plan:
-        [Search for Yangjae station, Set location to Yangjae Station, Search for cafes, Display the cafes]
+        [Search for Yangjae station, Search for cafes, Show the cafes]
         ---
         
         Now you are given a task and a screenshot.
