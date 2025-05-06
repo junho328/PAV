@@ -29,12 +29,12 @@ def take_screenshot(args, step: int) -> bytes:
     tmp_path.unlink()
     return image_bytes
 
-def send_to_server(args, task, image_bytes, step, role, previous_action) -> dict:
+def send_to_server(args, task, image_bytes, step, role, previous_action, app_name) -> dict:
     """
     서버로 task + base64 이미지 전송 → 응답 JSON 반환
     """
     b64 = base64.b64encode(image_bytes).decode("utf-8")
-    payload = {"task": task, "image_base64": b64, "step": step, "role": role, "previous_action": previous_action}
+    payload = {"task": task, "image_base64": b64, "step": step, "role": role, "previous_action": previous_action, "app_name": app_name}
 
     r = requests.post(args.server, json=payload, timeout=60)
     r.raise_for_status()
@@ -144,18 +144,18 @@ def qwen_action(response: dict) -> str:
         seconds = int(seconds)
         time.sleep(seconds)
 
-    # elif action_type == "terminate":
+    elif action_type == "terminate":
         
-    #     status = response.get("status")
-    #     if not status:
-    #         print("terminate requires [status]")
-    #         return action_type
+        status = response.get("status")
+        if not status:
+            print("terminate requires [status]")
+            return action_type
         
-    #     print(f"Task terminated with status: {status}")
+        print(f"Task terminated with status: {status}")
         
-    # else:
-    #     print(f"Unknown action type: {action_type}")
-    #     return action_type
+    else:
+        print(f"Unknown action type: {action_type}")
+        return action_type
 
     return action_type
 
@@ -276,7 +276,7 @@ def baseline(args):
         image_bytes = take_screenshot(args, step)
         
         print("Sending to server...")
-        response = send_to_server(args, args.task, image_bytes, step, "baseline", "")
+        response = send_to_server(args, args.task, image_bytes, step, "baseline", "", args.app_name)
         
         print("Model Output:", json.dumps(response, indent=2, ensure_ascii=False))
         
@@ -296,7 +296,7 @@ def baseline(args):
 def pav(args):
     
     step = 0
-    initial_image_bytes = take_screenshot(args, step)
+    image_bytes = take_screenshot(args, step)
     
     for step in range(args.max_steps):
         
@@ -304,62 +304,59 @@ def pav(args):
         
         if step == 0:
             role = "planner"
-            response = send_to_server(args, args.task, initial_image_bytes, step, role, "")
+            response = send_to_server(args, args.task, image_bytes, step, role, "", args.app_name)
             print(">>>Planner Output:", response["macro_action_plan"])
-            
-            print("\n>>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
-            
-            action_type = run_adb_action(response)
-            
+
             previous_action = response["arguments"]
-            
-            time.sleep(4)
-            
-            image_bytes = take_screenshot(args, step+1)
             
         else: # step 1, step 2, ...
             
             role = "actor"
-            response = send_to_server(args, args.task, image_bytes, step, role, str(previous_action))
+            response = send_to_server(args, args.task, image_bytes, step, role, str(previous_action), args.app_name)
             
-            previous_action = response["arguments"]
+        print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
+        action_type = run_adb_action(response)
+        
+        time.sleep(2)
             
-            print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
-            action_type = run_adb_action(response)
+        if action_type == "terminate" or action_type == "finished":
+            continue
+        
+        if action_type == "task_completed":
+            print("All macro actions are completed.")
+            break
+        
+        image_bytes = take_screenshot(args, step+1)
+        
+        previous_action = response["arguments"]
+        
+        next_image_bytes = take_screenshot(args, step+1)
+        
+        role = "verifier"
+        response = send_to_server(args, args.task, next_image_bytes, step, role, "", args.app_name)
+        
+        print(f"\n>>>Verifier Output: {response}")
+        
+        if response["task_completed"] == -1:
             
-            if action_type == "terminate" or action_type == "finished":
-                continue
+            print("All macro actions are completed.")
+            break
+        
+        image_bytes = next_image_bytes
             
-            else:
-            
-                time.sleep(4)
-                
-                next_image_bytes = take_screenshot(args, step+1)
-                
-                role = "verifier"
-                response = send_to_server(args, args.task, next_image_bytes, step, role, "")
-                
-                print(f"\n>>>Verifier Output: {response}")
-                
-                if response["task_completed"] == -1:
-                    
-                    print("All macro actions are completed.")
-                    break
-                
-                image_bytes = next_image_bytes
-            
-        time.sleep(4)
+        time.sleep(2)
         
     print(">>>Finished Task.")
 
 if __name__ == "__main__":
+    
     parser = argparse.ArgumentParser(description="VLM Mobile Agent")
     parser.add_argument("--server", type=str, default="http://143.248.158.22:8000/predict", help="Server URL") # loki1: 143.248.158.22 / loki2: 143.248.158.71
     parser.add_argument("--method", type=str, default="pav", help="Method to use (pav, baseline)")
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
     parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
-
+    parser.add_argument("--app_name", type=str, default="google_maps", help="App name for planner prompt")
 
     args = parser.parse_args()
     
