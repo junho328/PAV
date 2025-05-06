@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 import os
 
-from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
+from pav_agent.pav_uitars_agents import Planner, Actor, Verifier
 
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
@@ -17,7 +17,7 @@ planner = Planner()
 actor = Actor()
 verifier = Verifier()
 
-os.makedirs("./pav_data", exist_ok=True)
+os.makedirs("./pav_uitars_data", exist_ok=True)
 
 app = FastAPI()
 
@@ -37,7 +37,7 @@ def pav(query: Query):
     if query.role == "planner":
         
         image_bytes = base64.b64decode(query.image_base64)
-        screenshot_path = f"./pav_data/screenshot_{step}.png"
+        screenshot_path = f"./pav_uitars_data/screenshot_{step}.png"
         
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
@@ -46,7 +46,7 @@ def pav(query: Query):
         
         print(f">>>Planner Output: {macro_action_plan}")
         
-        with open("./pav_data/macro_plans.json", "w") as f:
+        with open("./pav_uitars_data/macro_plans.json", "w") as f:
             json.dump(macro_action_plan, f)
             
         current_macro_action = macro_action_plan[0]
@@ -54,10 +54,10 @@ def pav(query: Query):
         micro_action = actor.act(model=model, processor=processor, macro_action_plan=macro_action_plan, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
         print(">>>Actor Output:", micro_action["arguments"])
 
-        # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
+        # ex) {"name": "pav_uitars", "arguments": {"action": "click", "coordinate": [935, 406]}}
         
         response = {
-            "name": "pav_qwen",
+            "name": "pav_uitars",
             "arguments": micro_action["arguments"],
             "macro_action_plan" : macro_action_plan
         }
@@ -65,12 +65,12 @@ def pav(query: Query):
     elif query.role == "actor":
         
         image_bytes = base64.b64decode(query.image_base64)
-        screenshot_path = f"./pav_data/screenshot_{step}.png"
+        screenshot_path = f"./pav_uitars_data/screenshot_{step}.png"
         
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
             
-        with open("./pav_data/macro_plans.json", "r") as f:
+        with open("./pav_uitars_data/macro_plans.json", "r") as f:
             macro_action_plan = json.load(f)
         
         current_macro_action = macro_action_plan[0]
@@ -87,31 +87,31 @@ def pav(query: Query):
                 print("All macro actions completed!")
                 return {"name": "pav_qwen", "arguments": {"action": "task_completed"}}
             
-            with open("./pav_data/macro_plans.json", "w") as f:
+            with open("./pav_uitars_data/macro_plans.json", "w") as f:
                 json.dump(macro_action_plan, f)
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
         
         response = {
-            "name": "pav_qwen",
+            "name": "pav_uitars",
             "arguments": micro_action["arguments"]
         }
     
     elif query.role == "verifier":
         
-        with open("./pav_data/macro_plans.json", "r") as f:
+        with open("./pav_uitars_data/macro_plans.json", "r") as f:
             macro_action_plan = json.load(f)
             
         current_macro_action = macro_action_plan[0]
         
-        previous_screenshot_path = f"./pav_data/screenshot_{step}.png"
+        previous_screenshot_path = f"./pav_uitars_data/screenshot_{step}.png"
         
         current_image_bytes = base64.b64decode(query.image_base64)
         
-        with open(f"./pav_data/verifier_screenshot_{step}.png", "wb") as f:
+        with open(f"./pav_uitars_data/verifier_screenshot_{step}.png", "wb") as f:
             f.write(current_image_bytes)
             
-        current_screenshot_path = f"./pav_data/verifier_screenshot_{step}.png"
+        current_screenshot_path = f"./pav_uitars_data/verifier_screenshot_{step}.png"
         
         response = verifier.verify(model=model, processor=processor, macro_action=current_macro_action, previous_screenshot_path=previous_screenshot_path, current_screenshot_path=current_screenshot_path)
         verification  = response["task_completed"]
@@ -125,7 +125,7 @@ def pav(query: Query):
             if len(macro_action_plan) > 1:
                 macro_action_plan.pop(0)
 
-                with open("./pav_data/macro_plans.json", "w") as f:
+                with open("./pav_uitars_data/macro_plans.json", "w") as f:
                     json.dump(macro_action_plan, f)
                     
             else:
@@ -137,4 +137,4 @@ def pav(query: Query):
             
     return response
 
-# uvicorn pav_qwen_server:app --host 0.0.0.0 --port 8000
+# uvicorn pav_uitars_server:app --host 0.0.0.0 --port 8000
