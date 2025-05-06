@@ -1,18 +1,8 @@
-import base64, io, json
-from fastapi import FastAPI, HTTPException
+import base64, json
+from fastapi import FastAPI
 from pydantic import BaseModel
-from PIL import Image
 
 import os
-import shutil
-
-from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
-    NousFnCallPrompt,
-    Message,
-    ContentItem,
-)
-
-from qwen_vl_utils import smart_resize
 
 from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 
@@ -20,7 +10,7 @@ import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
 model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
-model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
+model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="cuda:0")
 processor = AutoProcessor.from_pretrained(model_path)
 
 planner = Planner()

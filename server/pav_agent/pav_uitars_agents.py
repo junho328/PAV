@@ -1,15 +1,13 @@
+import re
 import json
 from PIL import Image
 
 from qwen_vl_utils import smart_resize, process_vision_info
 
 from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
-    NousFnCallPrompt,
     Message,
     ContentItem,
 )
-
-from pav_agent.pav_agent_function_call import MobileUse
 
 class Planner():
     
@@ -133,10 +131,75 @@ class Planner():
         
         return macro_action_plan
             
+# class Actor():
+#     def act(self, model, processor, macro_action_plan, current_macro_action, screenshot_path, previous_micro_action=None):
+        
+#         user_query = f"The user query: {current_macro_action}. The previous action : {previous_micro_action}."
+
+#         dummy_image = Image.open(screenshot_path)
+#         resized_height, resized_width  = smart_resize(dummy_image.height,
+#             dummy_image.width,
+#             factor=processor.image_processor.patch_size * processor.image_processor.merge_size,
+#             min_pixels=processor.image_processor.min_pixels,
+#             max_pixels=processor.image_processor.max_pixels,)
+#         mobile_use = MobileUse(
+#             cfg={"display_width_px": resized_width, "display_height_px": resized_height}
+#         )
+        
+#         prompt = NousFnCallPrompt()
+#         raw_messages = [
+#                 Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
+#                 Message(role="user", content=[
+#                     ContentItem(text=user_query),
+#                     ContentItem(image=f"file://{screenshot_path}")
+#                 ]),
+#             ]
+
+#         message_objs = prompt.preprocess_fncall_messages(
+#             messages=raw_messages,
+#             functions=[mobile_use.function],
+#             lang=None,
+#         )
+        
+#         message = [msg.model_dump() for msg in message_objs]
+
+#         text = processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
+#         inputs = processor(text=[text], images=[dummy_image], padding=True, return_tensors="pt").to('cuda')
+
+
+#         output_ids = model.generate(**inputs, max_new_tokens=2048)
+#         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
+#         output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
+
+#         # Qwen will perform action thought function call
+#         action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
+        
+#         return action
+
 class Actor():
+
     def act(self, model, processor, macro_action_plan, current_macro_action, screenshot_path, previous_micro_action=None):
         
-        user_query = f"The user query: {current_macro_action}. The previous action : {previous_micro_action}."
+        USER_QUERY = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
+## Output Format
+```
+Thought: ...
+Action: ...
+```
+## Action Space
+
+click(start_box='<|box_start|>(x1,y1)<|box_end|>')
+type(content='') #If you want to submit your input, use "\\n" at the end of `content`.
+scroll(start_box='<|box_start|>(x1,y1)<|box_end|>', direction='down or up or right or left')
+finished(content='xxx') # Use escape characters \\', \\", and \\n in content part to ensure we can parse the content in normal python string format.
+
+## Note
+- Use English in `Thought` part.
+- Write a small plan and finally summarize your next action (with its target element) in one sentence in `Thought` part.
+
+## User Instruction
+{current_macro_action}
+""" 
 
         dummy_image = Image.open(screenshot_path)
         resized_height, resized_width  = smart_resize(dummy_image.height,
@@ -144,25 +207,17 @@ class Actor():
             factor=processor.image_processor.patch_size * processor.image_processor.merge_size,
             min_pixels=processor.image_processor.min_pixels,
             max_pixels=processor.image_processor.max_pixels,)
-        mobile_use = MobileUse(
-            cfg={"display_width_px": resized_width, "display_height_px": resized_height}
-        )
-        
-        prompt = NousFnCallPrompt()
+
         raw_messages = [
                 Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
                 Message(role="user", content=[
-                    ContentItem(text=user_query),
+                    ContentItem(text=USER_QUERY.format(current_macro_action=current_macro_action)),
                     ContentItem(image=f"file://{screenshot_path}")
                 ]),
             ]
 
-        message_objs = prompt.preprocess_fncall_messages(
-            messages=raw_messages,
-            functions=[mobile_use.function],
-            lang=None,
-        )
-        
+        message_objs = raw_messages
+
         message = [msg.model_dump() for msg in message_objs]
 
         text = processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
@@ -173,10 +228,60 @@ class Actor():
         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
         output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
 
-        # Qwen will perform action thought function call
-        action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-        
-        return action
+        action_type = output_text.split('Action:')[-1].strip()
+        if "click" in action_type:
+            match = re.search(r"\((\d+),\s*(\d+)\)", action_type)
+            x, y = map(int, match.groups())
+            action = {
+                "name": "mobile_use",
+                "arguments": {
+                    "action": "click",
+                    "coordinate": [x, y]
+                }
+            }
+            pass
+        elif "type" in action_type:
+            match = re.search(r"content='(.*?)'", action_type)
+            content = match.group(1)
+            action = {
+                "name": "mobile_use",
+                "arguments": {
+                    "action": "type",
+                    "content": content
+                }
+            }
+        elif "scroll" in action_type:
+            box_match = re.search(r"start_box='\((\d+),\s*(\d+)\)'", action_type)
+            dir_match = re.search(r"direction='(.*?)'", action_type)
+            x, y = map(int, box_match.groups())
+            direction = dir_match.group(1)
+            if direction == "down":
+                coordinate2 = [x, y - 100]
+            elif direction == "up":
+                coordinate2 = [x, y + 100]
+            elif direction == "right":
+                coordinate2 = [x - 100, y]
+            elif direction == "left":
+                coordinate2 = [x + 100, y]
+            action = {
+                "name": "mobile_use",
+                "arguments": {
+                    "action": "swipe",
+                    "coordinate": [x, y],
+                    "coordinate2": coordinate2
+                }
+            }
+        elif "finished" in action_type:
+            action = {
+                "name": "mobile_use",
+                "arguments": {
+                    "action": "terminate",
+                    "coordinate": [-1, -1]
+                }
+            }
+
+        return(action)
+
 
 class Verifier():
     
