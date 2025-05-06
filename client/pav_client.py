@@ -419,7 +419,7 @@ if __name__ == "__main__":
     parser.add_argument("--method", type=str, default="pav", help="Method to use (pav, baseline)")
     parser.add_argument("--task_number", type=str, required=True, help="Task Number")
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
-    parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots/0", help="Path to save screenshots")
+    parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
     parser.add_argument("--app_name", type=str, default="google_maps", help="App name for planner prompt")
 
