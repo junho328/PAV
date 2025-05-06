@@ -298,6 +298,11 @@ def pav(args):
     step = 0
     image_bytes = take_screenshot(args, step)
     
+    output_history= {}
+    
+    actor_output = {}
+    verifier_output = {}
+    
     for step in range(args.max_steps):
         
         print(f"### Step {step+1}")
@@ -306,6 +311,8 @@ def pav(args):
             role = "planner"
             response = send_to_server(args, args.task, image_bytes, step, role, "", args.app_name)
             print(">>>Planner Output:", response["macro_action_plan"])
+            
+            output_history["planner"] = response["macro_action_plan"]
 
             previous_action = response["arguments"]
             
@@ -316,6 +323,8 @@ def pav(args):
             
         print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
         action_type = run_adb_action(response)
+        
+        actor_output[step] = response["arguments"]
         
         time.sleep(2)
             
@@ -335,6 +344,8 @@ def pav(args):
         role = "verifier"
         response = send_to_server(args, args.task, next_image_bytes, step, role, "", args.app_name)
         
+        verifier_output[step] = response
+        
         print(f"\n>>>Verifier Output: {response}")
         
         if response["task_completed"] == -1:
@@ -346,6 +357,12 @@ def pav(args):
             
         time.sleep(2)
         
+    output_history["actor"] = actor_output
+    output_history["verifier"] = verifier_output
+    
+    with open(f"{args.image_path}/output_history.json", "w") as f:
+        json.dump(output_history, f, indent=2, ensure_ascii=False)
+        
     print(">>>Finished Task.")
 
 if __name__ == "__main__":
@@ -354,7 +371,7 @@ if __name__ == "__main__":
     parser.add_argument("--server", type=str, default="http://143.248.158.22:8000/predict", help="Server URL") # loki1: 143.248.158.22 / loki2: 143.248.158.71
     parser.add_argument("--method", type=str, default="pav", help="Method to use (pav, baseline)")
     parser.add_argument("--task", type=str, required=True, help="Text task to perform")
-    parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots", help="Path to save screenshots")
+    parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots/0", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=10, help="Max number of steps before termination")
     parser.add_argument("--app_name", type=str, default="google_maps", help="App name for planner prompt")
 
