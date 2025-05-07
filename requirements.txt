@@ -24,3 +24,4 @@ tokenizers==0.21.1
 transformers==4.50.0
 fastapi
 uvicorn
+faiss-cpu
