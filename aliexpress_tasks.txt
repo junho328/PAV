@@ -1,0 +1,20 @@
+Add Samyang ramen to cart.
+Add the most popular water to cart.
+Add the cheapest coke to cart.
+Show the shipped items in my orders.
+Show the items to ship in my orders.
+Show my wishlist.
+Show my Followed stores.
+Show the items to review in my orders.
+Remove the first item in my cart.
+Show the TVs on sale.
+View the items in rankings of K-VENUE page.
+Add Jin ramen to cart.
+Add the most popular keyboard to cart.
+Add the cheapest headphone to cart.
+Show history of my account.
+Show the coupons I have.
+Show the laptops on sale.
+Add Samyang ramen to my wishlist.
+Add Sprite to my wishlist.
+Empty the cart.
