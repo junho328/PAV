@@ -9,7 +9,7 @@ TASK_APP="google_maps"
 METHOD="pav" # "baseline"
 IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/$TASK_APP"
 
-TASK_FILE="./google_maps_tasks.txt" 
+TASK_FILE="./task/google_maps_tasks.txt" 
 EMULATOR_CMD="$HOME/Library/Android/sdk/emulator/emulator"
 ADB_CMD="$HOME/Library/Android/sdk/platform-tools/adb"
 AVD_NAME="Pixel_9"

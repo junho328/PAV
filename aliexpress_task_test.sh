@@ -9,7 +9,7 @@ TASK_APP="ali"
 METHOD="pav" # "baseline"
 IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/$TASK_APP"
 
-TASK_FILE="./aliexpress_tasks.txt"
+TASK_FILE="./task/aliexpress_tasks.txt"
 EMULATOR_CMD="$HOME/Library/Android/sdk/emulator/emulator"
 ADB_CMD="$HOME/Library/Android/sdk/platform-tools/adb"
 AVD_NAME="Pixel_9"
