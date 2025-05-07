@@ -27,6 +27,7 @@ class Query(BaseModel):
     step: int
     role: str
     previous_action: str
+    app_name: str
 
 @app.post("/predict")    
 def pav(query: Query):
@@ -42,7 +43,7 @@ def pav(query: Query):
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
 
-        macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, screenshot_path=screenshot_path)
+        macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, screenshot_path=screenshot_path, app_name=query.app_name)
         
         print(f">>>Planner Output: {macro_action_plan}")
         

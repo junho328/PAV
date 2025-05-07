@@ -12,7 +12,7 @@ from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
 class Planner():
     
     def __init__(self):
-        self.prompt =  """You are a helpful mobile agent and a good planner.
+        self.google_prompt =  """You are a helpful mobile agent and a good planner.
         You are given a screenshot of a mobile device and a task.
         You need to generate a macro action plan to complete the task.
         
@@ -87,7 +87,89 @@ class Planner():
         Macro Aciton Plan:
         """
 
-    def plan(self, model, processor, task, screenshot_path):
+        self.ali_prompt =  """You are a helpful mobile agent and a good planner.
+        You are given a screenshot of a mobile device and a task.
+        You need to generate a macro action plan to complete the task.
+        And the macro actions must be separated by commas.
+        
+        Below are some examples of tasks and their corresponding macro action plans.
+        ---
+        <Example 1>
+        Task:
+        Add Logitech MX Master 3S to cart.
+        Macro Action Plan:
+        [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
+        
+        <Example 2>
+        Task:
+        Add the most popular ramen to cart.
+        Macro Action Plan:
+        [Search for ramen, Filter by popular, Select the first item, Add to cart]
+        
+        <Example 3>
+        Task:
+        Add the cheapest sofa to cart.
+        Macro Action Plan:
+        [Search for sofa, Filter by price, Select the first item, Add to cart]
+        
+        <Example 4>
+        Task:
+        Show the shoes on sale.
+        Macro Action Plan:
+        [Search for shoes, Filter by savings]
+        
+        <Example 5>
+        Task:
+        Show the items to ship in my orders.
+        Macro Action Plan:
+        [Navigate to account tab, Select to ship section, Show the items I need to pay]
+        
+        <Example 6>
+        Task:
+        Remove the third item in my cart.
+        Macro Action Plan:
+        [Navigate to cart tab, Select button next to third item, Remove the item]
+        
+        <Example 7>
+        Task:
+        View the items in rankings of K-VENUE page.
+        Macro Action Plan:
+        [Naviagate to K-VENUE page, Select rankings section, Show the items]
+        
+        <Example 8>
+        Task:
+        Add Shin ramyun to my wishlist
+        Macro Action Plan:
+        [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
+        
+        <Example 9>
+        Task:
+        Empty items in cart.
+        Macro Action plan:
+        [Navigate to cart tab, Select all, Remove the items]
+        
+        <Example 10>
+        Task:
+        Show the coupons I received.
+        Macro Action Plan:
+        [Navigate to coupons in account, Show coupons]
+        ---
+        
+        Now you are given a task and a screenshot.
+        Generate a macro action plan to complete the task.
+        And the macro actions must be separated by commas.
+        
+        Task: 
+        {instruction}
+        Macro Aciton Plan:
+        """
+
+    def plan(self, model, processor, task, screenshot_path, app_name):
+
+        if app_name == "google_maps":
+            prompt = self.google_prompt
+        elif app_name == "ali":
+            prompt = self.ali_prompt
         
         messages = [
             {
@@ -97,7 +179,7 @@ class Planner():
                         "type": "image",
                         "image": screenshot_path,
                     },
-                    {"type": "text", "text": self.prompt.format(instruction=task)},
+                    {"type": "text", "text": prompt.format(instruction=task)},
                 ],
             }
         ]
@@ -280,7 +362,7 @@ finished(content='xxx') # Use escape characters \\', \\", and \\n in content par
                 }
             }
 
-        return(action)
+        return action
 
 
 class Verifier():
