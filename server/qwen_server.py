@@ -1,4 +1,4 @@
-import base64, io, json
+import base64, io, json, os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from PIL import Image
