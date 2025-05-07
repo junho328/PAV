@@ -10,7 +10,7 @@ from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
 )
 
 from qwen_vl_utils import smart_resize
-from PAV.server.agent_function_call import MobileUse
+from agent_function_call import MobileUse
 
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
@@ -56,21 +56,25 @@ def predict(query: Query):
     )
 
     # Build messages
-    message = NousFnCallPrompt.preprocess_fncall_messages(
-        messages = [
+    
+    prompt = NousFnCallPrompt()
+    raw_messages = [
             Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
             Message(role="user", content=[
                 ContentItem(text=user_query),
                 ContentItem(image=f"file://{screenshot_path}")
             ]),
-        ],
+        ]
+
+    message_objs = prompt.preprocess_fncall_messages(
+        messages=raw_messages,
         functions=[mobile_use.function],
         lang=None,
     )
-    message = [msg.model_dump() for msg in message]
+    
+    message = [msg.model_dump() for msg in message_objs]
     
     text = processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
-    print("text",text)
     inputs = processor(text=[text], images=[screenshot], padding=True, return_tensors="pt").to('cuda')
 
 
