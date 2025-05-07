@@ -7,7 +7,7 @@
 
 TASK_APP="google_maps"  
 METHOD="pav" # "baseline"
-IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/$TASK_APP"
+IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/1/$TASK_APP" # $METHOD/2/$TASK_APP", $METHOD/3/$TASK_APP"
 
 TASK_FILE="./task/google_maps_tasks.txt" 
 EMULATOR_CMD="$HOME/Library/Android/sdk/emulator/emulator"
