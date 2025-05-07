@@ -14,7 +14,7 @@ from pav_agent.pav_agent_function_call import MobileUse
 class Planner():
     
     def __init__(self):
-        self.prompt =  """You are a helpful mobile agent and a good planner.
+        self.google_prompt =  """You are a helpful mobile agent and a good planner.
         You are given a screenshot of a mobile device and a task.
         You need to generate a macro action plan to complete the task.
         
@@ -88,8 +88,90 @@ class Planner():
         {instruction}
         Macro Aciton Plan:
         """
+        
+        self.ali_prompt =  """You are a helpful mobile agent and a good planner.
+        You are given a screenshot of a mobile device and a task.
+        You need to generate a macro action plan to complete the task.
+        
+        Below are some examples of tasks and their corresponding macro action plans.
+        ---
+        <Example 1>
+        Task:
+        Add Logitech MX Master 3S to cart.
+        Macro Action Plan:
+        [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
+        
+        <Example 2>
+        Task:
+        Add the most popular ramen to cart.
+        Macro Action Plan:
+        [Search for ramen, Filter by popularity, Select the first item, Add to cart]
+        
+        <Example 3>
+        Task:
+        Add the cheapest sofa to cart.
+        Macro Action Plan:
+        [Search for sofa, Filter by price, Select the first item, Add to cart]
+        
+        <Example 4>
+        Task:
+        Show the shoes on sale.
+        Macro Action Plan:
+        [Search for shoes, Filter by savings]
+        
+        <Example 5>
+        Task:
+        Show the items to ship in my orders.
+        Macro Action Plan:
+        [Navigate to my orders in account, Select to ship section, Show the items I need to pay]
+        
+        <Example 6>
+        Task:
+        Remove the third item in my cart.
+        Macro Action Plan:
+        [Navigate to cart tab, Select button next to third item, Remove the item]
+        
+        <Example 7>
+        Task:
+        View the items in rankings of K-VENUE page.
+        Macro Action Plan:
+        [Naviagate to K-VENUE page, Select rankings section, Show the items]
+        
+        <Example 8>
+        Task:
+        Add Shin ramyun to my wishlist
+        Macro Action Plan:
+        [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
+        
+        <Example 9>
+        Task:
+        Empty items in cart.
+        Macro Action plan:
+        [Navigate to cart tab, Select all, Remove the items]
+        
+        <Example 10>
+        Task:
+        Show the coupons I received.
+        Macro Action Plan:
+        [Navigate to coupons in account, Show coupons]
+        ---
+        
+        Now you are given a task and a screenshot.
+        Generae a macro action plan to complete the task.
+        
+        Task: 
+        {instruction}
+        Macro Aciton Plan:
+        """
 
-    def plan(self, model, processor, task, screenshot_path):
+    def plan(self, model, processor, task, screenshot_path, app_name):
+        
+        if app_name == "google_maps":
+            prompt = self.google_prompt
+        elif app_name == "ali":
+            prompt = self.ali_prompt
+        elif app_name == "coupang":
+            prompt = self.coupang_prompt
         
         messages = [
             {
@@ -99,7 +181,7 @@ class Planner():
                         "type": "image",
                         "image": screenshot_path,
                     },
-                    {"type": "text", "text": self.prompt.format(instruction=task)},
+                    {"type": "text", "text": prompt.format(instruction=task)},
                 ],
             }
         ]
@@ -181,44 +263,91 @@ class Actor():
 class Verifier():
     
     def __init__(self):
+#         self.prompt = """You are a strict mobile‑task verifier.
+
+# Input
+# ------
+# • screenshot_before : the screen **right before** the agent’s last action  
+# • screenshot_after  : the screen **right after** the agent’s last action  
+# • current_task      : one high‑level instruction (macro action)
+
+# Definitions
+# -----------
+# • End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**  
+#                – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART  
+# • Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
+
+# Your Goal
+# ---------
+# Return **1** only if screenshot_after shows the End‑State.  
+# If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
+
+# Hidden Reasoning Steps
+# ----------------------
+# 1. Restate current_task in your own words.  
+# 2. Write explicit End‑State criteria for this task (what must be on‑screen).  
+# 3. List Intermediate‑States that would NOT qualify.  
+# 4. Compare screenshots and decide if End‑State is met.  
+# 5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
+
+# Output
+# ------
+# Respond **ONLY** with this JSON (no extra text):
+
+# ```json
+# {{
+#     "task_completed": 0 or 1,
+#     "reason": "<one concise sentence explaining the key visual evidence>"
+# }}
+# ```
+# """
+
         self.prompt = """You are a strict mobile‑task verifier.
 
-Input
-------
-• screenshot_before : the screen **right before** the agent’s last action  
-• screenshot_after  : the screen **right after** the agent’s last action  
-• current_task      : one high‑level instruction (macro action)
+        Input
+        ------
+        • screenshot_before : the screen **right before** the agent’s last action  
+        • screenshot_after  : the screen **right after** the agent’s last action  
+        • current_task      : one high‑level instruction (macro action)
 
-Definitions
------------
-• End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**  
-               – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART  
-• Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
+        Definitions
+        -----------
+        • End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**  
+                    Examples. 
+                    - Task : Filter by CRITERION / End-state : map rerendered with specific filter badge on with CRITERION
+                    - Task : Search for TARGET / End-state : TARGET search result page opened
+                    - TASK : Add to CART / End-state : item actually in CART, added to CART notification 
+                    - TASK : Navigate to TARGET tab  / End-state : TARGET tab in navigate bar selected or higlighted
+        • Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field.
+                    Examples.
+                    - Task : Filter by CRITERION / Intermediate-state : filter menu opened
+                    - Task : Search for TARGET / Intermediate-state : search bar opened
+                    - Task : Add to CART / Intermediate-state : add to cart pop-up opened
 
-Your Goal
----------
-Return **1** only if screenshot_after shows the End‑State.  
-If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
+        Your Goal
+        ---------
+        Return **1** only if screenshot_after shows the End‑State.  
+        If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
 
-Hidden Reasoning Steps
-----------------------
-1. Restate current_task in your own words.  
-2. Write explicit End‑State criteria for this task (what must be on‑screen).  
-3. List Intermediate‑States that would NOT qualify.  
-4. Compare screenshots and decide if End‑State is met.  
-5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
+        Hidden Reasoning Steps
+        ----------------------
+        1. Restate current_task in your own words.  
+        2. Write explicit End‑State criteria for this task (what must be on‑screen).  
+        3. List Intermediate‑States that would NOT qualify.  
+        4. Compare screenshots and decide if End‑State is met.  
+        5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
 
-Output
-------
-Respond **ONLY** with this JSON (no extra text):
+        Output
+        ------
+        Respond **ONLY** with this JSON (no extra text):
 
-```json
-{{
-    "task_completed": 0 or 1,
-    "reason": "<one concise sentence explaining the key visual evidence>"
-}}
-```
-"""
+        ```json
+        {{
+            "task_completed": 0 or 1,
+            "reason": "<one concise sentence explaining the key visual evidence>"
+        }}
+        ```
+        """
       
     def verify(self, model, processor, macro_action, previous_screenshot_path, current_screenshot_path):
         
