@@ -19,8 +19,8 @@ from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
-# model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
-model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
+model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
+# model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
@@ -38,6 +38,7 @@ class Query(BaseModel):
     step: int
     role: str
     previous_action: str
+    app_name: str
 
 @app.post("/predict")    
 def pav(query: Query):
@@ -53,7 +54,7 @@ def pav(query: Query):
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
 
-        macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, screenshot_path=screenshot_path)
+        macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, screenshot_path=screenshot_path, app_name=query.app_name)
         
         print(f">>>Planner Output: {macro_action_plan}")
         

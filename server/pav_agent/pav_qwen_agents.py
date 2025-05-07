@@ -170,8 +170,6 @@ class Planner():
             prompt = self.google_prompt
         elif app_name == "ali":
             prompt = self.ali_prompt
-        elif app_name == "coupang":
-            prompt = self.coupang_prompt
         
         messages = [
             {
