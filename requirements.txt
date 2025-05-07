@@ -22,3 +22,5 @@ qwen-agent==0.0.20
 qwen-vl-utils==0.0.11
 tokenizers==0.21.1
 transformers==4.50.0
+fastapi
+uvicorn
