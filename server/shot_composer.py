@@ -129,7 +129,7 @@ if __name__ == "__main__":
     composer.save("shot_pools")          # → faiss_store/google_maps/...
 
     # (2) 불러와서 프롬프트 생성
-    loader = FewShotComposer(app_name="google_maps")
+    loader = FewShotComposer(app_name=args.app_name)
     loader.load("shot_pools")
 
     # Example
