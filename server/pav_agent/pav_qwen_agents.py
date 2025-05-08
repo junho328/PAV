@@ -163,14 +163,34 @@ class Planner():
         {instruction}
         Macro Aciton Plan:
         """
-
-    def plan(self, model, processor, task, screenshot_path, app_name):
+        self.composer_prompt =  """You are a helpful mobile agent and a good planner.
+            You are given a screenshot of a mobile device and a task.
+            You need to generate a macro action plan to complete the task.
+            
+            Below are some examples of tasks and their corresponding macro action plans.
+            ---
+            {few_shots}
+            ---
+            
+            Now you are given a task and a screenshot.
+            Generae a macro action plan to complete the task.
+            
+            Task: 
+            {instruction}
+            Macro Aciton Plan:
+            """
         
-        if app_name == "google_maps":
-            prompt = self.google_prompt
-        elif app_name == "ali":
-            prompt = self.ali_prompt
+    def plan(self, model, processor, task, screenshot_path, app_name, few_shots=None):
         
+        if few_shots is not None:
+            prompt = self.composer_prompt.format(few_shots=few_shots, instruction=task)
+        
+        else:
+            if app_name == "google_maps":
+                prompt = self.google_prompt
+            elif app_name == "ali":
+                prompt = self.ali_prompt
+            
         messages = [
             {
                 "role": "user",

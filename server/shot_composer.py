@@ -13,8 +13,10 @@ from typing import List, Tuple, Dict
 import faiss, numpy as np
 from transformers import AutoModel
 
+import argparse
 
-class FewShotRetriever:
+
+class FewShotComposer:
     """
     FAISS‑기반 Task 유사도 검색 & 프롬프트 생성기
     """
@@ -24,7 +26,7 @@ class FewShotRetriever:
                  *,
                  app_name: str | None = None):
         self.model = AutoModel.from_pretrained(model_name,
-                                               trust_remote_code=True)
+                                               trust_remote_code=True).to("cuda")
         self.app_name = app_name              # ← 앱 이름별 분리 저장
         self.index: faiss.Index | None = None
         self.id2task: List[str] = []
@@ -67,9 +69,19 @@ class FewShotRetriever:
     def query(self, task: str, k: int = 5) -> List[Tuple[str, str | list[str]]]:
         assert self.index is not None, "index 가 없습니다. build_index 또는 load!"
         emb = self._encode([task])
-        _, I = self.index.search(emb, k)
-        return [(self.id2task[idx], self.task2actions[self.id2task[idx]])
-                for idx in I[0]]
+        _, I = self.index.search(emb, k + 5)  # 여유 있게 더 많이 검색해 둠
+
+        seen = set()
+        results = []
+        for idx in I[0]:
+            task_text = self.id2task[idx]
+            if task_text not in seen and task_text != task:
+                seen.add(task_text)
+                results.append((task_text, self.task2actions[task_text]))
+            if len(results) == k:
+                break
+
+        return results
 
     def build_prompt(self, task: str, *, k: int = 5) -> str:
         shots = self.query(task, k)
@@ -90,20 +102,36 @@ class FewShotRetriever:
 
 # ─────────────────── 사용 예시 ───────────────────
 if __name__ == "__main__":
-    corpus = [
-        ("Add sprite to the cart.", "[Search for sprite, Add to cart]"),
-        ("Add Samyang ramen to the cart.", "[Search for Samyang ramen, Add to cart]"),
-        ("Show the shipped item.", "[Open orders, Filter shipped, Select item]"),
-    ]
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--app_name", type=str, default="google_maps")
+    args = parser.parse_args()
+    
+    # corpus = [
+    #     ("Add sprite to the cart.", "[Search for sprite, Add to cart]"),
+    #     ("Add Samyang ramen to the cart.", "[Search for Samyang ramen, Add to cart]"),
+    #     ("Show the shipped item.", "[Open orders, Filter shipped, Select item]"),
+    # ]
+    
+    corpus = []
+    
+    with open(f"shot_pools/{args.app_name}/shot_texts.txt", "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            line = line.strip()
+            if line:
+                task, action = line.split(" : ")
+                corpus.append((task, action))
 
     # (1) 인덱스 생성 & 저장
-    retriever = FewShotRetriever(app_name="google_maps")
-    retriever.build_index(corpus)
-    retriever.save("shot_pools")          # → faiss_store/google_maps/...
+    composer = FewShotComposer(app_name=args.app_name)
+    composer.build_index(corpus)
+    composer.save("shot_pools")          # → faiss_store/google_maps/...
 
     # (2) 불러와서 프롬프트 생성
-    loader = FewShotRetriever(app_name="google_maps")
-    loader.load("faiss_store")
+    loader = FewShotComposer(app_name="google_maps")
+    loader.load("shot_pools")
 
-    task = "Add beer to the cart."
+    # Example
+    task = "Search for Namsan Tower."
     print(loader.build_prompt(task, k=5))
