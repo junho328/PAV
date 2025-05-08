@@ -190,5 +190,4 @@ pyrightconfig.json
 *.png
 
 *.pkl
-*.txt
 *.index
