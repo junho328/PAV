@@ -7,7 +7,7 @@
 
 TASK_APP="ali"
 METHOD="pav" # "baseline"
-IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/1/$TASK_APP" # $METHOD/2/$TASK_APP", $METHOD/3/$TASK_APP"
+IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/1/$TASK_APP"
 
 TASK_FILE="./task/aliexpress_tasks.txt"
 EMULATOR_CMD="$HOME/Library/Android/sdk/emulator/emulator"
@@ -55,7 +55,7 @@ while IFS= read -r TASK <&3; do
   echo "---- task #$INDEX: $TASK"
 
   start_emulator
-  "$ADB_CMD" shell monkey -p "$APP_NAME" -c android.intent.category.LAUNCHER 1
+  # "$ADB_CMD" shell monkey -p "$APP_NAME" -c android.intent.category.LAUNCHER 1
 
   sleep 10
 
@@ -65,8 +65,7 @@ while IFS= read -r TASK <&3; do
     --method "$METHOD" \
     --task "$TASK" \
     --image_path "$CURRENT_IMAGE_PATH" \
-    --app_name "$TASK_APP" \
-    || echo "⚠️ PAV client failed on task #$INDEX"
+    --app_name "$TASK_APP" 
 
   stop_emulator
 

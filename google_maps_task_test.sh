@@ -55,7 +55,7 @@ while IFS= read -r TASK <&3; do
   echo "---- task #$INDEX: $TASK"
 
   start_emulator
-  "$ADB_CMD" shell monkey -p "$APP_NAME" -c android.intent.category.LAUNCHER 1
+  # "$ADB_CMD" shell monkey -p "$APP_NAME" -c android.intent.category.LAUNCHER 1
 
   sleep 10
 
@@ -65,8 +65,7 @@ while IFS= read -r TASK <&3; do
     --method "$METHOD" \
     --task "$TASK" \
     --image_path "$CURRENT_IMAGE_PATH" \
-    --app_name "$TASK_APP" \
-    || echo "⚠️ PAV client failed on task #$INDEX"
+    --app_name "$TASK_APP" 
 
   stop_emulator
 
