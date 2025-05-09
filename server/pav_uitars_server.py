@@ -10,7 +10,7 @@ import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
 model_path = "ByteDance-Seed/UI-TARS-1.5-7B"
-model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="cuda:0")
+model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
 processor = AutoProcessor.from_pretrained(model_path)
 
 planner = Planner()
