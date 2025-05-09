@@ -213,51 +213,7 @@ class Planner():
         
         return macro_action_plan
             
-# class Actor():
-#     def act(self, model, processor, macro_action_plan, current_macro_action, screenshot_path, previous_micro_action=None):
-        
-#         user_query = f"The user query: {current_macro_action}. The previous action : {previous_micro_action}."
-
-#         dummy_image = Image.open(screenshot_path)
-#         resized_height, resized_width  = smart_resize(dummy_image.height,
-#             dummy_image.width,
-#             factor=processor.image_processor.patch_size * processor.image_processor.merge_size,
-#             min_pixels=processor.image_processor.min_pixels,
-#             max_pixels=processor.image_processor.max_pixels,)
-#         mobile_use = MobileUse(
-#             cfg={"display_width_px": resized_width, "display_height_px": resized_height}
-#         )
-        
-#         prompt = NousFnCallPrompt()
-#         raw_messages = [
-#                 Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
-#                 Message(role="user", content=[
-#                     ContentItem(text=user_query),
-#                     ContentItem(image=f"file://{screenshot_path}")
-#                 ]),
-#             ]
-
-#         message_objs = prompt.preprocess_fncall_messages(
-#             messages=raw_messages,
-#             functions=[mobile_use.function],
-#             lang=None,
-#         )
-        
-#         message = [msg.model_dump() for msg in message_objs]
-
-#         text = processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
-#         inputs = processor(text=[text], images=[dummy_image], padding=True, return_tensors="pt").to('cuda')
-
-
-#         output_ids = model.generate(**inputs, max_new_tokens=2048)
-#         generated_ids = [output_ids[len(input_ids):] for input_ids, output_ids in zip(inputs.input_ids, output_ids)]
-#         output_text = processor.batch_decode(generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=True)[0]
-
-#         # Qwen will perform action thought function call
-#         action = json.loads(output_text.split('<tool_call>\n')[1].split('\n</tool_call>')[0])
-        
-#         return action
-
+            
 class Actor():
 
     def act(self, model, processor, macro_action_plan, current_macro_action, screenshot_path, previous_micro_action=None):
@@ -281,26 +237,23 @@ finished(content='xxx') # Use escape characters \\', \\", and \\n in content par
 
 ## User Instruction
 {current_macro_action}
+
+## Action History
+{previous_micro_action}
 """ 
 
         dummy_image = Image.open(screenshot_path)
-        resized_height, resized_width  = smart_resize(dummy_image.height,
-            dummy_image.width,
-            factor=processor.image_processor.patch_size * processor.image_processor.merge_size,
-            min_pixels=processor.image_processor.min_pixels,
-            max_pixels=processor.image_processor.max_pixels,)
 
         raw_messages = [
                 Message(role="system", content=[ContentItem(text="You are a helpful assistant.")]),
                 Message(role="user", content=[
-                    ContentItem(text=USER_QUERY.format(current_macro_action=current_macro_action)),
+                    ContentItem(text=USER_QUERY.format(current_macro_action=current_macro_action,
+                                                       previous_micro_action=previous_micro_action)),
                     ContentItem(image=f"file://{screenshot_path}")
                 ]),
             ]
 
-        message_objs = raw_messages
-
-        message = [msg.model_dump() for msg in message_objs]
+        message = [msg.model_dump() for msg in raw_messages]
 
         text = processor.apply_chat_template(message, tokenize=False, add_generation_prompt=True)
         inputs = processor(text=[text], images=[dummy_image], padding=True, return_tensors="pt").to('cuda')
