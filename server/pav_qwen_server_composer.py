@@ -60,6 +60,8 @@ def pav(query: Query):
         composer.load("shot_pools")
 
         few_shots = composer.build_prompt(user_query, k=5)
+        
+        print(f">>>Few Shot Prompt:\n {few_shots}")
 
         macro_action_plan = planner.plan(model=model, processor=processor, task=user_query, few_shots=few_shots, screenshot_path=screenshot_path, app_name=app_name)
         
@@ -156,4 +158,4 @@ def pav(query: Query):
             
     return response
 
-# uvicorn pav_qwen_server:app --host 0.0.0.0 --port 8000
+# uvicorn pav_qwen_server_composer:app --host 0.0.0.0 --port 8000
