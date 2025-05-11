@@ -7,7 +7,7 @@
 
 TASK_APP="ali"
 METHOD="pav" # "baseline"
-IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screeenshots/$METHOD/1/$TASK_APP"
+IMAGE_BASE_PATH="/Users/junhona/mobile_agent/screenshots/$METHOD/1/$TASK_APP"
 
 TASK_FILE="./task/aliexpress_tasks.txt"
 EMULATOR_CMD="$HOME/Library/Android/sdk/emulator/emulator"
@@ -49,14 +49,11 @@ stop_emulator() {
 INDEX=0
 # FD 3을 TASK_FILE로 연결
 exec 3< "$TASK_FILE"
+while IFS= read -r TASK <&3 || [[ -n "$TASK" ]]; do
+  [[ -z "${TASK//[[:space:]]/}" ]] && continue
 
-while IFS= read -r TASK <&3; do
-  [[ -z "$TASK" ]] && continue
   echo "---- task #$INDEX: $TASK"
-
   start_emulator
-  # "$ADB_CMD" shell monkey -p "$APP_NAME" -c android.intent.category.LAUNCHER 1
-
   sleep 10
 
   CURRENT_IMAGE_PATH="$IMAGE_BASE_PATH/$INDEX"
@@ -68,7 +65,6 @@ while IFS= read -r TASK <&3; do
     --app_name "$TASK_APP" 
 
   stop_emulator
-
   INDEX=$((INDEX+1))
 done
 
