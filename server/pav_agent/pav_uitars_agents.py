@@ -321,43 +321,47 @@ finished(content='xxx') # Use escape characters \\', \\", and \\n in content par
 class Verifier():
     
     def __init__(self):
+        
         self.prompt = """You are a strict mobile‑task verifier.
-
 Input
 ------
-• screenshot_before : the screen **right before** the agent’s last action  
-• screenshot_after  : the screen **right after** the agent’s last action  
-• current_task      : one high‑level instruction (macro action)
+• current_task      : {macro_action}. one high‑level instruction (macro action)
+• screenshot_before : the screen **right before** the agent’s last action
+• screenshot_after  : the screen **right after** the agent’s last action
 
 Definitions
 -----------
-• End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**  
-               – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART  
+• End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**
+               – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART
 • Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
 
 Your Goal
 ---------
-Return **1** only if screenshot_after shows the End‑State.  
+Your current task is "{macro_action}".
+Return **1** only if screenshot_after shows the End‑State.
 If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
 
 Hidden Reasoning Steps
 ----------------------
-1. Restate current_task in your own words.  
-2. Write explicit End‑State criteria for this task (what must be on‑screen).  
-3. List Intermediate‑States that would NOT qualify.  
-4. Compare screenshots and decide if End‑State is met.  
+1. Restate current_task in your own words.
+2. Write explicit End‑State criteria for this task (what must be on‑screen).
+3. List Intermediate‑States that would NOT qualify.
+4. Compare screenshots and decide if End‑State is met.
 5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
 
 Output
 ------
-Respond **ONLY** with this JSON (no extra text):
+# Respond **ONLY** with this JSON (no extra text):
 
 ```json
 {{
-    "task_completed": 0 or 1,
-    "reason": "<one concise sentence explaining the key visual evidence>"
+    "current_task": <current_task {macro_action}>,
+    "difference": <one concise sentence describing the difference between the two screenshots, i.e., highlited elements, popups, new text, etc.>,
+    "reason": "<one concise sentence explaining the key visual evidence>",
+    "task_completed": 0 or 1
 }}
 ```
+
 """
       
     def verify(self, model, processor, macro_action, previous_screenshot_path, current_screenshot_path):
