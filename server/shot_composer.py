@@ -15,6 +15,7 @@ from transformers import AutoModel
 
 import argparse
 
+from pathlib import Path
 
 class FewShotComposer:
     """
@@ -105,6 +106,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--app_name", type=str, default="google_maps")
+    parser.add_argument("--text", type=str, default="gpt_shot_texts.txt")
     args = parser.parse_args()
     
     # corpus = [
@@ -115,7 +117,9 @@ if __name__ == "__main__":
     
     corpus = []
     
-    with open(f"shot_pools/{args.app_name}/shot_texts.txt", "r") as f:
+    text_path = Path(__file__).parent / "shot_pools" / args.app_name / args.text
+    
+    with open(text_path, "r") as f:
         lines = f.readlines()
         for line in lines:
             line = line.strip()
@@ -134,4 +138,4 @@ if __name__ == "__main__":
 
     # Example
     task = "Search for Namsan Tower."
-    print(loader.build_prompt(task, k=5))
+    print(loader.build_prompt(task, k=3))
