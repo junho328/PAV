@@ -88,6 +88,80 @@ class Planner():
         {instruction}
         Macro Aciton Plan:
         """
+        # self.google_prompt =  """You are a helpful mobile agent and a good planner.
+        # You are given a screenshot of a mobile device and a task.
+        # You need to generate a macro action plan to complete the task.
+        
+        # Below are some examples of tasks and their corresponding macro action plans.
+        # ---
+        # <Example 1>
+        # Task:
+        # Please display the route to Jejujib.
+        # Macro Action Plan:
+        # [Search for Jejujib, Show the routes, Display the directions]
+        
+        # <Example 2>
+        # Task:
+        # Please display the route to Yori.
+        # Macro Action Plan:
+        # [Search for Yori, Show the routes, Display the directions]
+        
+        # <Example 3>
+        # Task:
+        # Show me a wheelchair-accessible route to Seoul Forest Park.
+        # Macro Action Plan:
+        # [Search for Seoul Forest Park, Show the routes, Display the directions, Filter by wheelchair-accessible route, Show the filtered route]
+        
+        # <Example 4>
+        # Task:
+        # Show me a less walking route to Gangnam station.
+        # Macro Action Plan:
+        # [Search for Gangnam station, Show the routes, Display the directions, Filter by less walking route, Show the filtered route]
+        
+        # <Example 5>
+        # Task:
+        # Show me a fewer transfers route to Lotte Tower.
+        # Macro Action Plan:
+        # [Search for Lotte Tower, Show the routes, Display the directions, Filter by fewer transfers route, Show the filtered route]
+        
+        # <Example 6>
+        # Task:
+        # Please add restaurant Gimgane to Favorites list.
+        # Macro Action Plan:
+        # [Search for restaurant Gimgane, Add Gimgane to Favorites list]
+        
+        # <Example 7>
+        # Task:
+        # Please add cafe Simjae to Want to go list.
+        # Macro Action Plan:
+        # [Search for cafe Simjae, Add Simjae to Want to go list]
+        
+        # <Example 8>
+        # Task:
+        # Show me the current rating of restaurant Sushiyoung.
+        # Macro Action Plan:
+        # [Search for restaurant Sushiyoung, Select restaurant Sushiyoung, Check the rating section]
+        
+        # <Example 9>
+        # Task:
+        # Show me the restaurants nearby KAIST College of Business.
+        # Macro Action Plan:
+        # [Search for KAIST College of Business, Select KAIST College of Business, Search for restaurants, Show the restaurants, Select the restaurants]
+        
+        # <Example 10>
+        # Task:
+        # Show me the cafes nearby Yangjae station.
+        # Macro Action Plan:
+        # [Search for Yangjae station, Select Yangjae station, Search for cafes, Show the cafes, Select the cafes]
+        # ---
+        
+        # Now you are given a task and a screenshot.
+        # Generae a macro action plan to complete the task.
+        
+        # Task: 
+        # {instruction}
+        # Macro Aciton Plan:
+        # """
         
         self.ali_prompt =  """You are a helpful mobile agent and a good planner.
         You are given a screenshot of a mobile device and a task.
@@ -291,37 +365,37 @@ Input
 
 Definitions
 -----------
-• End‑State  : the screen that appears **after the required UI element has been ACTIVATED and its effect is visible**
-               – e.g. map rerendered with specific filter badge ON, search result page OPENED, item actually in CART
-• Intermediate‑State : any transient screen such as pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
+• End‑State  : the screen that appears **after current task is completed**
+                - e.g., "Search for <Something>" is completed when the search results <Something> are displayed
+                - e.g., "Filter by <Something>" is completed when the filter badge <Something> is ON
+• Intermediate‑State : any intermediate screen required to perform the task before it is completed.
+                - e.g., any empty search bar, pop‑up menus, text typed in a field, or highlight/selection **before** confirmation
 
-Your Goal
----------
-Your current task is "{macro_action}".
-Return **1** only if screenshot_after shows the End‑State.
-If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
 
 Hidden Reasoning Steps
 ----------------------
 1. Restate current_task in your own words.
-2. Write explicit End‑State criteria for this task (what must be on‑screen).
-3. List Intermediate‑States that would NOT qualify.
+2. Think about Expectation of End‑State criteria for this task (what must be on‑screen).
+3. Think about Intermediate‑States that would NOT qualify.
 4. Compare screenshots and decide if End‑State is met.
 5. If any doubt or only Intermediate‑State is visible, decide “NOT completed”.
 
+Your Goal
+---------
+Your current task is "{macro_action}".
+Return **1** only if screenshot_after meets the expectation of the task completion.
+If screenshot_after still shows an Intermediate‑State or gives no clear evidence, return **0**.
+
 Output
 ------
-# Respond **ONLY** with this JSON (no extra text):
-
 ```json
 {{
     "current_task": <current_task {macro_action}>,
-    "difference": <one concise sentence describing the difference between the two screenshots, i.e., highlited elements, popups, new text, etc.>,
-    "reason": "<one concise sentence explaining the key visual evidence>",
+    "expectation": <one concise sentence describing after the task completion>,
+    "comparison": <one concise sentence describing the screeshot_after meets the expectation>,
     "task_completed": 0 or 1
 }}
 ```
-
 """
       
     def verify(self, model, processor, macro_action, previous_screenshot_path, current_screenshot_path):

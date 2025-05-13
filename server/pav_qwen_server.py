@@ -64,7 +64,8 @@ def pav(query: Query):
         current_macro_action = macro_action_plan[0]
         
         micro_action = actor.act(model=model, processor=processor, macro_action_plan=macro_action_plan, current_macro_action=current_macro_action, screenshot_path=screenshot_path)
-        print(">>>Actor Output:", micro_action["arguments"])
+        print(">>>Actor Output:", current_macro_action, '\n', query.previous_action, '\n', micro_action["arguments"])
+        # print(">>>Actor Output:", current_macro_action, '\n', micro_action["arguments"])
 
         # ex) {"name": "pav_qwen", "arguments": {"action": "click", "coordinate": [935, 406]}}
         
@@ -90,7 +91,7 @@ def pav(query: Query):
         micro_action = actor.act(model=model, processor=processor, macro_action_plan=macro_action_plan ,current_macro_action=current_macro_action, screenshot_path=screenshot_path, previous_micro_action=query.previous_action)
         action_type = micro_action["arguments"]["action"]
         
-        print(">>>Actor Output:", micro_action["arguments"])
+        print(">>>Actor Output:", current_macro_action, '\n', query.previous_action, '\n', micro_action["arguments"])
         
         if action_type == "terminate":
             macro_action_plan.pop(0)
