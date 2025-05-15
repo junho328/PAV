@@ -106,7 +106,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--app_name", type=str, default="google_maps")
-    parser.add_argument("--text", type=str, default="gpt_shot_texts.txt")
+    parser.add_argument("--text", type=str, default="human_shot_texts.txt")
     args = parser.parse_args()
     
     # corpus = [
