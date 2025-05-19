@@ -1,0 +1,18 @@
+```dot
+digraph {
+    Search -> Select
+    Search -> Filter
+    Filter -> Select
+    Select -> Add
+    Select -> Buy
+    Select -> View
+    Select -> Select
+    Select -> Remove
+    Select -> Show
+    Add -> Go
+    Go -> Search
+    Search -> Search
+    Navigate -> Select
+    Navigate -> Show
+}
+```
