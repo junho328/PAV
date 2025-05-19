@@ -45,7 +45,7 @@ def predict(query: Query):
     # The operation history can be orgnized by Step x: [action]; Step x+1: [action]...
     user_query = f'''Given a user query, You have to perform the task in a mobile environment.
 First, decompose the task into high-level macro actions.
-Second, execute micro actions step by step to achieve each macro action.(Micro actions: key, click, long_press, swipe, type, system_button, open, wait, terminate.)
+Second, execute micro actions step by step to achieve each macro action.(Micro actions: key, click, long_press, swipe, type, system_button, open, wait, terminate. Each micro action should be executed with an additional specified information. Additional information: text(key), coordinates(click), time(long_press), coordinates(swipe), text(type), button(system_button), text(open), time(wait), status(terminate))
 Third, after executing each micro action, verify whether the macro action has been successfully completed.(Multiple micro actions may be required to accomplish a single macro action.)
 
 The user query: {query.task}'''
