@@ -455,10 +455,10 @@ def pa(args):
             if len(macro_action_plan) > 1:
                 macro_action_plan.pop(0)
             else:
-                image_bytes = take_screenshot(args, step+1)
-                previous_action = response["arguments"]
-                next_image_bytes = take_screenshot(args, step+1)
                 print("All macro actions are completed.")
+            image_bytes = take_screenshot(args, step+1)
+            previous_action = response["arguments"]
+            next_image_bytes = take_screenshot(args, step+1)
             continue
         else:
             print(f"<{current_macro_action}> still in progress!")
