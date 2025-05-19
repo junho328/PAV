@@ -4,7 +4,7 @@ Show me a route to Naksan Park with less walking. : [Search for Naksan Park,Sele
 Show me a route to Jinmi Sikdang with fewer transfers. : [Search for Jinmi Sikdang,Select Jinmi Sikdang,Show routes,Filter by Fewer transfers,Show filtered routes]
 Show me the current rating of cafe SimJae : [Search for cafe SimJae,Select cafe SimJae,Show rating]
 Please add cafe SimJae to 'Want to go' list : [Search for cafe SimJae,Select cafe SimJae,Add cafe Simjae to Want to go list]
-Pleas add restaurant Galbi Sarang to 'Favorites' list : [Search for restaurant Galbi Sarang,Select restaurant Galbi Sarang,Add Galbi Sarang to Favorites list]
+Please add restaurant Galbi Sarang to 'Favorites' list : [Search for restaurant Galbi Sarang,Select restaurant Galbi Sarang,Add Galbi Sarang to Favorites list]
 Show me the cafes nearby Yangjaecheon : [Search for Yangjaecheon,Select Yangjaecheon,Search for cafes,Show map of cafes near Yangjaecheon]
 Show me the parking lots near Naksan Park. : [Search for Naksan Park,Select Naksan Park,Search for parking lots,Show map of parking lots near Naksan Park]
 Show me the opening hours of cafe SimJae : [Search for cafe SimJae,Select cafe SimJae,Show opening hours]
