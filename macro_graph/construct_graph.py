@@ -54,7 +54,7 @@ def main(args):
     print("=== DOT Graph ===")
     print(dot_graph)
     
-    with open("dot_action_graph.dot", "w", encoding="utf-8") as f:
+    with open("action_graph.dot", "w", encoding="utf-8") as f:
         f.write(dot_graph)
     
     visualize_digraph = dot_graph.split("dot")[1].split("```")[0].strip()

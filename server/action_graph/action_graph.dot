@@ -1,0 +1,13 @@
+```dot
+diagraph {
+    "Search" -> "Show"
+    "Search" -> "Add to Favorites"
+    "Search" -> "Add to Want to go"
+    "Search" -> "Select"
+    "Search" -> "Search"
+    "Show" -> "Filter"
+    "Show" -> "Show"
+    "Filter" -> "Show"
+    "Select" -> "Check"
+}
+```

@@ -32,25 +32,25 @@ Example 1
 Input Task: Please display the route to Yangjae station.  
 Output:  
 {"indexes":[1,4],
-"macro_actions":["Search for Yangjae station","Show routes"]}
+"macro_actions":[Search for Yangjae station"Show routes]}
 
 Example 2  
 Input Task: Add Shin Ramyeon to cart.  
 Output:  
 {"indexes":[1,2,5],
-"macro_actions":["Search for Shin Ramyeon","Select Shin Ramyeon","Add Shin Ramyeon to cart"]}
+"macro_actions":"Search for Shin Ramyeon,Select Shin Ramyeon,Add Shin Ramyeon to cart]}
 
 Example 3  
 Input Task: Please display a wheelchair-accessible route to Seoul station.  
 Output:  
 {"indexes":[1,4,3,4],
-"macro_actions":["Search for Seoul station","Show routes","Filter by wheelchair-accessible route","Show filtered routes"]}
+"macro_actions":[Search for Seoul station,Show routes,Filter by wheelchair-accessible route,Show filtered routes]}
 
 Example 4  
 Input Task: Show me the current rating of restaurant Yori.  
 Output:  
 {"indexes":[1,2,4],
-"macro_actions":["Search for restaurant Yori","Select Yori","Show rating"]}  
+"macro_actions":[Search for restaurant Yori,Select Yori,Show rating]}  
 ---
 
 """
