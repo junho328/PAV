@@ -356,6 +356,125 @@ class Planner():
             {instruction}
             Macro Aciton Plan:
             """
+            
+        self.google_graph_prompt = """You are a helpful mobile agent and a good planner.
+
+<INPUTS>
+1. One current screenshot of a mobile app (image input)
+2. A high-level user task in plain English
+3. An **action-transition graph** in DOT format (see below)
+
+<GOAL>
+Produce the **minimal, ordered list of macro actions** that will complete the task,
+*instantiating each action with the concrete object names or criteria found in the task*  
+(e.g. “Search for Jejujib”, “Filter by wheelchair-accessible route”, "Show rating").
+
+<CONSTRAINTS>
+A. Each action’s **type** must match one of the graph’s node labels  
+B. For any two consecutive actions (A ➔ B) in your list, the graph must contain the edge A ➔ B.  
+C. Start with the action that best matches the **current screenshot state**.  
+D. End with the action that **shows the final target screen** requested in the task. 
+    (e.g. "Show route", "Show reviews", "Show menu", "Show rating", "Show favorites", "Show cart")
+E. Output **only** valid JSON with a single key:  
+{{"macro_actions": [string]}}
+
+- Do not add explanations or extra keys.
+
+<ACTION-TRANSITION GRAPH>
+digraph {{
+    Search -> Show
+    Search -> Add
+    Search -> Select
+    Add -> Finish
+    Select -> Check
+    Select -> Show
+    Select -> Select
+    Show -> Filter
+    Filter -> Show
+}}
+
+Below are the examples of the input and output formats:
+---
+<Example 1>
+Task:
+Show me the reviews of restaurant Jejujib.
+Output:
+{{macro_action: ["Search for Jejujib", "Show reviews"]}}
+
+<Example 2>
+Task:
+Add samdasoo to cart.
+Output:
+{{macro_action: ["Search for samdasoo", "Add samdasoo to cart"]}}
+---
+
+Now infer the macro actions for the following task:
+Task:
+{instruction}
+Output:
+"""
+
+        self.ali_graph_prompt = """You are a helpful mobile agent and a good planner.
+
+<INPUTS>
+1. One current screenshot of a mobile app (image input)
+2. A high-level user task in plain English
+3. An **action-transition graph** in DOT format (see below)
+
+<GOAL>
+Produce the **minimal, ordered list of macro actions** that will complete the task,
+*instantiating each action with the concrete object names or criteria found in the task*  
+(e.g. “Search for Jejujib”, “Filter by wheelchair-accessible route”, "Show rating").
+
+<CONSTRAINTS>
+A. Each action’s **type** must match one of the graph’s node labels  
+B. For any two consecutive actions (A ➔ B) in your list, the graph must contain the edge A ➔ B.  
+C. Start with the action that best matches the **current screenshot state**.  
+D. End with the action that **shows the final target screen** requested in the task. 
+    (e.g. "Show route", "Show reviews", "Show menu", "Show rating", "Show favorites", "Show cart")
+E. Output **only** valid JSON with a single key:  
+{{"macro_actions": [string]}}
+
+- Do not add explanations or extra keys.
+
+<ACTION-TRANSITION GRAPH>
+digraph {{
+    Search -> Select
+    Search -> Filter
+    Filter -> Select
+    Select -> Add
+    Select -> Buy
+    Select -> View
+    Select -> Select
+    Select -> Remove
+    Select -> Show
+    Add -> Go
+    Go -> Search
+    Search -> Search
+    Navigate -> Select
+    Navigate -> Show
+}}
+
+Below are the examples of the input and output formats:
+---
+<Example 1>
+Task:
+Show me the reviews of restaurant Jejujib.
+Output:
+{{macro_action: ["Search for Jejujib", "Show reviews"]}}
+
+<Example 2>
+Task:
+Add samdasoo to cart.
+Output:
+{{macro_action: ["Search for samdasoo", "Add samdasoo to cart"]}}
+---
+
+Now infer the macro actions for the following task:
+Task:
+{instruction}
+Output:
+"""
         
     def plan(self, model, processor, task, screenshot_path, app_name, few_shots=None):
         
@@ -367,6 +486,10 @@ class Planner():
                 prompt = self.google_prompt
             elif app_name == "ali":
                 prompt = self.ali_prompt
+            elif app_name == "google_graph":
+                prompt = self.google_graph_prompt
+            elif app_name == "ali_graph":
+                prompt = self.ali_graph_prompt
             
         messages = [
             {
