@@ -43,7 +43,12 @@ def predict(query: Query):
     screenshot = Image.open(screenshot_path)
 
     # The operation history can be orgnized by Step x: [action]; Step x+1: [action]...
-    user_query = f'The user query: {query.task}'
+    user_query = f'''Given a user query, You have to perform the task in a mobile environment. 
+First, decompose the task into high-level macro actions.
+Second, execute each macro action step by step.
+Third, after each execution, you verify whether the macro action was successfully completed.
+
+The user query: {query.task}'''
 
     # The resolution of the device will be written into the system prompt. 
     resized_height, resized_width  = smart_resize(screenshot.height,
