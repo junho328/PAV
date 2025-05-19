@@ -447,7 +447,7 @@ def pa(args):
         
         time.sleep(2)
         
-        current_macro_action = previous_action[0]
+        current_macro_action = previous_action
         if action_type == "terminate" or action_type == "finished":
             print(f"<{current_macro_action}> completed!")
             
@@ -457,8 +457,11 @@ def pa(args):
                 with open("./pav_data/macro_plans.json", "w") as f:
                     json.dump(current_macro_action, f)
             else:
-                return {"task_completed": -1 , "reason": "All macro actions are completed!"}
-            continue
+                image_bytes = take_screenshot(args, step+1)
+                previous_action = response["arguments"]
+                next_image_bytes = take_screenshot(args, step+1)
+                print("All macro actions are completed.")
+            break
         else:
             print(f"<{current_macro_action}> still in progress!")
         
@@ -471,10 +474,6 @@ def pa(args):
         next_image_bytes = take_screenshot(args, step+1)
         
         response = send_to_server(args, args.task, next_image_bytes, step, role, "", args.app_name)
-                
-        if response["task_completed"] == -1:
-            print("All macro actions are completed.")
-            break
         
         image_bytes = next_image_bytes
             
