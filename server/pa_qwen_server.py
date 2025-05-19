@@ -14,7 +14,7 @@ from qwen_agent.llm.fncall_prompts.nous_fncall_prompt import (
 
 from qwen_vl_utils import smart_resize
 
-from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
+from pav_agent.pav_qwen_agents import Planner, Actor
 
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
@@ -26,7 +26,6 @@ processor = AutoProcessor.from_pretrained(model_path)
 
 planner = Planner()
 actor = Actor()
-verifier = Verifier()
 
 os.makedirs("./pav_data", exist_ok=True)
 
