@@ -58,8 +58,8 @@ Output:
 USER_PROMPT   = """
 Now infer the macro actions and their indexes for the following task and screenshots.
 
-Input:
-Task: {task}
+Input Task: {task}
+Output:
 """
 
 def encode_image(image_path):
