@@ -435,7 +435,8 @@ def pa(args):
             print(">>>Planner Output:", response["macro_action_plan"])
 
             output_history["planner"] = response["macro_action_plan"]
-            previous_action = response["arguments"]     # macro action plan
+            macro_action_plan = response["macro_action_plan"]
+            previous_action = response["arguments"]     # 1st micro action
         else: # step 1, step 2, ...
             role = "actor"
             response = send_to_server(args, args.task, image_bytes, step, role, str(previous_action), args.app_name)
@@ -447,12 +448,12 @@ def pa(args):
         
         time.sleep(2)
         
-        current_macro_action = previous_action
+        current_macro_action = macro_action_plan[0]
         if action_type == "terminate" or action_type == "finished":
             print(f"<{current_macro_action}> completed!")
             
             if len(previous_action) > 1:
-                previous_action.pop(0)
+                macro_action_plan.pop(0)
 
                 with open("./pav_data/macro_plans.json", "w") as f:
                     json.dump(current_macro_action, f)
