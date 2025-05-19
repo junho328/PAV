@@ -22,8 +22,8 @@ Never add extra keys, text, or explanations.
 2 : Select <TARGET>            (tap a result / UI element)  
 3 : Filter by <CRITERION>      (e.g. price, popularity)  
 4 : Show <TARGET>              (show navigation options)  
-5 : Add <TARGET> to cart  
-6 : Remove <TARGET> from cart  
+5 : Add <TARGET1> to <TARGET2>  
+6 : Remove <TARGET> from cart
 ---
 
 Below are some examples of the macro actions and their indexes (note that each list ends by showing the requested target screen).
