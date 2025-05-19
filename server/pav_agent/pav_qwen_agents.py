@@ -22,72 +22,180 @@ class Planner():
         ---
         <Example 1>
         Task:
-        Please display the route to Jejujib.
+        Please display the route to Seoul station.
         Macro Action Plan:
-        [Search for Jejujib, Show the routes]
+        [Search for Seoul station, Show the routes]
         
         <Example 2>
         Task:
-        Please display the route to Yori.
+        Show me a wheelchair-accessible route to Seoul station.
         Macro Action Plan:
-        [Search for Yori, Show the routes]
+        [Search for Seoul station, Show the routes, Filter by wheelchair-accessible route, Show the filtered route]
         
         <Example 3>
         Task:
-        Show me a wheelchair-accessible route to Seoul Forest Park.
+        Show me a route to Naksan Park with less walking.
         Macro Action Plan:
-        [Search for Seoul Forest Park, Show the routes, Filter by wheelchair-accessible route, Show the filtered route]
+        [Search for Naksan Park, Show the routes, Filter by less walking route, Show the filtered route]
         
         <Example 4>
         Task:
-        Show me a less walking route to Gangnam station.
+        Show me a route to Jinmi Sikdang with fewer transfers.
         Macro Action Plan:
-        [Search for Gangnam station, Show the routes, Filter by less walking route, Show the filtered route]
+        [Search for Jinmi Sikdang, Show the routes, Filter by fewer transfers route, Show the filtered route]
         
         <Example 5>
         Task:
-        Show me a fewer transfers route to Lotte Tower.
+        Show me the current rating of cafe SimJae.
         Macro Action Plan:
-        [Search for Lotte Tower, Show the routes, Filter by fewer transfers route, Show the filtered route]
+        [Search for cafe SimJae, Select cafe SimJae, Check the rating section]
         
         <Example 6>
         Task:
-        Please add restaurant Gimgane to Favorites list.
-        Macro Action Plan:
-        [Search for restaurant Gimgane, Add Gimgane to Favorites list]
-        
-        <Example 7>
-        Task:
-        Please add cafe Simjae to Want to go list.
+        Please add cafe SimJae to 'Want to go' list.
         Macro Action Plan:
         [Search for cafe Simjae, Add Simjae to Want to go list]
         
+        <Example 7>
+        Task:
+        Please add restaurant Galbi Sarang to 'Favorites' list.
+        Macro Action Plan:
+        [Search for restaurant Galbi Sarang, Add Gimgane to Favorites list]
+        
         <Example 8>
         Task:
-        Show me the current rating of restaurant Sushiyoung.
+        Show me the cafes nearby Yangjaecheon.
         Macro Action Plan:
-        [Search for restaurant Sushiyoung, Select restaurant Sushiyoung, Check the rating section]
+        [Search for Yangjaecheon, Search for cafes, Show the cafes]
         
         <Example 9>
         Task:
-        Show me the restaurants nearby KAIST College of Business.
+        Show me the parking lots near Naksan Park.
         Macro Action Plan:
-        [Search for KAIST College of Business, Search for restaurants, Show the restaurants]
+        [Search for Naksan Park, Search for parking lots, Show the parking lots]
         
         <Example 10>
         Task:
-        Show me the cafes nearby Yangjae station.
+        Show me the opening hours of cafe SimJae.
         Macro Action Plan:
-        [Search for Yangjae station, Search for cafes, Show the cafes]
+        [Search for cafe SimJae, Select cafe SimJae, Show more information about the target location, Select the time icon]
+        
+        <Example 11>
+        Task:
+        Show me the popular visiting times for Deoksugung Palace.
+        Macro Action Plan:
+        [Search for Deoksugung Palace, Select Deoksugung Palace, Show more information about the target location, Show popular times]
+        
+        <Example 12>
+        Task:
+        Switch to satellite view of the map.
+        Macro Action Plan:
+        [Select the view icon, Select the satellite type, Show the final view]
+        
+        <Example 13>
+        Task:
+        Show me the photos of Seoul Forest Park.
+        Macro Action Plan:
+        [Search for Seoul Forest Park, Select the Seoul Forest Park, Select the photo section]
+        
+        <Example 14>
+        Task:
+        Show me the satellite view of Bukchon Hanok Village.
+        Macro Action Plan:
+        [Search for Bukchon Hanok Village, Show the routes, Select the view icon, Select the satellite view, Show the final view]
+        
+        <Example 15>
+        Task:
+        Check the notifications in updates.
+        Macro Action Plan:
+        [Show the updates page, Select the notification tab, Show the notifications]
         ---
         
         Now you are given a task and a screenshot.
-        Generae a macro action plan to complete the task.
+        Generate a macro action plan to complete the task.
         
         Task: 
         {instruction}
         Macro Aciton Plan:
         """
+
+        #################################
+        # self.google_prompt =  """You are a helpful mobile agent and a good planner.
+        # You are given a screenshot of a mobile device and a task.
+        # You need to generate a macro action plan to complete the task.
+        
+        # Below are some examples of tasks and their corresponding macro action plans.
+        # ---
+        # <Example 1>
+        # Task:
+        # Please display the route to Jejujib.
+        # Macro Action Plan:
+        # [Search for Jejujib, Show the routes]
+        
+        # <Example 2>
+        # Task:
+        # Please display the route to Yori.
+        # Macro Action Plan:
+        # [Search for Yori, Show the routes]
+        
+        # <Example 3>
+        # Task:
+        # Show me a wheelchair-accessible route to Seoul Forest Park.
+        # Macro Action Plan:
+        # [Search for Seoul Forest Park, Show the routes, Filter by wheelchair-accessible route, Show the filtered route]
+        
+        # <Example 4>
+        # Task:
+        # Show me a less walking route to Gangnam station.
+        # Macro Action Plan:
+        # [Search for Gangnam station, Show the routes, Filter by less walking route, Show the filtered route]
+        
+        # <Example 5>
+        # Task:
+        # Show me a fewer transfers route to Lotte Tower.
+        # Macro Action Plan:
+        # [Search for Lotte Tower, Show the routes, Filter by fewer transfers route, Show the filtered route]
+        
+        # <Example 6>
+        # Task:
+        # Please add restaurant Gimgane to Favorites list.
+        # Macro Action Plan:
+        # [Search for restaurant Gimgane, Add Gimgane to Favorites list]
+        
+        # <Example 7>
+        # Task:
+        # Please add cafe Simjae to Want to go list.
+        # Macro Action Plan:
+        # [Search for cafe Simjae, Add Simjae to Want to go list]
+        
+        # <Example 8>
+        # Task:
+        # Show me the current rating of restaurant Sushiyoung.
+        # Macro Action Plan:
+        # [Search for restaurant Sushiyoung, Select restaurant Sushiyoung, Check the rating section]
+        
+        # <Example 9>
+        # Task:
+        # Show me the restaurants nearby KAIST College of Business.
+        # Macro Action Plan:
+        # [Search for KAIST College of Business, Search for restaurants, Show the restaurants]
+        
+        # <Example 10>
+        # Task:
+        # Show me the cafes nearby Yangjae station.
+        # Macro Action Plan:
+        # [Search for Yangjae station, Search for cafes, Show the cafes]
+        # ---
+        
+        # Now you are given a task and a screenshot.
+        # Generae a macro action plan to complete the task.
+        
+        # Task: 
+        # {instruction}
+        # Macro Aciton Plan:
+        # """
+
+        #################################
         # self.google_prompt =  """You are a helpful mobile agent and a good planner.
         # You are given a screenshot of a mobile device and a task.
         # You need to generate a macro action plan to complete the task.
@@ -163,80 +271,7 @@ class Planner():
         # Macro Aciton Plan:
         # """
         
-        # self.ali_prompt =  """You are a helpful mobile agent and a good planner.
-        # You are given a screenshot of a mobile device and a task.
-        # You need to generate a macro action plan to complete the task.
         
-        # Below are some examples of tasks and their corresponding macro action plans.
-        # ---
-        # <Example 1>
-        # Task:
-        # Add Logitech MX Master 3S to cart.
-        # Macro Action Plan:
-        # [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
-        
-        # <Example 2>
-        # Task:
-        # Add the most popular ramen to cart.
-        # Macro Action Plan:
-        # [Search for ramen, Filter by popularity, Select the first item, Add to cart]
-        
-        # <Example 3>
-        # Task:
-        # Add the cheapest sofa to cart.
-        # Macro Action Plan:
-        # [Search for sofa, Filter by price, Select the first item, Add to cart]
-        
-        # <Example 4>
-        # Task:
-        # Show the shoes on sale.
-        # Macro Action Plan:
-        # [Search for shoes, Filter by savings]
-        
-        # <Example 5>
-        # Task:
-        # Show the items to ship in my orders.
-        # Macro Action Plan:
-        # [Navigate to my orders in account, Select to ship section, Show the items I need to pay]
-        
-        # <Example 6>
-        # Task:
-        # Remove the third item in my cart.
-        # Macro Action Plan:
-        # [Navigate to cart tab, Select button next to third item, Remove the item]
-        
-        # <Example 7>
-        # Task:
-        # View the items in rankings of K-VENUE page.
-        # Macro Action Plan:
-        # [Naviagate to K-VENUE page, Select rankings section, Show the items]
-        
-        # <Example 8>
-        # Task:
-        # Add Shin ramyun to my wishlist
-        # Macro Action Plan:
-        # [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
-        
-        # <Example 9>
-        # Task:
-        # Empty items in cart.
-        # Macro Action plan:
-        # [Navigate to cart tab, Select all, Remove the items]
-        
-        # <Example 10>
-        # Task:
-        # Show the coupons I received.
-        # Macro Action Plan:
-        # [Navigate to coupons in account, Show coupons]
-        # ---
-        
-        # Now you are given a task and a screenshot.
-        # Generae a macro action plan to complete the task.
-        
-        # Task: 
-        # {instruction}
-        # Macro Aciton Plan:
-        # """
         self.ali_prompt =  """You are a helpful mobile agent and a good planner.
         You are given a screenshot of a mobile device and a task.
         You need to generate a macro action plan to complete the task.
@@ -340,6 +375,84 @@ class Planner():
         {instruction}
         Macro Aciton Plan:
         """
+
+        #################################
+        # self.ali_prompt =  """You are a helpful mobile agent and a good planner.
+        # You are given a screenshot of a mobile device and a task.
+        # You need to generate a macro action plan to complete the task.
+        
+        # Below are some examples of tasks and their corresponding macro action plans.
+        # ---
+        # <Example 1>
+        # Task:
+        # Add Logitech MX Master 3S to cart.
+        # Macro Action Plan:
+        # [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
+        
+        # <Example 2>
+        # Task:
+        # Add the most popular ramen to cart.
+        # Macro Action Plan:
+        # [Search for ramen, Filter by popularity, Select the first item, Add to cart]
+        
+        # <Example 3>
+        # Task:
+        # Add the cheapest sofa to cart.
+        # Macro Action Plan:
+        # [Search for sofa, Filter by price, Select the first item, Add to cart]
+        
+        # <Example 4>
+        # Task:
+        # Show the shoes on sale.
+        # Macro Action Plan:
+        # [Search for shoes, Filter by savings]
+        
+        # <Example 5>
+        # Task:
+        # Show the items to ship in my orders.
+        # Macro Action Plan:
+        # [Navigate to my orders in account, Select to ship section, Show the items I need to pay]
+        
+        # <Example 6>
+        # Task:
+        # Remove the third item in my cart.
+        # Macro Action Plan:
+        # [Navigate to cart tab, Select button next to third item, Remove the item]
+        
+        # <Example 7>
+        # Task:
+        # View the items in rankings of K-VENUE page.
+        # Macro Action Plan:
+        # [Naviagate to K-VENUE page, Select rankings section, Show the items]
+        
+        # <Example 8>
+        # Task:
+        # Add Shin ramyun to my wishlist
+        # Macro Action Plan:
+        # [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
+        
+        # <Example 9>
+        # Task:
+        # Empty items in cart.
+        # Macro Action plan:
+        # [Navigate to cart tab, Select all, Remove the items]
+        
+        # <Example 10>
+        # Task:
+        # Show the coupons I received.
+        # Macro Action Plan:
+        # [Navigate to coupons in account, Show coupons]
+        # ---
+        
+        # Now you are given a task and a screenshot.
+        # Generae a macro action plan to complete the task.
+        
+        # Task: 
+        # {instruction}
+        # Macro Aciton Plan:
+        # """
+
+        
         self.composer_prompt =  """You are a helpful mobile agent and a good planner.
             You are given a screenshot of a mobile device and a task.
             You need to generate a macro action plan to complete the task.
