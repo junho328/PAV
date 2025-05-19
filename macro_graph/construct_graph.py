@@ -15,13 +15,11 @@ Given a collection of macro-action sequences (each sequence is an ordered list o
 
 Rules
 1. **Focus only on the action type**, not on object names or specific criteria.
-   • “Search for Jejujib” → node “Search”
-   • “Filter by wheelchair-accessible route” → node “Filter”
-   • “Add Gimgane to Favorites list” → node “Add to Favorites”
 2. Merge actions that share the same type into a single node.
 3. For every adjacent pair of actions (A, B) within a sequence, draw a directed edge A → B.
 4. Self-loops are not needed. Duplicate edges should appear only once.
-5. Output **only** the graph in valid **DOT language**, wrapped in 
+5. **Do not invent or infer any action types.** Only use action types that appear in the input macro-action sequences.
+6. Output **only** the graph in valid **DOT language**, wrapped in 
 digraph {{
     ...
 }} 
@@ -68,24 +66,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate action graph from action_sequences.")
     parser.add_argument("--api_key", type=str, required=True, help="OpenAI API key")
     parser.add_argument("--action_sequences", type=str, required=True, help="Path to the action sequences JSON file")
+    parser.add_argument("--app_name", type=str, default="google")
     
     args = parser.parse_args()
     
     main(args)
-
-# Example of action_sequences
-# action_sequences = [
-#     ["Search for Jejujib", "Show the routes"],
-#     ["Search for Yori", "Show the routes"],
-#     ["Search for Seoul Forest Park", "Show the routes",
-#      "Filter by wheelchair-accessible route", "Show the filtered route"],
-#     ["Search for Gangnam station", "Show the routes",
-#      "Filter by less walking route", "Show the filtered route"],
-#     ["Search for Lotte Tower", "Show the routes",
-#      "Filter by fewer transfers route", "Show the filtered route"],
-#     ["Search for restaurant Gimgane", "Add Gimgane to Favorites list"],
-#     ["Search for cafe Simjae", "Add Simjae to Want to go list"],
-#     ["Search for restaurant Sushiyoung", "Select restaurant Sushiyoung", "Check the rating section"],
-#     ["Search for KAIST College of Business", "Search for restaurants", "Show the restaurants"],
-#     ["Search for Yangjae station", "Search for cafes", "Show the cafes"]
-# ]
