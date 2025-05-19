@@ -455,8 +455,6 @@ def pa(args):
             if len(previous_action) > 1:
                 macro_action_plan.pop(0)
 
-                with open("./pav_data/macro_plans.json", "w") as f:
-                    json.dump(current_macro_action, f)
             else:
                 image_bytes = take_screenshot(args, step+1)
                 previous_action = response["arguments"]
