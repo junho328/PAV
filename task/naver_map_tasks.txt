@@ -1,0 +1,20 @@
+Please display the route to KAIST Main Campus.
+Please display the route to Seoul AI Hub.
+Please display the route to Gwanghwamun Plaza.
+Show me the least time route to Gyeongbokgung Palace.
+Show me the least time route to Gwanghwamun Plaza.
+Show me the least time route to YTN Seoul Tower.
+Show me routes to Gwanghwamun Plaza with fewer transfers.
+Show me routes to YTN Seoul Tower with fewer transfers.
+Show me the least walking route to Gyeongbokgung Palace.
+Show me the least walking route to Gwanghwamun Plaza.
+Show me the reviews of cafe TODAH BAGEL.
+Show me the reviews of restaurant Yori.
+Please add restaurant Yori to "Want to go" list.
+Please add cafe TODAH BAGEL to "Want to go" list.
+Please add restaurant Yori to "Favorites" list.
+Please add cafe TODAH BAGEL to "Favorites" list.
+Show me the cafes nearby Seoul station.
+Show me the cafes nearby Gwanghwamun Plaza.
+Show me the restaurants nearby Ewha Womans University.
+Show me the restaurants nearby Seoul Forest.
