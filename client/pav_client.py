@@ -8,6 +8,8 @@ def take_screenshot(args, step: int) -> bytes:
     """
     ADB를 사용해 에뮬레이터 화면을 캡처하고 지정된 위치에 저장하며 PNG 바이트를 반환
     """
+    # image_path = args.image_path + '/'+ args.task_number
+    # output_file = Path(image_path) / f"screenshot_{step}.png"
     output_file = Path(args.image_path) / f"screenshot_{step}.png"
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
