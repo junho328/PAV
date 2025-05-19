@@ -1,20 +1,35 @@
 Add Samyang ramen to cart.
-Add the most popular water to cart.
-Add the cheapest coke to cart.
-Show the shipped items in my orders.
-Show the items to ship in my orders.
-Show my wishlist.
-Show my Followed stores.
-Show the items to review in my orders.
-Remove the first item in my cart.
-Show the TVs on sale.
-View the items in rankings of K-VENUE page.
 Add Jin ramen to cart.
-Add the most popular keyboard to cart.
-Add the cheapest headphone to cart.
-Show history of my account.
-Show the coupons I have.
-Show the laptops on sale.
+Add samdasoo to cart.
+Add the most popular protein drink to cart.
+Add the most popular cup ramen to cart.
+Add the most popular webcam to cart.
+Add the cheapest coke to cart.
+Add the cheapset toothpaste to cart.
+Add the cheapest wet tissue to cart.
+Show me the shipped items in my orders.
+Show me the items wating to be shipped in my orders
+Show me the items to review in my orders.
+Show me the returned items in my orders.
+Show me the wishlist in my account.
+Show me the followed stores in my account.
+Show me the history in my account.
+Show me the coupons in my account.
+Show me the bonus in my account.
+Show me the TVs on sale.
+Show me the laptops on sale.
+Show me the running shoes on sale
 Add Samyang ramen to my wishlist.
-Add Sprite to my wishlist.
-Empty the cart.
+Add Sprite to my wishlist
+Add samdasso to my wishlist
+Please buy Jin ramen.
+Please buy Samyang ramen.
+Please buy samdasoo.
+Show me the reviews of Jin ramen
+Show me the reviews of Samyang ramen
+Show me the reviews of Sprite.
+Add samdasoo and Jin ramen to cart.
+Add samdasoo and Jin ramen to my wishlist.
+Add Sprite and Samyang ramen to cart.
+Add Sprite and Samyang ramen to my wishlist.
+Empty the items in my cart.
