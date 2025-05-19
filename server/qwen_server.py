@@ -43,10 +43,10 @@ def predict(query: Query):
     screenshot = Image.open(screenshot_path)
 
     # The operation history can be orgnized by Step x: [action]; Step x+1: [action]...
-    user_query = f'''Given a user query, You have to perform the task in a mobile environment. 
+    user_query = f'''Given a user query, You have to perform the task in a mobile environment.
 First, decompose the task into high-level macro actions.
-Second, execute each macro action step by step.
-Third, after each execution, you verify whether the macro action was successfully completed.
+Second, execute micro actions step by step to achieve each macro action.(Micro actions: key, click, long_press, swipe, type, system_button, open, wait, terminate.)
+Third, after executing each micro action, verify whether the macro action has been successfully completed.(Multiple micro actions may be required to accomplish a single macro action.)
 
 The user query: {query.task}'''
 
