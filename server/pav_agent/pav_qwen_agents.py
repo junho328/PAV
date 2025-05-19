@@ -102,7 +102,7 @@ class Planner():
         Task:
         Show me the satellite view of Bukchon Hanok Village.
         Macro Action Plan:
-        [Search for Bukchon Hanok Village, Show the routes, Select the view icon, Select the satellite view, Show the final view]
+        [Search for Bukchon Hanok Village, Select the view icon, Select the satellite type, Show the final view]
         
         <Example 15>
         Task:
