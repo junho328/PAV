@@ -452,7 +452,7 @@ def pa(args):
         if action_type == "terminate" or action_type == "finished":
             print(f"<{current_macro_action}> completed!")
             
-            if len(previous_action) > 1:
+            if len(macro_action_plan) > 1:
                 macro_action_plan.pop(0)
 
             else:
@@ -471,9 +471,6 @@ def pa(args):
         image_bytes = take_screenshot(args, step+1)
         previous_action = response["arguments"]
         next_image_bytes = take_screenshot(args, step+1)
-        
-        response = send_to_server(args, args.task, next_image_bytes, step, role, "", args.app_name)
-        
         image_bytes = next_image_bytes
             
         time.sleep(2)        
