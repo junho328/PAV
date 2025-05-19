@@ -163,6 +163,80 @@ class Planner():
         # Macro Aciton Plan:
         # """
         
+        # self.ali_prompt =  """You are a helpful mobile agent and a good planner.
+        # You are given a screenshot of a mobile device and a task.
+        # You need to generate a macro action plan to complete the task.
+        
+        # Below are some examples of tasks and their corresponding macro action plans.
+        # ---
+        # <Example 1>
+        # Task:
+        # Add Logitech MX Master 3S to cart.
+        # Macro Action Plan:
+        # [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
+        
+        # <Example 2>
+        # Task:
+        # Add the most popular ramen to cart.
+        # Macro Action Plan:
+        # [Search for ramen, Filter by popularity, Select the first item, Add to cart]
+        
+        # <Example 3>
+        # Task:
+        # Add the cheapest sofa to cart.
+        # Macro Action Plan:
+        # [Search for sofa, Filter by price, Select the first item, Add to cart]
+        
+        # <Example 4>
+        # Task:
+        # Show the shoes on sale.
+        # Macro Action Plan:
+        # [Search for shoes, Filter by savings]
+        
+        # <Example 5>
+        # Task:
+        # Show the items to ship in my orders.
+        # Macro Action Plan:
+        # [Navigate to my orders in account, Select to ship section, Show the items I need to pay]
+        
+        # <Example 6>
+        # Task:
+        # Remove the third item in my cart.
+        # Macro Action Plan:
+        # [Navigate to cart tab, Select button next to third item, Remove the item]
+        
+        # <Example 7>
+        # Task:
+        # View the items in rankings of K-VENUE page.
+        # Macro Action Plan:
+        # [Naviagate to K-VENUE page, Select rankings section, Show the items]
+        
+        # <Example 8>
+        # Task:
+        # Add Shin ramyun to my wishlist
+        # Macro Action Plan:
+        # [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
+        
+        # <Example 9>
+        # Task:
+        # Empty items in cart.
+        # Macro Action plan:
+        # [Navigate to cart tab, Select all, Remove the items]
+        
+        # <Example 10>
+        # Task:
+        # Show the coupons I received.
+        # Macro Action Plan:
+        # [Navigate to coupons in account, Show coupons]
+        # ---
+        
+        # Now you are given a task and a screenshot.
+        # Generae a macro action plan to complete the task.
+        
+        # Task: 
+        # {instruction}
+        # Macro Aciton Plan:
+        # """
         self.ali_prompt =  """You are a helpful mobile agent and a good planner.
         You are given a screenshot of a mobile device and a task.
         You need to generate a macro action plan to complete the task.
@@ -171,67 +245,96 @@ class Planner():
         ---
         <Example 1>
         Task:
-        Add Logitech MX Master 3S to cart.
+        Add Samdasoo to cart.
         Macro Action Plan:
-        [Search for Logitech MX Master 3S, Select Logitech MX Master 3S, Add to cart]
+        [Search for Samdasoo, Select Samdasoo, Add to cart]
         
         <Example 2>
         Task:
-        Add the most popular ramen to cart.
+        Please buy Fanta.
         Macro Action Plan:
-        [Search for ramen, Filter by popularity, Select the first item, Add to cart]
+        [Search for Fanta, Select Fanta, Buy now]
         
         <Example 3>
         Task:
-        Add the cheapest sofa to cart.
+        Add the most popular mouse pad to cart.
         Macro Action Plan:
-        [Search for sofa, Filter by price, Select the first item, Add to cart]
+        [Search for mouse pad, Filter by popularity, Select the first item, Add to cart]
         
         <Example 4>
         Task:
-        Show the shoes on sale.
+        Add the cheapest usb-c cable to cart.
         Macro Action Plan:
-        [Search for shoes, Filter by savings]
+        [Search for usb-c cable, Filter by price, Select the first item, Add to cart]
         
         <Example 5>
         Task:
-        Show the items to ship in my orders.
+        Show me the delevered items in my orders.
         Macro Action Plan:
-        [Navigate to my orders in account, Select to ship section, Show the items I need to pay]
+        [Navigate to my orders in account tab, Select delivered section, Show the items]
         
         <Example 6>
         Task:
-        Remove the third item in my cart.
+        Show me the Q&A in my account.
         Macro Action Plan:
-        [Navigate to cart tab, Select button next to third item, Remove the item]
+        [Navigate to my Q&A in account tab, Show Q&A]
         
         <Example 7>
         Task:
-        View the items in rankings of K-VENUE page.
+        Show me the payment in my orders.
         Macro Action Plan:
-        [Naviagate to K-VENUE page, Select rankings section, Show the items]
+        [Navigate to payment in account tab, Show payment]
         
         <Example 8>
         Task:
-        Add Shin ramyun to my wishlist
+        Show me the items to pay in my orders.
         Macro Action Plan:
-        [Search for Shin ramyun, Select Shin ramyun, Select heart wish button]
+        [Navigate to my orders in account tab, Select to pay section, Show the items]
         
         <Example 9>
         Task:
-        Empty items in cart.
-        Macro Action plan:
-        [Navigate to cart tab, Select all, Remove the items]
+        Show me the wishlist in my account.
+        Macro Action Plan:
+        [Navigate to wishlist in account tab, Show wishlist]
         
         <Example 10>
         Task:
-        Show the coupons I received.
+        Add Samdasoo to wishlist
         Macro Action Plan:
-        [Navigate to coupons in account, Show coupons]
-        ---
+        [Search for Samdasoo, Select Samdasoo, Select heart wish button]
+        
+        <Example 11>
+        Task:
+        Show me the bluetooth speaker on sale.
+        Macro Action Plan:
+        [Search for bluetooth speaker, Filter by savings]
+        
+        <Example 12>
+        Task:
+        Show me the reviews of Chilsung cider.
+        Macro Action Plan:
+        [Search for Chilsung cider, Select Chilsung cider, View reviews]
+        
+        <Example 13>
+        Task:
+        Empty the items in my cart.
+        Macro Action plan:
+        [Navigate to cart tab, Select all, Remove the items]
+        
+        <Example 14>
+        Task:
+        Add Pepsi zero and Cocacola zero to cart.
+        Macro Action Plan:
+        [Search for Pepsi zero, Select Pepsi zero, Add to cart, Go to Search tab, Search for Cocacola zero, Select Cocacola zero, Add to cart]
+        
+        <Example 15>
+        Task:
+        Add Pepsi zero and Cocacola to my wishlist.
+        Macro Action Plan:
+        [Search for Pepsi zero, Select Pepsi zero, Select heart wish button, Go to Search tab, Search for Cocacola, Select Cocacola, Select heart wish button]        ---
         
         Now you are given a task and a screenshot.
-        Generae a macro action plan to complete the task.
+        Generate a macro action plan to complete the task.
         
         Task: 
         {instruction}
