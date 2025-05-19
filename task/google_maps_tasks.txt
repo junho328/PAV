@@ -1,20 +1,35 @@
-Please display the route to KAIST College of Engineering.
-Please display the route to Samsung Seoul R&D Campus.
-Please display the route to Gwanghwamun Square.
-Show me a wheelchair-accessible route to Gyeongbokgung Palace.
-Show me a wheelchair-accessible route to Gwanghwamun Square.
-Show me a wheelchair-accessible route to Namsan Tower.
-Show me a less walking route to Gwanghwamun Square.
-Show me a less walking route to Namsan Tower.
-Show me a fewer transfers route to Gyeongbokgung Palace.
-Show me a fewer transfers route to Gwanghwamun Square.
-Show me the current rating of cafe Todah Bagel Cafe.
-Show me the current rating of restaurant Yori.
-Please add restaurant Yori to Want to go list.
-Please add restaurant Jejujib to Want to go list.
-Please add restaurant Yori to Favorites list.
-Please add restaurant Jejujib to Favorites list.
-Show me the cafes nearby Seoul station.
-Show me the cafes nearby Gwanghwamun Square.
-Show me the restaurants nearby Ewha Womans University.
-Show me the restaurants nearby Seoul Forest Park.
+Please display the route to KAIST College of Engineering.			
+Please display the route to Samsung Seoul R&D Campus.			
+Please display the route to Gwanghwamun Square.			
+Show me a wheelchair-accessible route to Gyeongbokgung Palace.			
+Show me a wheelchair-accessible route to Gwanghwamun Square.			
+Show me a wheelchair-accessible route to Namsan Tower.			
+Show me a route to Gwanghwamun Square with less walking.			
+Show me a route to Namsan Tower with less walking.			
+Show me a route to Gyeongbokgung Palace with fewer transfers.			
+Show me a route to Gwanghwamun Square with fewer transfers.			
+Show me the current rating of cafe Todah Bagel Cafe.			
+Show me the current rating of restaurant Yori.			
+Please add restaurant Yori to 'Want to go' list.			
+Please add restaurant Jejujib to 'Want to go' list.			
+Please add restaurant Yori to 'Favorites' list.			
+Please add restaurant Jejujib to 'Favorites' list.			
+Show me the cafes nearby Gyeongbokgung Palace.			
+Show me the cafes nearby Gwanghwamun Square.			
+Show me the restaurants nearby Ewha Womans University.			
+Show me the restaurants nearby Seoul Forest Park.			
+Show me the opening hours of Gyeongbokgung Palace.			
+Show me the popular visiting times for Gyeongbokgung Palace.			
+Show me the popular visiting times for Namsan Tower.			
+Show me the menus of restaurant Umyeon Ediya Coffee.			
+Show me the menus of cafe Toda Bagel Cafe.			
+Show me the parking lots near Gyeongbokgung Palace.			
+Show me the parking lots near Namsan Tower.			
+Switch to satellite view of the map.			
+Switch to terrain view of the map.			
+Show me the photos of Gyeongbokgung Palace.			
+Show me the photos of Namsan Tower.			
+Show me the satellite view of Gyeongbokgung Palace.			
+Show me the satellite view of Namsan Tower.			
+Show me the terrain view of Gyeonbokgung Palace.			
+Show me the terrain view of Namsan Tower.			
