@@ -46,21 +46,21 @@ class Planner():
         
         <Example 5>
         Task:
-        Show me the current rating of cafe SimJae.
+        Show me the review of cafe SimJae.
         Macro Action Plan:
-        [Search for cafe SimJae, Select cafe SimJae, Check the rating section]
+        [Search for cafe SimJae, Select cafe SimJae, Select the review section]
         
         <Example 6>
         Task:
         Please add cafe SimJae to 'Want to go' list.
         Macro Action Plan:
-        [Search for cafe Simjae, Add Simjae to Want to go list]
+        [Search for cafe Simjae, Add Simjae to Want to go list, Finish adding to list]
         
         <Example 7>
         Task:
         Please add restaurant Galbi Sarang to 'Favorites' list.
         Macro Action Plan:
-        [Search for restaurant Galbi Sarang, Add Galbi Sarang to Favorites list]
+        [Search for restaurant Galbi Sarang, Add Galbi Sarang to Favorites list, Finish adding to list]
         
         <Example 8>
         Task:
