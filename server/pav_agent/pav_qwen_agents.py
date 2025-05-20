@@ -591,6 +591,8 @@ Output:
         
     def plan(self, model, processor, task, screenshot_path, app_name, few_shots=None):
         
+        graph_flag = False
+        
         if few_shots is not None:
             prompt = self.composer_prompt.format(few_shots=few_shots, instruction=task)
         
@@ -601,9 +603,11 @@ Output:
                 prompt = self.ali_prompt
             elif app_name == "google_graph":
                 prompt = self.google_graph_prompt
+                graph_flag = True
             elif app_name == "ali_graph":
                 prompt = self.ali_graph_prompt
-            
+                graph_flag = True
+                
         messages = [
             {
                 "role": "user",
@@ -640,10 +644,15 @@ Output:
             generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
         
-        raw = output[0]                    # ex: "[Search for Samsung Seoul R&D Campus, Select directions, Display route]"
-        inner = raw.strip("[]")           # "Search for Samsung Seoul R&D Campus, Select directions, Display route"
-        macro_action_plan = [item.strip() for item in inner.split(",")]
+        if graph_flag:
+            macro_action_plan = json.loads(output[0])["macro_actions"]
         
+        else:
+        
+            raw = output[0]                    # ex: "[Search for Samsung Seoul R&D Campus, Select directions, Display route]"
+            inner = raw.strip("[]")           # "Search for Samsung Seoul R&D Campus, Select directions, Display route"
+            macro_action_plan = [item.strip() for item in inner.split(",")]
+            
         return macro_action_plan
             
 class Actor():
