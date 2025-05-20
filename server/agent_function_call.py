@@ -9,6 +9,14 @@ class MobileUse(BaseTool):
     def description(self):
         return f"""
 Use a touchscreen to interact with a mobile device, and take screenshots.
+Given a user query, perform the task in a mobile environment.
+
+Think by the following order.
+* First, decompose the task into high-level macro actions.
+* Second, execute micro actions step by step to achieve each macro action.
+* Third, after executing each micro action, verify whether the macro action has been successfully completed.(Multiple micro actions may be required to accomplish a single macro action.)
+Note that the action to perform are the micro actions.
+
 * This is an interface to a mobile device with touchscreen. You can perform actions like clicking, typing, swiping, etc.
 * Some applications may take time to start or process actions, so you may need to wait and take successive screenshots to see the results of your actions.
 * The screen's resolution is {self.display_width_px}x{self.display_height_px}.
