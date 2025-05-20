@@ -456,16 +456,17 @@ def pa(args):
                 macro_action_plan.pop(0)
             else:
                 print("All macro actions are completed.")
+                break
             image_bytes = take_screenshot(args, step+1)
             previous_action = response["arguments"]
             next_image_bytes = take_screenshot(args, step+1)
             continue
+
         else:
+            if action_type == "task_completed":
+                print("All macro actions are completed.")
+                break
             print(f"<{current_macro_action}> still in progress!")
-        
-        if action_type == "task_completed":
-            print("All macro actions are completed.")
-            break
         
         image_bytes = take_screenshot(args, step+1)
         previous_action = response["arguments"]
@@ -473,7 +474,11 @@ def pa(args):
         image_bytes = next_image_bytes
             
         time.sleep(2)        
-            
+
+    image_bytes = take_screenshot(args, step+1)
+    previous_action = response["arguments"]
+    next_image_bytes = take_screenshot(args, step+1)
+    
     output_history["actor"] = actor_output
     
     with open(f"{args.image_path}/output_history.json", "w") as f:
