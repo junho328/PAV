@@ -32,7 +32,7 @@ Example 1
 Input Task: Please display the route to Yangjae station.  
 Output:  
 {"indexes":[1,4],
-"macro_actions":[Search for Yangjae station"Show routes]}
+"macro_actions":[Search for Yangjae station,Show routes]}
 
 Example 2  
 Input Task: Add Shin Ramyeon to cart.  
