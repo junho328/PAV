@@ -60,7 +60,7 @@ class Planner():
         Task:
         Please add restaurant Galbi Sarang to 'Favorites' list.
         Macro Action Plan:
-        [Search for restaurant Galbi Sarang, Add Gimgane to Favorites list]
+        [Search for restaurant Galbi Sarang, Add Galbi Sarang to Favorites list]
         
         <Example 8>
         Task:
