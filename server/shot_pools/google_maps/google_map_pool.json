@@ -1,0 +1,127 @@
+[
+    {
+        "id": "general_8479765902069999078",
+        "instruction": "Search for hotels in Sydney",
+        "macro_actions": "{\"macro_actions\": [\"Search for hotels in Sydney\", \"Show hotel search results for Sydney\", \"Select hotel website from search results\", \"Show hotel booking page for Sydney\"]}"
+    },
+    {
+        "id": "general_9794426597295763437",
+        "instruction": "What's a good restaurant in San Francisco?",
+        "macro_actions": "{\"macro_actions\":[\"Search for good restaurant in San Francisco\",\"Show results for good restaurants in San Francisco\"]}"
+    },
+    {
+        "id": "general_5657128000094456193",
+        "instruction": "Find the nearest electronics store that's open tomorrow",
+        "macro_actions": "{\"macro_actions\": [\"Search for nearest electronics store that's open tomorrow\", \"Allow location access\", \"Show nearest electronics stores open tomorrow\"]}"
+    },
+    {
+        "id": "general_8520098391647924657",
+        "instruction": "Search for top rated burger restaurants on Google Maps",
+        "macro_actions": "{\"macro_actions\":[\"Search for top rated burger restaurants\",\"Show search results\"]}"
+    },
+    {
+        "id": "general_9867221607412283382",
+        "instruction": "Search for the best Mexican restaurants",
+        "macro_actions": "{\"macro_actions\":[\"Search for the best Mexican restaurants\",\"Show results for best Mexican restaurants\"]}"
+    },
+    {
+        "id": "general_3792060807575565028",
+        "instruction": "What's on the menu at Papa Murphy's?",
+        "macro_actions": "{\"macro_actions\": [\"Search for Papa Murphy's menu\", \"Show menu for Papa Murphy's\"]}"
+    },
+    {
+        "id": "general_5505035922241145902",
+        "instruction": "What's on the menu at Red Lobster?",
+        "macro_actions": "{\"macro_actions\":[\"Search for Red Lobster menu\",\"Show menu for Red Lobster\"]}"
+    },
+    {
+        "id": "general_9519264040524322355",
+        "instruction": "How do I get to the nearest Home Depot?",
+        "macro_actions": "{\"macro_actions\":[\"Search for how do I get to the nearest Home Depot\",\"Show route to the nearest Home Depot\"]}"
+    },
+    {
+        "id": "general_18213420694895571170",
+        "instruction": "Find a good burger place on Maps",
+        "macro_actions": "{\"macro_actions\":[\"Search for good burger place\",\"Show results for good burger places\"]}"
+    },
+    {
+        "id": "general_3747125767618087904",
+        "instruction": "Search for the best burger restaurants on Maps",
+        "macro_actions": "{\"macro_actions\":[\"Search for best burger restaurants\",\"Select Maps view for search results\",\"Show best burger restaurants on Maps\"]}"
+    },
+    {
+        "id": "general_2627966730758470974",
+        "instruction": "Where can I buy a nice beach sandals?",
+        "macro_actions": "{\"macro_actions\": [\"Search for where to buy nice beach sandals\", \"Show shopping results for beach sandals\"]}"
+    },
+    {
+        "id": "general_4636877193942746235",
+        "instruction": "Where can I buy a nice beach umbrella?",
+        "macro_actions": "{\"macro_actions\":[\"Search for 'Where can I buy a nice beach umbrella?'\",\"Show search results for where to buy a nice beach umbrella\"]}"
+    },
+    {
+        "id": "general_5212663403442220779",
+        "instruction": "What's a good restaurant in Los Angeles?",
+        "macro_actions": "{\"macro_actions\":[\"Search for good restaurant in Los Angeles\",\"Show search results for good restaurant in Los Angeles\"]}"
+    },
+    {
+        "id": "general_5483996306327517951",
+        "instruction": "Search for hotels in Las Vegas",
+        "macro_actions": "{\"macro_actions\": [\"Search for hotels in Las Vegas\", \"Show search results for hotels in Las Vegas\"]}"
+    },
+    {
+        "id": "general_8476782187123397955",
+        "instruction": "What's a good restaurant in New Jersey?",
+        "macro_actions": "{\"macro_actions\": [\"Enter search query for good restaurant in New Jersey\", \"Show search results for good restaurant in New Jersey\"]}"
+    },
+    {
+        "id": "general_9348583238099646698",
+        "instruction": "Search for hotels in Los Angeles",
+        "macro_actions": "{\"macro_actions\": [\"Search for hotels in Los Angeles\", \"Show search results for hotels in Los Angeles\"]}"
+    },
+    {
+        "id": "general_5942995318542204686",
+        "instruction": "How do I get to the nearest Nordstrom?",
+        "macro_actions": "{\"macro_actions\": [\"Search for directions to the nearest Nordstrom\", \"Show route to the nearest Nordstrom\"]}"
+    },
+    {
+        "id": "general_8505136328959636735",
+        "instruction": "How do I get to the nearest Verizon Store?",
+        "macro_actions": "{\"macro_actions\":[\"Search for 'How do I get to the nearest Verizon Store?'\",\"Show search results for nearest Verizon Store\"]}"
+    },
+    {
+        "id": "google_apps_7129822688131153570",
+        "instruction": "Check the weather",
+        "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Chrome browser\",\"Search for weather\",\"Show weather information\"]}"
+    },
+    {
+        "id": "google_apps_9961943735210722720",
+        "instruction": "Open the map",
+        "macro_actions": "{\"macro_actions\":[\"Select Maps app\",\"Show map\"]}"
+    },
+    {
+        "id": "google_apps_7177822086172972573",
+        "instruction": "Search for vegetarian restaurants on Maps",
+        "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for vegetarian restaurants\",\"Show list of vegetarian restaurants\"]}"
+    },
+    {
+        "id": "google_apps_9346491593160717398",
+        "instruction": "Is it going to rain today?",
+        "macro_actions": "{\"macro_actions\": [\"Search for weather\", \"Show weather forecast\"]}"
+    },
+    {
+        "id": "google_apps_8496839468108700631",
+        "instruction": "Search for sushi restaurants on Maps",
+        "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for sushi restaurants\",\"Show sushi restaurants on map\"]}"
+    },
+    {
+        "id": "web_shopping_9836516851299203975",
+        "instruction": "Search for the Nintendo Switch.",
+        "macro_actions": "{\"macro_actions\":[\"Search for Nintendo Switch\"]}"
+    },
+    {
+        "id": "web_shopping_373201284857432448",
+        "instruction": "search for 2021 honda civic",
+        "macro_actions": "{\"macro_actions\":[\"Activate search\",\"Enter '2021 honda civic' in search bar\",\"Show search results for '2021 honda civic'\"]}"
+    }
+]
