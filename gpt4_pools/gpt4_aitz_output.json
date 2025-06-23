@@ -1,0 +1,1208 @@
+{
+    "general": {
+        "8479765902069999078": {
+            "instruction": "Search for hotels in Sydney",
+            "macro_actions": "{\"macro_actions\": [\"Search for hotels in Sydney\", \"Show hotel search results for Sydney\", \"Select hotel website from search results\", \"Show hotel booking page for Sydney\"]}"
+        },
+        "8435423094331006260": {
+            "instruction": "What's the news this weekend?",
+            "macro_actions": "{\"macro_actions\": [\"Search for the news this weekend\", \"Show search results\", \"Filter by News tab\", \"Show news for this weekend\"]}"
+        },
+        "9794426597295763437": {
+            "instruction": "What's a good restaurant in San Francisco?",
+            "macro_actions": "{\"macro_actions\":[\"Search for good restaurant in San Francisco\",\"Show results for good restaurants in San Francisco\"]}"
+        },
+        "3788692587243347653": {
+            "instruction": "How much does a 3 bedroom apartment rent for in Los Angeles?",
+            "macro_actions": "{\"macro_actions\": [\"Search for 'How much does a 3 bedroom apartment rent for in Los Angeles?'\", \"Show Google search results\"]}"
+        },
+        "14031956040831135122": {
+            "instruction": "Search for flights from Zurich to Helsinki",
+            "macro_actions": "{\"macro_actions\": [\"Search for flights from Zurich to Helsinki\", \"Show flight results from Zurich to Helsinki\"]}"
+        },
+        "9996753874909729591": {
+            "instruction": "What is the capital of Canada?",
+            "macro_actions": "{\"macro_actions\":[\"Enter search query 'What is the capital of Canada?'\", \"Show search results for 'What is the capital of Canada?'\"]}"
+        },
+        "8331948916005246197": {
+            "instruction": "What's the time?",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Clock app\", \"Show current time\"]}"
+        },
+        "5143366876087870902": {
+            "instruction": "Set an alarm for 7pm",
+            "macro_actions": "{\"macro_actions\":[\"Open Clock app\",\"Add new alarm\",\"Set time to 7:00 PM\",\"Show alarm set for 7:00 PM\"]}"
+        },
+        "8369696080232069128": {
+            "instruction": "What's the top post on reddit?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'top post on reddit'\",\"Select reddit.com top posts link\",\"Show top post on reddit\"]}"
+        },
+        "8853390491219053400": {
+            "instruction": "What's the news in Brazil?",
+            "macro_actions": "{\"macro_actions\":[\"Search for news in Brazil\",\"Select a news result about Brazil\",\"View news content about Brazil\"]}"
+        },
+        "2926799135108117686": {
+            "instruction": "Open the music app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select YT Music app\",\"Show YT Music onboarding\"]}"
+        },
+        "7814726615684431241": {
+            "instruction": "What's the news about the US dollar exchange rate?",
+            "macro_actions": "{\"macro_actions\":[\"Search for news about the US dollar exchange rate\",\"Show news results about the US dollar exchange rate\"]}"
+        },
+        "5657128000094456193": {
+            "instruction": "Find the nearest electronics store that's open tomorrow",
+            "macro_actions": "{\"macro_actions\": [\"Search for nearest electronics store that's open tomorrow\", \"Allow location access\", \"Show nearest electronics stores open tomorrow\"]}"
+        },
+        "7952307120450642673": {
+            "instruction": "What is the capital of the United Kingdom?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'What is the capital of the United Kingdom'\",\"Show search results for 'What is the capital of the United Kingdom'\"]}"
+        },
+        "8520098391647924657": {
+            "instruction": "Search for top rated burger restaurants on Google Maps",
+            "macro_actions": "{\"macro_actions\":[\"Search for top rated burger restaurants\",\"Show search results\"]}"
+        },
+        "9987106780677432436": {
+            "instruction": "What's the speed of light?",
+            "macro_actions": "{\"macro_actions\":[\"Search for What's the speed of light?\",\"Show search result for speed of light\"]}"
+        },
+        "9867221607412283382": {
+            "instruction": "Search for the best Mexican restaurants",
+            "macro_actions": "{\"macro_actions\":[\"Search for the best Mexican restaurants\",\"Show results for best Mexican restaurants\"]}"
+        },
+        "6855511783923353553": {
+            "instruction": "What's the news in Japan?",
+            "macro_actions": "{\"macro_actions\":[\"Search for news in Japan\",\"Show news results for Japan\"]}"
+        },
+        "6209007521857654658": {
+            "instruction": "How much does a 2 bedroom apartment rent for in San Francisco?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 2 bedroom apartment rent in San Francisco\",\"Select search result for Alta Potrero apartments\",\"Show rent information for 2 bedroom apartment in San Francisco\"]}"
+        },
+        "3792060807575565028": {
+            "instruction": "What's on the menu at Papa Murphy's?",
+            "macro_actions": "{\"macro_actions\": [\"Search for Papa Murphy's menu\", \"Show menu for Papa Murphy's\"]}"
+        },
+        "8557916194930616441": {
+            "instruction": "How much does a 2 bedroom apartment rent for in Atlanta?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'How much does a 2 bedroom apartment rent for in Atlanta?'\",\"Show Google search results for 'How much does a 2 bedroom apartment rent for in Atlanta?'\"]}"
+        },
+        "9654751455980858455": {
+            "instruction": "What's the latest news in astronomy?",
+            "macro_actions": "{\"macro_actions\":[\"Search for What's the latest news in astronomy?\",\"Switch to News tab\",\"Show latest news in astronomy\"]}"
+        },
+        "2506786217873899009": {
+            "instruction": "Search for a new foundation (skincare) product",
+            "macro_actions": "{\"macro_actions\": [\"Search for new foundation product\", \"Select Sephora website from search results\", \"Show new foundation (skincare) products on Sephora website\"]}"
+        },
+        "4885658077943187672": {
+            "instruction": "What is the capital of Switzerland?",
+            "macro_actions": "{\"macro_actions\": [\"Search for capital of Switzerland\", \"Show search result for capital of Switzerland\"]}"
+        },
+        "8226918904219592262": {
+            "instruction": "What's the weather like in New York?",
+            "macro_actions": "{\"macro_actions\": [ \"Search for weather in New York\", \"Show weather results\"]}"
+        },
+        "8531797328161931379": {
+            "instruction": "Play the new Drake video on YouTube",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open YouTube\",\"Search for Drake video\",\"Select a new Drake video\",\"Play the new Drake video\"]}"
+        },
+        "17831160965447905307": {
+            "instruction": "Search for a new mascara",
+            "macro_actions": "{\"macro_actions\":[\"Search for new mascara\",\"Select a search result for new mascara\",\"Show mascara product page\"]}"
+        },
+        "3603044620611112078": {
+            "instruction": "Check the settings for the Google Play Music app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Play Store\",\"Search for Google Play Music app\",\"Select Google Play Music app from search results\",\"Show app page (settings/info)\"]}"
+        },
+        "9838634522982007536": {
+            "instruction": "What's the price of the Vizio TV?",
+            "macro_actions": "{\"macro_actions\":[\"Search for the price of the Vizio TV\",\"Select search result for Walmart Vizio TVs\",\"Show Vizio TV prices on Walmart website\"]}"
+        },
+        "3988277251795256791": {
+            "instruction": "Open the calendar",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Calendar app\",\"Complete Calendar onboarding\",\"Show calendar\"]}"
+        },
+        "8024573815304254524": {
+            "instruction": "Search for a new mascara on Sephora",
+            "macro_actions": "{\"macro_actions\":[\"Search for new mascara on Sephora\",\"Show search results for new mascara on Sephora\"]}"
+        },
+        "5505035922241145902": {
+            "instruction": "What's on the menu at Red Lobster?",
+            "macro_actions": "{\"macro_actions\":[\"Search for Red Lobster menu\",\"Show menu for Red Lobster\"]}"
+        },
+        "6228131330763847141": {
+            "instruction": "Open a new incognito tab in Chrome",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Long press Chrome icon\",\"Select Incognito Tab\",\"Show new incognito tab in Chrome\"]}"
+        },
+        "9667803248337739969": {
+            "instruction": "How much does a 3 bedroom apartment rent for in San Francisco?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 3 bedroom apartment for rent in San Francisco\",\"View search results for 3 bedroom apartments in San Francisco\"]}"
+        },
+        "6920892466294256415": {
+            "instruction": "Check my gmail",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Gmail app\",\"Go through Gmail onboarding\",\"Select email account\",\"Show Gmail inbox\"]}"
+        },
+        "9519264040524322355": {
+            "instruction": "How do I get to the nearest Home Depot?",
+            "macro_actions": "{\"macro_actions\":[\"Search for how do I get to the nearest Home Depot\",\"Show route to the nearest Home Depot\"]}"
+        },
+        "18213420694895571170": {
+            "instruction": "Find a good burger place on Maps",
+            "macro_actions": "{\"macro_actions\":[\"Search for good burger place\",\"Show results for good burger places\"]}"
+        },
+        "17937435545346431575": {
+            "instruction": "Open Reddit",
+            "macro_actions": "{\"macro_actions\":[\"Search for Reddit\",\"Select Reddit from search results\",\"Show Reddit website\"]}"
+        },
+        "6663294301149505082": {
+            "instruction": "What's the news in Paraguay?",
+            "macro_actions": "{\"macro_actions\":[\"Search for What's the news in Paraguay?\",\"Show news results for Paraguay\",\"Select a news article about Paraguay\"]}"
+        },
+        "9676004982621637938": {
+            "instruction": "Set an alarm for 4pm",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Clock app\", \"Switch to Alarm tab\", \"Add new alarm\", \"Set alarm time to 4:00 PM\", \"Confirm and show alarm set for 4:00 PM\"]}"
+        },
+        "9270737996382465462": {
+            "instruction": "What's the news in Bolivia?",
+            "macro_actions": "{\"macro_actions\":[\"Search for Bolivia\",\"Filter by News\",\"Select a news article about Bolivia\",\"Show news article about Bolivia\"]}"
+        },
+        "2296599055596598834": {
+            "instruction": "Set an alarm for 8pm",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Clock app\", \"Add new alarm\", \"Set alarm time to 8:00 PM\", \"Show alarms list\"]}"
+        },
+        "9846444028928426439": {
+            "instruction": "Google the capital of Argentina",
+            "macro_actions": "{\"macro_actions\":[\"Enter 'Google the capital of Argentina'\",\"Submit search\",\"Show search results for 'Google the capital of Argentina'\"]}"
+        },
+        "6140078948705078811": {
+            "instruction": "What time is it in San Francisco?",
+            "macro_actions": "{\"macro_actions\":[\"Search for time in San Francisco\",\"Show current time in San Francisco\"]}"
+        },
+        "8325790268410699582": {
+            "instruction": "Play the new Maroon 5 video on YouTube",
+            "macro_actions": "{\"macro_actions\":[\"Open YouTube app\",\"Search for new Maroon 5 video\",\"Select new Maroon 5 video from search results\",\"Play new Maroon 5 video\"]}"
+        },
+        "3747125767618087904": {
+            "instruction": "Search for the best burger restaurants on Maps",
+            "macro_actions": "{\"macro_actions\":[\"Search for best burger restaurants\",\"Select Maps view for search results\",\"Show best burger restaurants on Maps\"]}"
+        },
+        "2627966730758470974": {
+            "instruction": "Where can I buy a nice beach sandals?",
+            "macro_actions": "{\"macro_actions\": [\"Search for where to buy nice beach sandals\", \"Show shopping results for beach sandals\"]}"
+        },
+        "5621311415953838849": {
+            "instruction": "Search for flights from NYC to London",
+            "macro_actions": "{\"macro_actions\":[\"Search for flights from NYC to London\",\"Show flight search results\"]}"
+        },
+        "4636877193942746235": {
+            "instruction": "Where can I buy a nice beach umbrella?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'Where can I buy a nice beach umbrella?'\",\"Show search results for where to buy a nice beach umbrella\"]}"
+        },
+        "15841519738146998071": {
+            "instruction": "Show me some nice wallpapers for my computer",
+            "macro_actions": "{\"macro_actions\":[\"Search for nice wallpapers for computer\",\"Show image results for computer wallpapers\"]}"
+        },
+        "9958379711378860015": {
+            "instruction": "How much does a 2 bedroom apartment rent for in Philadelphia?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 2 bedroom apartment rent in Philadelphia\",\"Show search results\",\"Select RentCafe listing for 2 bedroom apartments in Philadelphia\",\"Show 2 bedroom apartment rental listings in Philadelphia\"]}"
+        },
+        "15534744386280595491": {
+            "instruction": "Search for flights from Zurich to Buenos aires",
+            "macro_actions": "{\"macro_actions\":[\"Search for flights from Zurich to Buenos Aires\",\"Show flight search results\"]}"
+        },
+        "9743608387082578738": {
+            "instruction": "What's the news in Trinidad and Tobago?",
+            "macro_actions": "{\"macro_actions\":[\"Open app launcher\",\"Search for the news in Trinidad and Tobago\",\"Select relevant search suggestion\",\"Show news for Trinidad and Tobago\"]}"
+        },
+        "1801021574753337908": {
+            "instruction": "Open the clock",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Clock app\"]}"
+        },
+        "14388998502821822014": {
+            "instruction": "Show me some nice wallpapers for my laptop",
+            "macro_actions": "{\"macro_actions\":[\"Search for nice wallpapers for laptop\",\"Show image results for laptop wallpapers\"]}"
+        },
+        "2758615066519169612": {
+            "instruction": "Google the capital of Ecuador",
+            "macro_actions": "{\"macro_actions\":[\"Search for the capital of Ecuador\",\"Show search results for the capital of Ecuador\"]}"
+        },
+        "5212663403442220779": {
+            "instruction": "What's a good restaurant in Los Angeles?",
+            "macro_actions": "{\"macro_actions\":[\"Search for good restaurant in Los Angeles\",\"Show search results for good restaurant in Los Angeles\"]}"
+        },
+        "5483996306327517951": {
+            "instruction": "Search for hotels in Las Vegas",
+            "macro_actions": "{\"macro_actions\": [\"Search for hotels in Las Vegas\", \"Show search results for hotels in Las Vegas\"]}"
+        },
+        "6633339444240917121": {
+            "instruction": "Install the Instagram app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Play Store\",\"Search for Instagram\",\"Select Instagram app from search results\",\"Install Instagram app\"]}"
+        },
+        "9564768327000579169": {
+            "instruction": "What's the latest video from GameSpot News?",
+            "macro_actions": "{\"macro_actions\":[\"Search for the latest video from GameSpot News\",\"Show search results\"]}"
+        },
+        "16944110593008312117": {
+            "instruction": "What's the news in Peru?",
+            "macro_actions": "{\"macro_actions\":[\"Search for Peru\",\"Show news for Peru\"]}"
+        },
+        "5785434926384995436": {
+            "instruction": "What's the weather like in Rio de Janeiro?",
+            "macro_actions": "{\"macro_actions\":[\"Search for What's the weather like in Rio de Janeiro?\",\"Show weather information for Rio de Janeiro\"]}"
+        },
+        "8476782187123397955": {
+            "instruction": "What's a good restaurant in New Jersey?",
+            "macro_actions": "{\"macro_actions\": [\"Enter search query for good restaurant in New Jersey\", \"Show search results for good restaurant in New Jersey\"]}"
+        },
+        "9968194668956469109": {
+            "instruction": "What's the weather like in Paris?",
+            "macro_actions": "{\"macro_actions\":[\"Search for What's the weather like in Paris\",\"Show weather for Paris\"]}"
+        },
+        "3120168455802707733": {
+            "instruction": "What is the capital of Brazil?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'What is the capital of Brazil?'\", \"Show search results for the capital of Brazil\"]}"
+        },
+        "9976201499613595832": {
+            "instruction": "What's the latest video from Game Informer?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'What's the latest video from Game Informer?'\",\"Show search results for latest video from Game Informer\"]}"
+        },
+        "9040540885835959040": {
+            "instruction": "Google the capital of Uruguay",
+            "macro_actions": "{\"macro_actions\":[\"Enter 'capital of Uruguay' in the search bar\",\"Show Google search results for 'capital of Uruguay'\"]}"
+        },
+        "8567072503012992083": {
+            "instruction": "What is the capital of Sweden?",
+            "macro_actions": "{\"macro_actions\":[\"Search for capital of Sweden\",\"Show search results for capital of Sweden\"]}"
+        },
+        "9348583238099646698": {
+            "instruction": "Search for hotels in Los Angeles",
+            "macro_actions": "{\"macro_actions\": [\"Search for hotels in Los Angeles\", \"Show search results for hotels in Los Angeles\"]}"
+        },
+        "6669219026335480270": {
+            "instruction": "Search for flights from Sydney to Buenos aires",
+            "macro_actions": "{\"macro_actions\":[\"Enter 'flights from Sydney to Buenos aires' in search bar\",\"Show flights from Sydney to Buenos Aires\"]}"
+        },
+        "5418683977031456637": {
+            "instruction": "Set an alarm for 7am",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Clock app\",\"Navigate to Alarm tab\",\"Add new alarm\",\"Set alarm time to 7:00 AM\",\"Show alarm set for 7:00 AM\"]}"
+        },
+        "9167357097539878012": {
+            "instruction": "What's the news in Myanmar?",
+            "macro_actions": "{\"macro_actions\":[\"Search for news in Myanmar\",\"Show search results\",\"Switch to News tab\",\"Show news articles about Myanmar\"]}"
+        },
+        "6515237016270735357": {
+            "instruction": "Open the play store",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Play Store\",\"Show Play Store\"]}"
+        },
+        "9225729956605909985": {
+            "instruction": "Show me my notifications",
+            "macro_actions": "{\"macro_actions\":[\"View notifications panel\"]}"
+        },
+        "5942995318542204686": {
+            "instruction": "How do I get to the nearest Nordstrom?",
+            "macro_actions": "{\"macro_actions\": [\"Search for directions to the nearest Nordstrom\", \"Show route to the nearest Nordstrom\"]}"
+        },
+        "4985564003958316681": {
+            "instruction": "What's the news in Suriname?",
+            "macro_actions": "{\"macro_actions\": [\"Search for news in Suriname\", \"Show news in Suriname\"]}"
+        },
+        "6650496638041230411": {
+            "instruction": "Search for flights from Mexico city to Seattle",
+            "macro_actions": "{\"macro_actions\":[\"Search for flights from Mexico City to Seattle\",\"Show flights from Mexico City to Seattle\"]}"
+        },
+        "8505136328959636735": {
+            "instruction": "How do I get to the nearest Verizon Store?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'How do I get to the nearest Verizon Store?'\",\"Show search results for nearest Verizon Store\"]}"
+        },
+        "3595763020250820136": {
+            "instruction": "Open a new private window in the chrome app",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Launch Chrome app\", \"Open new private (incognito) window\"]}"
+        },
+        "4861927430100403420": {
+            "instruction": "How much does a 3 bedroom apartment rent for in Philadelphia?",
+            "macro_actions": "{\"macro_actions\":[\"Search for rent for 3 bedroom apartment in Philadelphia\",\"Select apartments.com listing for 3 bedroom apartments in Philadelphia\",\"Show 3 bedroom apartment rental prices in Philadelphia\"]}"
+        },
+        "5239621015561636912": {
+            "instruction": "How much does the new iPad cost?",
+            "macro_actions": "{\"macro_actions\":[\"Search for price of new iPad\",\"Show Google search results\"]}"
+        },
+        "1325321148214493899": {
+            "instruction": "How big is the moon?",
+            "macro_actions": "{\"macro_actions\":[\"Search for how big is the moon\",\"Show search results for how big is the moon\"]}"
+        },
+        "14058471082823418952": {
+            "instruction": "How much does a 2x4x8 board cost at Lowes?",
+            "macro_actions": "{\"macro_actions\": [\"Search for 'how much does a 2x4x8 board cost at Lowes?'\", \"Show price result for 2x4x8 board at Lowes\"]}"
+        },
+        "6780084713056743889": {
+            "instruction": "What does the iPhone 8 look like on eBay?",
+            "macro_actions": "{\"macro_actions\":[\"Search for what the iPhone 8 looks like on eBay\",\"Select eBay search result\",\"Show iPhone 8 listing on eBay\"]}"
+        },
+        "14296682225672227021": {
+            "instruction": "Who is the prime minister of the United Kingdom?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 'who is the prime minister of the United Kingdom?'\",\"Show search result for the prime minister of the United Kingdom\"]}"
+        },
+        "8774867208660363707": {
+            "instruction": "Search for flights from Helsinki to Seoul",
+            "macro_actions": "{\"macro_actions\":[\"Search for flights from Helsinki to Seoul\",\"Show flight results from Helsinki to Seoul\"]}"
+        },
+        "18158900732472387994": {
+            "instruction": "What's the weather like in Mexico City?",
+            "macro_actions": "{\"macro_actions\":[\"Search for weather like in Mexico City\",\"Show weather information for Mexico City\"]}"
+        },
+        "15076720198997227687": {
+            "instruction": "WHat are the new products by Samsung on eBay?",
+            "macro_actions": "{\"macro_actions\":[\"Search for eBay on Google\",\"Select eBay website from search results\",\"Search for new Samsung product on eBay\",\"Show new Samsung products on eBay\"]}"
+        },
+        "5529850835347917233": {
+            "instruction": "What's the news about the US dollar?",
+            "macro_actions": "{\"macro_actions\":[\"Search for news about the US dollar\",\"Show news about the US dollar\"]}"
+        },
+        "7635907002457758679": {
+            "instruction": "How much does a 2 bedroom apartment rent for in Miami?",
+            "macro_actions": "{\"macro_actions\":[\"Search for 2 bedroom apartment rent for in Miami\",\"Show search results\",\"Select first apartment listing\",\"Show apartment listing details\"]}"
+        },
+        "6069310497926499392": {
+            "instruction": "What's the news in the Philippines?",
+            "macro_actions": "{\"macro_actions\":[\"Search for the Philippines news\",\"Show Google search results\"]}"
+        },
+        "4768549130419867874": {
+            "instruction": "Google the capital of Peru",
+            "macro_actions": "{\"macro_actions\":[\"Type 'capital of Peru' in the search bar\",\"Show search results for 'capital of Peru'\"]}"
+        },
+        "4885169833549291398": {
+            "instruction": "What time is it in Sydney?",
+            "macro_actions": "{\"macro_actions\":[\"Search for time in Sydney\",\"Show local time in Sydney\"]}"
+        },
+        "7690890331459780717": {
+            "instruction": "Play the new Bruno Mars video on YouTube",
+            "macro_actions": "{\"macro_actions\":[\"Open YouTube app\",\"Search for Bruno Mars\",\"Select Bruno Mars channel\",\"Go to Videos tab\",\"Select the new Bruno Mars video\",\"Play the video\"]}"
+        },
+        "7611944081989695303": {
+            "instruction": "Open the settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Settings\",\"Show Settings screen\"]}"
+        },
+        "15996461204883402067": {
+            "instruction": "Check my email",
+            "macro_actions": "{\"macro_actions\":[\"Open Gmail app\",\"Show inbox\"]}"
+        },
+        "6181284283192538961": {
+            "instruction": "Play the new Ed Sheeran video on YouTube",
+            "macro_actions": "{\"macro_actions\":[\"Open YouTube\",\"Search for new Ed Sheeran video\",\"Select Ed Sheeran new video\",\"Play Ed Sheeran new video\"]}"
+        },
+        "7430342116990981328": {
+            "instruction": "What's the latest news in astrophysics?",
+            "macro_actions": "{\"macro_actions\":[\"Search for latest news in astrophysics\",\"Show search results for latest news in astrophysics\"]}"
+        },
+        "5980721719261686102": {
+            "instruction": "Search for a new eyeshadow on Sephora",
+            "macro_actions": "{\"macro_actions\":[\"Search for new eyeshadow on Sephora\",\"Show search results for new eyeshadow on Sephora\"]}"
+        },
+        "3667157660476747738": {
+            "instruction": "What time is it in London?",
+            "macro_actions": "{\"macro_actions\":[\"Search for time in London\",\"Show current time in London\"]}"
+        }
+    },
+    "google_apps": {
+        "9511813796105943209": {
+            "instruction": "Open Google",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Google app\",\"Show Google app home screen\"]}"
+        },
+        "2790540255198943485": {
+            "instruction": "open app \"Airtel Thanks\" (install if not already installed) and go to login screen",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Play Store\",\"Search for Airtel Thanks app\",\"Install Airtel Thanks app\",\"Open Airtel Thanks app\",\"Show login screen\"]}"
+        },
+        "14655069170256328637": {
+            "instruction": "Toggle the flashlight",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Search for flashlight in Settings\",\"Select Flashlight\"]}"
+        },
+        "15232038902345220189": {
+            "instruction": "toggle airplane mode",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Select Network & internet\",\"Toggle Airplane mode\"]}"
+        },
+        "6659023884370138548": {
+            "instruction": "Open the phone app and click the voicemail tab.",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Phone app\", \"Click Voicemail tab\"]}"
+        },
+        "7129822688131153570": {
+            "instruction": "Check the weather",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Chrome browser\",\"Search for weather\",\"Show weather information\"]}"
+        },
+        "7589448443525001817": {
+            "instruction": "What is the news today?",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Google app\", \"Search for news today\", \"Show today's news results\"]}"
+        },
+        "7132075704346037637": {
+            "instruction": "Open the calendar and show me this week's events",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Calendar app\",\"Skip onboarding screens\",\"Show schedule view\",\"Switch to week view\",\"Show this week's events\"]}"
+        },
+        "8471186362088808195": {
+            "instruction": "Open calendar and show me the fourth week of next month",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Calendar app\",\"Navigate to next month\",\"Show fourth week of next month\"]}"
+        },
+        "17956321666199644246": {
+            "instruction": "clear history in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome app\",\"Open History screen\",\"Select Clear browsing data\",\"Confirm clear data action\",\"Wait for browsing data to be cleared\"]}"
+        },
+        "2468723544615473013": {
+            "instruction": "allow cookies in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome app\",\"Access Chrome menu\",\"Open Settings\",\"Navigate to Site settings\",\"Select Cookies settings\",\"Allow cookies\"]}"
+        },
+        "7718228359409821093": {
+            "instruction": "toggle priority inbox in the gmail app",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Launch Gmail app\", \"Open Gmail settings\", \"Select email account\", \"Change inbox type\", \"Select Priority Inbox\"]}"
+        },
+        "8275537777144567154": {
+            "instruction": "search for starred emails in the gmail app",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Launch Gmail app\", \"Skip introduction screens\", \"Open navigation drawer\", \"Select Starred label\", \"Show starred emails\"]}"
+        },
+        "18346929875891992575": {
+            "instruction": "Go to wifi settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Settings\",\"Select Network & internet\",\"Select Wi-Fi\"]}"
+        },
+        "17439250185645266363": {
+            "instruction": "Open sound settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Scroll to Sound settings\",\"Open Sound settings\"]}"
+        },
+        "6494160643292856991": {
+            "instruction": "change the clock display to digital",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Clock app\",\"Open Clock app menu\",\"Open Clock app settings\",\"Change clock display to digital\"]}"
+        },
+        "9872370820319843402": {
+            "instruction": "Open Android settings",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Select Settings\", \"Show Settings screen\"]}"
+        },
+        "8830245697271045449": {
+            "instruction": "delete a single message in the gmail app",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Gmail app\", \"Select message to delete\", \"Delete message\"]}"
+        },
+        "15631617005870241389": {
+            "instruction": "star an email in the gmail app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Gmail app\"]}"
+        },
+        "7938121769194435195": {
+            "instruction": "Open the most recent email from 'tau.brachiosaubr.1654798856750@gmail.com'",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Gmail app\",\"Show inbox for tau.brachiosaubr.1654798856750@gmail.com\"]}"
+        },
+        "6574810131115052813": {
+            "instruction": "Play the last video I watched on Youtube",
+            "macro_actions": "{\"macro_actions\":[\"Open App Drawer\",\"Launch YouTube app\",\"Navigate to Library tab\"]}"
+        },
+        "4405467230032130657": {
+            "instruction": "check storage",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Scroll to Storage option\",\"Select Storage\",\"Show storage details\"]}"
+        },
+        "9941260150557153778": {
+            "instruction": "open app \"Adobe Acrobat Reader: Edit PDF\" (install if not already installed) and go to login screen",
+            "macro_actions": "{\"macro_actions\":[\"Open Play Store\",\"Search for Adobe Acrobat Reader: Edit PDF\",\"Select Adobe Acrobat Reader: Edit PDF\",\"Install Adobe Acrobat Reader: Edit PDF (if not installed)\",\"Open Adobe Acrobat Reader: Edit PDF\",\"Show login screen\"]}"
+        },
+        "523638528775825151": {
+            "instruction": "open app \"Clock\" (install if not already installed)",
+            "macro_actions": "{\"macro_actions\": [ \"Open app drawer\", \"Select Clock app\", \"Show Clock app screen\"]}"
+        },
+        "9520393863337821631": {
+            "instruction": "Go to settings",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Scroll to Settings app\", \"Select Settings app\", \"Show Settings screen\"]}"
+        },
+        "6685426578549659984": {
+            "instruction": "Go to accessibility settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Search for Accessibility\",\"Select Accessibility\",\"Show Accessibility settings\"]}"
+        },
+        "5878685023844732950": {
+            "instruction": "Open settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Settings app\",\"Show Settings screen\"]}"
+        },
+        "9119888451138939319": {
+            "instruction": "Open privacy settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Select Privacy\",\"Show privacy settings\"]}"
+        },
+        "9214704680428825844": {
+            "instruction": "Go to Google maps",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Google Maps app\",\"Show Google Maps screen\"]}"
+        },
+        "4499298417149654316": {
+            "instruction": "install app \"Reddit\"",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Play Store\",\"Search for Reddit\"]}"
+        },
+        "15827512644781517509": {
+            "instruction": "toggle javascript in the chrome app",
+            "macro_actions": "{\"macro_actions\": [\"Open Chrome app\", \"Open Chrome menu\", \"Open Settings\", \"Open Site settings\", \"Select JavaScript\", \"Toggle JavaScript setting\"]}"
+        },
+        "9491550461835187294": {
+            "instruction": "Open Yahoo.com",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer or search\",\"Search for Chrome\",\"Open Chrome browser\",\"Search for Yahoo.com\",\"Select Yahoo.com from search results\",\"Accept cookies or privacy consent\",\"Show Yahoo.com homepage\"]}"
+        },
+        "10241141125378334622": {
+            "instruction": "turn on bluetooth scan",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Navigate to Location settings\",\"Open Wi-Fi and Bluetooth scanning settings\",\"Turn on Bluetooth scanning\"]}"
+        },
+        "13333807289213523157": {
+            "instruction": "Reply to the most recent email I received with 'I like this one a lot!' and CC tau.vivianbrenna.1654798856750@gmail.com",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Gmail\", \"Complete Gmail onboarding\", \"Open Inbox\", \"Check All mail\"]}"
+        },
+        "7279561211768101382": {
+            "instruction": "create a new album in the google photos",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Google Photos\",\"Confirm backup settings\",\"Open menu in Google Photos\",\"Select Album to create new album\"]}"
+        },
+        "9189863685255366230": {
+            "instruction": "turn on data saver in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Launch Chrome app\",\"Open Chrome menu\",\"Go to Settings\",\"Scroll to Lite mode/Data Saver option\",\"Select Lite mode/Data Saver\",\"Turn on Lite mode/Data Saver\"]}"
+        },
+        "2771438326844360528": {
+            "instruction": "add a contact in the contacts app",
+            "macro_actions": "{\"macro_actions\":[\"Tap add contact button\",\"Enter contact details\",\"Save contact\"]}"
+        },
+        "9082119743354776866": {
+            "instruction": "Is it going to rain tomorrow?",
+            "macro_actions": "{\"macro_actions\":[\"Search for is it going to rain tomorrow\",\"Show weather forecast\",\"Select Tomorrow tab\",\"Show weather for tomorrow\"]}"
+        },
+        "4632426776645508978": {
+            "instruction": "turn pop-ups on in chrome",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome\",\"Open Chrome menu\",\"Open Settings\",\"Scroll to and select Site settings\",\"Select Pop-ups and redirects\",\"Turn on Pop-ups and redirects\"]}"
+        },
+        "3816006489083225329": {
+            "instruction": "turn off sleep mode",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Settings\", \"Select Display settings\", \"Expand Advanced display settings\", \"Select Screen saver settings\"]}"
+        },
+        "9961943735210722720": {
+            "instruction": "Open the map",
+            "macro_actions": "{\"macro_actions\":[\"Select Maps app\",\"Show map\"]}"
+        },
+        "207028590404540901": {
+            "instruction": "Go to privacy settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Scroll to Privacy section\",\"Select Privacy\",\"Show privacy settings\"]}"
+        },
+        "17312510821523220837": {
+            "instruction": "open app \"Truecaller\" (install if not already installed)",
+            "macro_actions": "{\"macro_actions\":[,\"Open Play Store\",\"Search for Truecaller\",\"Select Truecaller from search results\",\"Install (or Open) Truecaller\",\"Open Truecaller\"]}"
+        },
+        "7487615334503997621": {
+            "instruction": "open app \"Chime – Mobile Banking\" (install if not already installed)",
+            "macro_actions": "{\"macro_actions\":[\"Open Play Store\",\"Search for Chime – Mobile Banking\",\"Select Chime – Mobile Banking from search results\",\"Install Chime – Mobile Banking (if not already installed)\",\"Open Chime – Mobile Banking app\"]}"
+        },
+        "9929849754229574930": {
+            "instruction": "Delete the most recent email in my inbox",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Gmail app\",\"Show inbox\",\"Select most recent email\",\"Delete selected email\"]}"
+        },
+        "10523295836246414352": {
+            "instruction": "turn on the 24-hour format for clock",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Clock app\",\"Open menu in Clock app\",\"Open Clock app settings\",\"Select Change date & time option\",\"Show Date & time settings\",\"Turn off Use locale default\",\"Turn on 24-hour format\"]}"
+        },
+        "834208154820894354": {
+            "instruction": "Go to Amazon",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome browser\",\"Open new tab\",\"Select Amazon.com shortcut\",\"Show Amazon homepage\"]}"
+        },
+        "7648716282667404899": {
+            "instruction": "Open Chrome and go to settings",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome\",\"Complete initial Chrome setup\",\"Open Chrome menu\",\"Select Settings\",\"Show Settings screen\"]}"
+        },
+        "7185741031928674731": {
+            "instruction": "clear all cookies in the chrome app",
+            "macro_actions": "{\"macro_actions\": [\"Open Chrome app\", \"Open Chrome menu\", \"Go to History\", \"Select Clear browsing data\", \"Select Cookies and site data\", \"Clear site storage\"]}"
+        },
+        "13361956692439179897": {
+            "instruction": "open the mobile data screen to see how much data has been used",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Select Network & internet\",\"Select Mobile network\",\"Show mobile data usage screen\"]}"
+        },
+        "14361643984654144533": {
+            "instruction": "stop showing notifications on the lock screen",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Search for Notifications\",\"Select Notifications settings\",\"Change lock screen notifications to 'Don't show notifications'\",\"Show updated Notifications settings screen\"]}"
+        },
+        "6297384174246026770": {
+            "instruction": "Go to display settings",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Select Settings\", \"Select Display settings\", \"Show Display settings screen\"]}"
+        },
+        "8415245327327084738": {
+            "instruction": "Open Wikipedia",
+            "macro_actions": "{\"macro_actions\": [\"Open Chrome browser\", \"Complete Chrome setup dialogs\", \"Select Wikipedia shortcut\"]}"
+        },
+        "10963097801362849235": {
+            "instruction": "refresh tabs in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome app\",\"Open Chrome menu\",\"Select Recent tabs to refresh tabs\"]}"
+        },
+        "7153641829818211150": {
+            "instruction": "Open the Play Movies app and select the watchlist tab.",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Scroll to Play Movies app\",\"Open Play Movies app\",\"Select Watchlist tab\"]}"
+        },
+        "8421376548999123525": {
+            "instruction": "change the upload size in google photos",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open Google Photos\", \"Open account menu\", \"Open Photos settings\", \"Open Back up & sync settings\", \"Change upload size\"]}"
+        },
+        "12645340844850147732": {
+            "instruction": "check android version",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Scroll to and select About emulated device\",\"Select Android version\",\"Show Android version information\"]}"
+        },
+        "11890967956924417732": {
+            "instruction": "install app \"Google Find My Device\"",
+            "macro_actions": "{\"macro_actions\":[\"Open Play Store\",\"Search for Google Find My Device\",\"Select Google Find My Device app\",\"Install Google Find My Device app\",\"Show Google Find My Device app installed screen\"]}"
+        },
+        "11249073538269777049": {
+            "instruction": "open app \"DuckDuckGo Privacy Browser\" (install if not already installed) and go to login screen",
+            "macro_actions": "{\"macro_actions\":[\"Search for DuckDuckGo Privacy Browser in app store\",\"Select DuckDuckGo Privacy Browser app listing\",\"Install DuckDuckGo Privacy Browser app\",\"Open DuckDuckGo Privacy Browser app\",\"Show login/onboarding screen\"]}"
+        },
+        "6661366199443876390": {
+            "instruction": "See recent photos",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Scroll to Photos app\",\"Open Photos app\",\"Update Photos app\",\"View recent photos\"]}"
+        },
+        "1609290912940021858": {
+            "instruction": "Open location settings",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Select Settings\", \"Select Location\"]}"
+        },
+        "6372104514614851043": {
+            "instruction": "Open calendar and show me the third week of next month",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Calendar app\",\"Navigate to next month\",\"Show third week of next month\"]}"
+        },
+        "7249181878497269876": {
+            "instruction": "open app \"Adobe Acrobat Reader: Edit PDF\" (install if not already installed), go to login, and select forgot password",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Launch Adobe Acrobat Reader: Edit PDF\",\"Go to login screen\"]}"
+        },
+        "9623146599625228578": {
+            "instruction": "Open Google Maps",
+            "macro_actions": "{\"macro_actions\":[\"Select Google Maps app icon\",\"Open Google Maps\"]}"
+        },
+        "3917476202381326330": {
+            "instruction": "Open Youtube and go to the subscriptions tab",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Scroll to find YouTube\",\"Open YouTube\",\"Go to Subscriptions tab\"]}"
+        },
+        "5390195545841094634": {
+            "instruction": "When is my next appointment?",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Calendar app\",\"Show next appointment\"]}"
+        },
+        "39997301741232670": {
+            "instruction": "Go to Google",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Select Google app\", \"Show Google search screen\"]}"
+        },
+        "4284839195624960734": {
+            "instruction": "turn on the 12-hour format for clock",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Clock app\",\"Open Clock app menu\",\"Open Clock app settings\",\"Open date & time settings\",\"Turn off 24-hour format (enable 12-hour format)\"]}"
+        },
+        "8401893647021572712": {
+            "instruction": "Open the calendar app, open the side menu, and click the \"Day\" option",
+            "macro_actions": "{\"macro_actions\":[\"Open Calendar app\",\"Open side menu in Calendar app\",\"Select 'Day' option in side menu\"]}"
+        },
+        "5155786343825906428": {
+            "instruction": "turn on improve location accuracy",
+            "macro_actions": "{\"macro_actions\":[\"Open Settings\",\"Select Location\",\"Open Google Location Accuracy settings\",\"Turn on Improve Location Accuracy\"]}"
+        },
+        "7177822086172972573": {
+            "instruction": "Search for vegetarian restaurants on Maps",
+            "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for vegetarian restaurants\",\"Show list of vegetarian restaurants\"]}"
+        },
+        "947811331748432033": {
+            "instruction": "all mails in gmail",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Launch Gmail\",\"Open navigation menu\",\"Select All mail\",\"Show All mail\"]}"
+        },
+        "9358010828735853801": {
+            "instruction": "Open internet settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings app\",\"Select Network & Internet\",\"Show internet settings\"]}"
+        },
+        "13281338610704673733": {
+            "instruction": "see tabs open on other devices in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome app\",\"Open Chrome menu\",\"Select Recent tabs\",\"Show tabs open on other devices\"]}"
+        },
+        "15613977196776809554": {
+            "instruction": "turn off wifi",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Select Network & internet\",\"Turn off Wi-Fi\"]}"
+        },
+        "9017509147388329725": {
+            "instruction": "What's the weather going to be this weekend?",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Google app\",\"Search for weather this weekend\",\"Show weekend weather forecast\"]}"
+        },
+        "3204934813459657285": {
+            "instruction": "turn off notifications settings in the gmail app",
+            "macro_actions": "{\"macro_actions\":[\"Open Gmail app\",\"Open navigation drawer\",\"Go to Settings\",\"Select email account\",\"Open Notifications settings\",\"Turn off notifications\"]}"
+        },
+        "4078124881541190189": {
+            "instruction": "check data usage",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Select Network & internet\",\"Select Mobile network\",\"Show data usage\"]}"
+        },
+        "1946503667123667312": {
+            "instruction": "find snoozed emails in the gmail app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Gmail app\",\"Open navigation menu\",\"Select Snoozed label\",\"Show snoozed emails\"]}"
+        },
+        "9942603277301081661": {
+            "instruction": "What is the recent news?",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome\",\"Search for news\",\"Search for recent news\",\"Show recent news\"]}"
+        },
+        "9208070471113046676": {
+            "instruction": "Do I have any events tomorrow?",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Calendar app\",\"Select tomorrow's date\",\"Show events for tomorrow\"]}"
+        },
+        "206749484010865280": {
+            "instruction": "read, delete, or share a saved page in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Launch Chrome app\",\"Read a saved page\"]}"
+        },
+        "14653025663385236233": {
+            "instruction": "make emails show in primary in the gmail app",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Launch Gmail app\", \"Open Gmail menu\", \"Navigate to Settings\", \"Change Inbox type to Default Inbox\", \"Configure Inbox categories to only Primary\", \"Show Primary inbox\"]}"
+        },
+        "10869323074028260120": {
+            "instruction": "change notifications settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Settings\",\"Open Apps & notifications\",\"Open Notifications settings\",\"Open App notifications\",\"Change notifications settings\"]}"
+        },
+        "7248688748962489698": {
+            "instruction": "Open the stopwatch",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Select Clock app\", \"Select Stopwatch tab\", \"Show Stopwatch screen\"]}"
+        },
+        "986726391381809759": {
+            "instruction": "What's the weather going to be tomorrow?",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Chrome browser\",\"Search for 'weather going to be tomorrow'\",\"Show weather results for tomorrow\"]}"
+        },
+        "8446606221993530388": {
+            "instruction": "Open Amazon",
+            "macro_actions": "{\"macro_actions\": [\"Open Chrome browser\", \"Complete Chrome setup prompts\", \"Select Amazon.com shortcut\"]}"
+        },
+        "9346491593160717398": {
+            "instruction": "Is it going to rain today?",
+            "macro_actions": "{\"macro_actions\": [\"Search for weather\", \"Show weather forecast\"]}"
+        },
+        "9030499831204779795": {
+            "instruction": "open chrome privacy settings",
+            "macro_actions": "{\"macro_actions\": [\"Open Chrome app\", \"Open Chrome menu\", \"Open Settings\", \"Select Privacy settings\", \"Show Chrome privacy settings\"]}"
+        },
+        "11478877659987542538": {
+            "instruction": "open app \"Instagram\"",
+            "macro_actions": "{\"macro_actions\":[\"Search for Instagram in Play Store\",\"Install Instagram\",\"Open Instagram\"]}"
+        },
+        "1109997563243417274": {
+            "instruction": "toggle location history",
+            "macro_actions": "{\"macro_actions\": [\"Open Settings app\", \"Navigate to Location settings\", \"Select Google Location History\", \"Open Google Account Activity Controls\", \"Toggle Location History setting\", \"Confirm Location History change\", \"Show Location History status\"]}"
+        },
+        "9562258242598597828": {
+            "instruction": "Open Google Chrome and click the shortcut for Amazon.com",
+            "macro_actions": "{\"macro_actions\":[\"Open Google Chrome\",\"Search for Amazon.com\",\"Select Amazon.com from results\",\"Show Amazon.com page\",\"Add Amazon.com shortcut to Home screen\",\"Return to Home screen\",\"Click Amazon.com shortcut\"]}"
+        },
+        "4356173254153244158": {
+            "instruction": "turn off notifications in google photos",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Google Photos\",\"Open side menu\",\"Select Settings in Google Photos\",\"Select Notifications\",\"Select Notification settings on this device\",\"Turn off notifications\"]}"
+        },
+        "8496839468108700631": {
+            "instruction": "Search for sushi restaurants on Maps",
+            "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for sushi restaurants\",\"Show sushi restaurants on map\"]}"
+        },
+        "8887152600934701292": {
+            "instruction": "Go to battery settings",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Select Settings\",\"Select Battery settings\"]}"
+        },
+        "7088188775567314337": {
+            "instruction": "Open Youtube and go to \"Your channel\"",
+            "macro_actions": "{\"macro_actions\": [\"Open app drawer\", \"Open YouTube app\", \"Open account menu\", \"Select 'Your channel'\"]}"
+        },
+        "1681983361670594136": {
+            "instruction": "set default search engine in the chrome app",
+            "macro_actions": "{\"macro_actions\":[\"Open Chrome app\",\"Open Chrome menu\",\"Navigate to Settings\",\"Select Search engine\",\"Set default search engine\"]}"
+        },
+        "14657042386200846213": {
+            "instruction": "uninstall \"Contacts\"",
+            "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Search for Contacts in Play Store\",\"Select Contacts in Play Store\",\"Show Contacts app page in Play Store\"]}"
+        },
+        "6254054103638287260": {
+            "instruction": "Open the most recent email and forward to: 'tau.amandabrenna.1654798856750@gmail.com'.",
+            "macro_actions": "{\"macro_actions\":[\"Open Gmail app\",\"Open navigation drawer\",\"Show all emails\",\"Open most recent email\",\"Forward email to tau.amandabrenna.1654798856750@gmail.com\"]}"
+        },
+        "14493309969957637969": {
+            "instruction": "Check the news",
+            "macro_actions": "{\"macro_actions\":[\"Open Google Search\",\"Search for news\",\"Show news results\"]}"
+        }
+    },
+    "web_shopping": {
+        "10123143201668012126": {
+            "instruction": "View the shopping cart on amazon.com. Add \"macbook pro\" to the cart on amazon.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for macbook pro\",\"Select macbook pro from search results\",\"Add macbook pro to cart\",\"View shopping cart\",\"Select checkout\"]}"
+        },
+        "5600317789523477593": {
+            "instruction": "Search for the best selling books",
+            "macro_actions": "{\"macro_actions\": [\"Search for best selling books\", \"Select search result for best selling books\", \"Show best selling books\"]}"
+        },
+        "2844964771861294443": {
+            "instruction": "View the shopping cart on ebay. Add \"macbook pro 13 inch\" to the cart on ebay",
+            "macro_actions": "{\"macro_actions\":[\"View shopping cart on eBay\",\"Search for macbook pro 13 inch on eBay\",\"Select macbook pro 13 inch listing\",\"Sign in to eBay\",\"Add macbook pro 13 inch to cart\",\"View shopping cart on eBay\"]}"
+        },
+        "13614642359721725832": {
+            "instruction": "View the shopping cart on target. Add \"logitech g910\" to the cart on target, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for logitech g910\",\"Select logitech g910\",\"Add logitech g910 to cart\",\"View shopping cart\",\"Select checkout\"]}"
+        },
+        "6310031172281240632": {
+            "instruction": "Clear the shopping cart on costco.com. Add \"acer nitro\" to the cart on costco.com",
+            "macro_actions": "{\"macro_actions\":[\"Show cart\",\"Clear shopping cart\",\"Search for acer nitro\",\"Select acer nitro product\",\"Add acer nitro to cart\"]}"
+        },
+        "8505775337951283805": {
+            "instruction": "Search for the best gaming mouse on Best Buy.",
+            "macro_actions": "{\"macro_actions\":[\"Select country (United States)\",\"Search for best gaming mouse\",\"Show search results for best gaming mouse\"]}"
+        },
+        "2549334858085448231": {
+            "instruction": "View the shopping cart on ebay.com. Search for razer kraken on ebay.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for razer kraken\",\"Select first search result\",\"Add selected item to cart\",\"View shopping cart\",\"Select checkout\"]}"
+        },
+        "17689430548228061415": {
+            "instruction": "Show the shopping cart on bestbuy.",
+            "macro_actions": "{\"macro_actions\":[\"Select United States as the country\",\"Dismiss location permission prompt\",\"Go to shopping cart\",\"Show shopping cart\"]}"
+        },
+        "10340300791527619274": {
+            "instruction": "Clear the cart on ebay.com.",
+            "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Remove all items from cart\", \"Show empty cart\"]}"
+        },
+        "11098776293084624497": {
+            "instruction": "Add \"usb-a to usb-b\" to the cart on walmart.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for usb-a to usb-b\",\"Select appropriate usb-a to usb-b product\",\"Add usb-a to usb-b to cart\",\"Open cart\",\"Select checkout\"]}"
+        },
+        "13279189939467870096": {
+            "instruction": "View the shopping cart on target. Search for razer thresher on target, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\": [\"Search for razer thresher on Target\", \"Select the first entry for razer thresher\", \"Add razer thresher to cart\", \"View the shopping cart on Target\"]}"
+        },
+        "17114932217533322112": {
+            "instruction": "Clear the shopping cart on ebay. Search for \"beats solo 3\" on ebay, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for beats solo 3\",\"Select first search result\",\"Add selected item to cart\"]}"
+        },
+        "942044865282594673": {
+            "instruction": "Search for the best way to get rid of a cold",
+            "macro_actions": "{\"macro_actions\":[\"Search for best way to get rid of a cold\",\"Show search results for best way to get rid of a cold\"]}"
+        },
+        "9249948791182926023": {
+            "instruction": "Search for \"amazon basics triple a\" on amazon.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for amazon basics triple a\", \"Select first entry\", \"Add amazon basics triple a to cart\", \"Select checkout\"]}"
+        },
+        "2104609983651670610": {
+            "instruction": "Clear all items from cart on amazon. Search for \"sony triple a\" on amazon, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for sony triple a\",\"Select first search result\",\"Add item to cart\",\"Go to cart\",\"Proceed to checkout\"]}"
+        },
+        "1635576072551962337": {
+            "instruction": "Show the shopping cart on costco.com. Add macbook pro 13 inch to the cart on costco.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for macbook pro 13 inch\",\"Select MacBook Pro 13 inch product\",\"Add MacBook Pro 13 inch to cart\",\"Show shopping cart\",\"Select checkout\"]}"
+        },
+        "5989418114903039486": {
+            "instruction": "View the shopping cart on newegg.com.",
+            "macro_actions": "{\"macro_actions\":[\"Select newegg.com from search results\",\"Show shopping cart\"]}"
+        },
+        "13150855526426083698": {
+            "instruction": "Show the shopping cart on newegg. Add \"jbl charge 4\" to the cart on newegg, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for jbl charge 4\", \"Select JBL product from results\", \"Add JBL product to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+        },
+        "3884973932336373200": {
+            "instruction": "Search for \"usb-a\" on ebay.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for usb-a\",\"Select first search result\",\"Add selected item to cart\"]}"
+        },
+        "5226480875266703884": {
+            "instruction": "Search for usb-a on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for usb-a\", \"Select the first entry\", \"Add selected item to cart\", \"Go to cart\", \"Select checkout\"]}"
+        },
+        "6303272058629579122": {
+            "instruction": "Empty the shopping cart on ebay.com. Add logitech g903 to the cart on ebay.com",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for logitech g903\",\"Select logitech g903 product\",\"Add logitech g903 to cart\"]}"
+        },
+        "1984055598827259994": {
+            "instruction": "Search for \"amazon basics triple a\" on amazon, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for amazon basics triple a\", \"Select first search result\", \"Add selected item to cart\", \"Select checkout\"]}"
+        },
+        "14218745754463664147": {
+            "instruction": "Add usb-c to the cart on ebay.com",
+            "macro_actions": "{\"macro_actions\":[\"Search for usb-c\",\"Select a usb-c product\",\"Add usb-c to cart\"]}"
+        },
+        "6649865574394680303": {
+            "instruction": "Clear the shopping cart on amazon. Add asus zenbook to the cart on amazon",
+            "macro_actions": "{\"macro_actions\":[\"Show shopping cart\",\"Clear shopping cart\",\"Search for asus zenbook\",\"Select asus zenbook from results\",\"Show asus zenbook product page\",\"Add asus zenbook to cart\",\"Show shopping cart\"]}"
+        },
+        "415824094542831374": {
+            "instruction": "Search for a home improvement project you can do.",
+            "macro_actions": "{\"macro_actions\":[\"Search for home improvement project you can do\",\"Show search results with home improvement project ideas\"]}"
+        },
+        "3072717759890321352": {
+            "instruction": "Clear all items from cart on walmart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Show empty cart\"]}"
+        },
+        "16576041680454428559": {
+            "instruction": "Show the shopping cart on ebay. Add logitech g933 to the cart on ebay",
+            "macro_actions": "{\"macro_actions\":[\"Show shopping cart on ebay\",\"Search for logitech g933\",\"Select logitech g933 from search results\",\"Add logitech g933 to cart\"]}"
+        },
+        "14469877061943105660": {
+            "instruction": "Clear the cart on ebay.com. Add \"razer nari\" to the cart on ebay.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Open cart and clear all items\", \"Search for razer nari\", \"Select razer nari product\", \"Add razer nari to cart\", \"View cart\", \"Select checkout\"]}"
+        },
+        "13465171775482838463": {
+            "instruction": "Show the shopping cart on amazon. Search for asus zenbook on amazon, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select first search result\", \"Add asus zenbook to cart\", \"Show shopping cart\"]}"
+        },
+        "1012677770023806463": {
+            "instruction": "Add \"panasonic triple a\" to the cart on amazon.com",
+            "macro_actions": "{\"macro_actions\":[\"Search for panasonic triple a\",\"Select panasonic triple a product\",\"Add panasonic triple a to cart\",\"Show cart with panasonic triple a added\"]}"
+        },
+        "11826618618140434857": {
+            "instruction": "Search for the best deal on a 3d printer on aliexpress",
+            "macro_actions": "{\"macro_actions\":[\"Search for 3d printer deals\",\"Show best deals on 3d printers\"]}"
+        },
+        "6429248070290622023": {
+            "instruction": "Clear all items from cart on amazon.com. Search for \"jbl charge 4\" on amazon.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Clear all items from cart on amazon.com\", \"Search for jbl charge 4 on amazon.com\", \"Select the first entry for jbl charge 4\", \"Add JBL Charge 4 to cart\", \"Select checkout\"]}"
+        },
+        "7931549998282076093": {
+            "instruction": "Clear all items from cart on target. Search for \"beats solo 3\" on target, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Clear all items from cart\",\"Search for beats solo 3\",\"Select first entry for beats solo 3\",\"Add Beats Solo 3 to cart\",\"Go to cart and show updated cart\"]}"
+        },
+        "10891739002228675543": {
+            "instruction": "View the shopping cart on walmart.com. Add razer kraken to the cart on walmart.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for razer kraken\",\"Select razer kraken\",\"Add razer kraken to cart\",\"View shopping cart\",\"Select checkout\",\"Show sign in screen for checkout\"]}"
+        },
+        "5279571272180310122": {
+            "instruction": "Empty the shopping cart on ebay. Add jbl charge 4 to the cart on ebay",
+            "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for jbl charge 4\",\"Select jbl charge 4 from results\",\"Add jbl charge 4 to cart\"]}"
+        },
+        "10324983806406751063": {
+            "instruction": "View the shopping cart on target.com. Search for usb-a on target.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for usb-a\",\"Select first search result\",\"Add selected item to cart\",\"View shopping cart\"]}"
+        },
+        "9836516851299203975": {
+            "instruction": "Search for the Nintendo Switch.",
+            "macro_actions": "{\"macro_actions\":[\"Search for Nintendo Switch\"]}"
+        },
+        "9277478046835168533": {
+            "instruction": "Clear the shopping cart on walmart. Add asus rog to the cart on walmart",
+            "macro_actions": "{\"macro_actions\":[\"Open shopping cart\",\"Remove all items from cart\",\"Search for asus rog\",\"Select asus rog product\",\"Add asus rog to cart\"]}"
+        },
+        "4804259307009841612": {
+            "instruction": "Search for a 24-inch cordless drill.",
+            "macro_actions": "{\"macro_actions\":[\"Search for 24-inch cordless drill\",\"Show search results for 24-inch cordless drill\"]}"
+        },
+        "12635871165342995249": {
+            "instruction": "Search for the best-rated coffee table on Crate & Barrel",
+            "macro_actions": "{\"macro_actions\":[\"Search for best-rated coffee table\",\"Show search results for best-rated coffee table\"]}"
+        },
+        "1705330505667825610": {
+            "instruction": "Search for the best rated tool bag on Lowe's.",
+            "macro_actions": "{\"macro_actions\": [\"Search for best rated tool bag\", \"Show search results for best rated tool bag\"]}"
+        },
+        "7591171997989899724": {
+            "instruction": "Show the shopping cart on newegg. Add \"macbook pro\" to the cart on newegg, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for macbook pro\", \"Select macbook pro product\", \"Add macbook pro to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+        },
+        "1460568062063702279": {
+            "instruction": "Empty the shopping cart on costco. Search for \"macbook pro\" on costco, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Empty shopping cart\",\"Search for macbook pro\",\"Select first MacBook Pro entry\",\"Add MacBook Pro to cart\",\"Show cart with MacBook Pro added\"]}"
+        },
+        "18379146725236431066": {
+            "instruction": "Search for 35 best books of all time",
+            "macro_actions": "{\"macro_actions\":[\"Search for 35 best books of all time\",\"Show search results for 35 best books of all time\"]}"
+        },
+        "8484703210139020812": {
+            "instruction": "View the shopping cart on walmart.com.",
+            "macro_actions": "{\"macro_actions\":[\"Go to shopping cart page\",\"View shopping cart\"]}"
+        },
+        "17896139176033135905": {
+            "instruction": "Search for energizer triple a on target.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for energizer triple a\",\"Select first entry for energizer triple a\",\"Add energizer triple a to cart\",\"Show cart\"]}"
+        },
+        "17640345593529309045": {
+            "instruction": "Empty the shopping cart on amazon. Add \"logitech g pro\" to the cart on amazon, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for logitech g pro\", \"Select Logitech G PRO X SUPERLIGHT from search results\", \"Add Logitech G PRO X SUPERLIGHT to cart\", \"Go to cart\", \"Select checkout\"]}"
+        },
+        "5161621993974635647": {
+            "instruction": "Clear the shopping cart on ebay.com.",
+            "macro_actions": "{\"macro_actions\": [\"Open shopping cart\", \"Clear all items from cart\", \"Show empty shopping cart\"]}"
+        },
+        "2737419583519325234": {
+            "instruction": "Search for floor lamps on article.com",
+            "macro_actions": "{\"macro_actions\":[\"Search for floor lamps\"]}"
+        },
+        "481934002039140072": {
+            "instruction": "Search for \"The Dispatcher\" by John Scalzi on Goodreads",
+            "macro_actions": "{\"macro_actions\":[\"Search for The Dispatcher by John Scalzi on Goodreads\",\"Show search results for The Dispatcher by John Scalzi\"]}"
+        },
+        "2287296092308786999": {
+            "instruction": "Empty the shopping cart on ebay.com. Search for \"razer blackwidow\" on ebay.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for razer blackwidow\",\"Select first search result\",\"Select model/variant\",\"Add to cart\"]}"
+        },
+        "5730384041869559124": {
+            "instruction": "Empty the shopping cart on target.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart page\",\"Empty the shopping cart\"]}"
+        },
+        "2873462316220287725": {
+            "instruction": "Clear the shopping cart on walmart. Add apple airpods to the cart on walmart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Clear shopping cart\", \"Search for apple airpods\", \"Select apple airpods\", \"Add apple airpods to cart\", \"Go to cart\", \"Select checkout\"]}"
+        },
+        "5762206241888007130": {
+            "instruction": "Add bose soundlink to the cart on target.com",
+            "macro_actions": "{\"macro_actions\":[\"Search for bose soundlink\",\"Select Bose SoundLink Flex Portable Bluetooth Speaker\",\"Add Bose SoundLink Flex Portable Bluetooth Speaker to cart\"]}"
+        },
+        "9251965598244179568": {
+            "instruction": "View the shopping cart on bestbuy.com. Search for corsair k70 on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for corsair k70\",\"Select first corsair k70 entry\",\"Add corsair k70 to cart\",\"Go to cart\",\"Select checkout\"]}"
+        },
+        "12309704477671632138": {
+            "instruction": "Show the shopping cart on target. Search for \"usb-a\" on target, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for usb-a\", \"Select first search result\", \"Add item to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+        },
+        "2252650458193164319": {
+            "instruction": "Search for \"bose quietcomfort 35\" on newegg.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for bose quietcomfort 35\",\"Select the first entry from search results\",\"Add selected item to cart\",\"Proceed to checkout\"]}"
+        },
+        "15316079120141943275": {
+            "instruction": "View the shopping cart on amazon.com. Add \"usb-c to usb-a\" to the cart on amazon.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for usb-c to usb-a\",\"Select usb-c to usb-a product\",\"Add usb-c to usb-a to cart\",\"View shopping cart\",\"Select Proceed to checkout\"]}"
+        },
+        "13699291777869385728": {
+            "instruction": "Show the shopping cart on costco.com. Search for \"apple airpods\" on costco.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for apple airpods\",\"Select first apple airpods entry\",\"Add apple airpods to cart\",\"Show the shopping cart\"]}"
+        },
+        "14922621072117868623": {
+            "instruction": "Search for lg ultragear on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for lg ultragear\",\"Select first entry for lg ultragear\",\"Add LG UltraGear to cart\",\"Go to cart\",\"Select checkout\"]}"
+        },
+        "9617875957296484975": {
+            "instruction": "Clear all items from cart on amazon.com.",
+            "macro_actions": "{\"macro_actions\":[\"Open cart\",\"Remove all items from cart\",\"Show empty cart screen\"]}"
+        },
+        "4243513655924431778": {
+            "instruction": "View the shopping cart on amazon. Search for usb-a on amazon, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for usb-a\", \"Select the first entry\", \"Add selected item to cart\", \"View shopping cart\", \"Select checkout\"]}"
+        },
+        "802911316031266129": {
+            "instruction": "Empty the shopping cart on walmart. Add macbook pro 13 inch to the cart on walmart",
+            "macro_actions": "{\"macro_actions\":[\"Empty shopping cart\",\"Search for macbook pro 13 inch\",\"Select macbook pro 13 inch\",\"Add macbook pro 13 inch to cart\"]}"
+        },
+        "3863218546089667414": {
+            "instruction": "Clear the cart on newegg. Add usb-b to the cart on newegg, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Remove all items from cart\", \"Search for usb-b\", \"Select usb-b product\", \"Add usb-b to cart\", \"Go to cart\", \"Select checkout\"]}"
+        },
+        "1703027458193854106": {
+            "instruction": "Search for \"dell alienware\" on amazon.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for dell alienware\",\"Select first Dell Alienware product entry\",\"Add selected Dell Alienware product to cart\",\"Show cart with Dell Alienware product added\"]}"
+        },
+        "14468183295619841371": {
+            "instruction": "Show the shopping cart on bestbuy.com. Add \"usb-c\" to the cart on bestbuy.com",
+            "macro_actions": "{\"macro_actions\": [\"Show shopping cart on bestbuy.com\", \"Search for usb-c on bestbuy.com\", \"Select usb-c product\", \"Add usb-c product to cart\", \"Show shopping cart on bestbuy.com\"]}"
+        },
+        "1012541109615624944": {
+            "instruction": "Add bose soundlink mini to the cart on ebay, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for bose soundlink mini\", \"Select Bose SoundLink Mini II Speaker from search results\", \"Add Bose SoundLink Mini II Speaker to cart\", \"View cart\", \"Select checkout\"]}"
+        },
+        "6265152253609345526": {
+            "instruction": "Empty the shopping cart on ebay. Search for \"dell xps\" on ebay, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Open eBay shopping cart\",\"Remove all items from shopping cart\",\"Search for dell xps\",\"Select first search result\",\"Add selected item to cart\",\"Go to checkout\"]}"
+        },
+        "14718712990919806018": {
+            "instruction": "Clear the cart on amazon.com. Add razer blackwidow to the cart on amazon.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Show cart\",\"Remove all items from cart\",\"Search for razer blackwidow\",\"Select razer blackwidow\",\"Add razer blackwidow to cart\",\"Show cart\",\"Select checkout\"]}"
+        },
+        "17058795715296947173": {
+            "instruction": "Search for desk lamps on article.com",
+            "macro_actions": "{\"macro_actions\":[\"Search for desk lamps\",\"Show search results for desk lamps\"]}"
+        },
+        "15610140923786917165": {
+            "instruction": "Add panasonic triple a to the cart on ebay, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for panasonic triple a\", \"Select Panasonic triple a item\", \"Add Panasonic triple a to cart\", \"Go to cart\", \"Select checkout\"]}"
+        },
+        "13252795642130137497": {
+            "instruction": "Clear the cart on amazon.",
+            "macro_actions": "{\"macro_actions\":[\"Remove all items from cart\",\"Show empty cart\"]}"
+        },
+        "6645911862311501254": {
+            "instruction": "Search for \"razer blackwidow\" on amazon, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\": [\"Search for razer blackwidow\", \"Select first search result\", \"Add razer blackwidow to cart\", \"Show cart\"]}"
+        },
+        "1380761879627472504": {
+            "instruction": "View the shopping cart on amazon. Add \"beats solo 3\" to the cart on amazon, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for beats solo 3\", \"Select beats solo 3\", \"Add beats solo 3 to cart\", \"View shopping cart\", \"Select checkout\"]}"
+        },
+        "11096353099085734576": {
+            "instruction": "Show the shopping cart on target. Search for logitech g pro on target, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for logitech g pro\",\"Select the first entry\",\"Add Logitech G Pro to cart\",\"Show shopping cart\",\"Select checkout\"]}"
+        },
+        "17459626714895680107": {
+            "instruction": "View the shopping cart on amazon.com. Search for usb-b on amazon.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for usb-b\", \"Select first search result\", \"Add USB-B to cart\", \"View shopping cart\", \"Select checkout\"]}"
+        },
+        "16911445044905779389": {
+            "instruction": "Show the shopping cart on ebay.",
+            "macro_actions": "{\"macro_actions\":[\"Show shopping cart\"]}"
+        },
+        "6867958996071732616": {
+            "instruction": "Show the shopping cart on bestbuy.com.",
+            "macro_actions": "{\"macro_actions\":[\"Navigate to shopping cart\",\"Show shopping cart\"]}"
+        },
+        "14568609347942757887": {
+            "instruction": "Empty the shopping cart on bestbuy. Search for logitech g933 on bestbuy, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for logitech g933\",\"Select first entry for logitech g933\",\"Add first entry to cart\",\"Go to cart\",\"Select checkout\"]}"
+        },
+        "7648340836693832903": {
+            "instruction": "Empty the shopping cart on bestbuy.com. Add macbook pro 15 inch to the cart on bestbuy.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Remove all items from cart\",\"Show empty cart\",\"Search for macbook pro 15 inch\",\"Select macbook pro 15 inch\",\"Add macbook pro 15 inch to cart\",\"Go to cart\",\"Select checkout\"]}"
+        },
+        "373201284857432448": {
+            "instruction": "search for 2021 honda civic",
+            "macro_actions": "{\"macro_actions\":[\"Activate search\",\"Enter '2021 honda civic' in search bar\",\"Show search results for '2021 honda civic'\"]}"
+        },
+        "17655280606865895019": {
+            "instruction": "Clear the shopping cart on walmart.com. Search for bose soundlink on walmart.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\": [\"Show cart\", \"Remove all items from cart\", \"Search for bose soundlink\", \"Select the first bose soundlink entry\", \"Add bose soundlink to cart\"]}"
+        },
+        "7477518037646140723": {
+            "instruction": "Search for the top rated book on goodreads.",
+            "macro_actions": "{\"macro_actions\":[\"Search for goodreads on Google\",\"Select Goodreads website from search results\",\"Search for top rated book on Goodreads\"]}"
+        },
+        "7163843552012891298": {
+            "instruction": "Search for \"dell alienware\" on ebay, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for dell alienware\",\"Select first search result\",\"Add selected item to cart\"]}"
+        },
+        "5022690937765733020": {
+            "instruction": "Clear the cart on walmart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Show empty cart\"]}"
+        },
+        "4780696952435945434": {
+            "instruction": "Add apple airpods pro to the cart on bestbuy, then select checkout.",
+            "macro_actions": "{\"macro_actions\":[\"Search for apple airpods pro\",\"Select apple airpods pro from search results\",\"Add apple airpods pro to cart\",\"Go to cart\",\"Select checkout\"]}"
+        },
+        "8507477878390719690": {
+            "instruction": "Show the shopping cart on amazon. Add \"energizer triple a\" to the cart on amazon",
+            "macro_actions": "{\"macro_actions\":[\"Show shopping cart\",\"Search for energizer triple a\",\"Select energizer triple a product\",\"Add energizer triple a to cart\",\"Show shopping cart\"]}"
+        },
+        "16401780355138684639": {
+            "instruction": "Show the shopping cart on ebay.com. Add \"usb-b\" to the cart on ebay.com",
+            "macro_actions": "{\"macro_actions\":[\"Show shopping cart on ebay.com\",\"Search for usb-b on ebay.com\",\"Select usb-b product\",\"Select variant/model for usb-b product\",\"Add usb-b to cart on ebay.com\",\"Show shopping cart on ebay.com\"]}"
+        },
+        "7883547066399687435": {
+            "instruction": "Show the shopping cart on walmart.com. Search for usb-c on walmart.com, select the first entry, add it to the cart, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for usb-c\", \"Select the first usb-c item\", \"Add usb-c item to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+        },
+        "16066401796896665460": {
+            "instruction": "Clear the cart on costco.com. Search for acer predator on costco.com, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Clear the cart\",\"Search for acer predator\",\"Select first entry for acer predator\",\"Add first entry for acer predator to cart\",\"Show cart\"]}"
+        },
+        "10752749508676360419": {
+            "instruction": "Clear all items from cart on ebay. Add lenovo thinkpad to the cart on ebay",
+            "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Clear all items from cart\", \"Search for lenovo thinkpad\", \"Select lenovo thinkpad\", \"Add lenovo thinkpad to cart\"]}"
+        },
+        "12379421322313752436": {
+            "instruction": "Search for \"macbook\" on costco, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\":[\"Search for macbook\",\"Select the first entry\",\"Add MacBook to cart\"]}"
+        },
+        "1326628128020387511": {
+            "instruction": "View the shopping cart on newegg. Search for asus zenbook on newegg, select the first entry, and add it to the cart.",
+            "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select first asus zenbook entry\", \"Add asus zenbook to cart\", \"View the shopping cart\"]}"
+        },
+        "2421093589196422887": {
+            "instruction": "Add razer naga to the cart on amazon",
+            "macro_actions": "{\"macro_actions\":[\"Search for razer naga\",\"Select razer naga product\",\"Add razer naga to cart\",\"Show cart\"]}"
+        },
+        "2493506365023443034": {
+            "instruction": "Search for a storage ottoman in the living room",
+            "macro_actions": "{\"macro_actions\":[\"Search for storage ottoman in the living room\",\"Show search results for storage ottoman in the living room\"]}"
+        },
+        "12213571689286418135": {
+            "instruction": "Show the shopping cart on bestbuy.com. Add \"asus zenbook\" to the cart on bestbuy.com, then select checkout.",
+            "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select asus zenbook from results\", \"Add asus zenbook to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+        },
+        "62602550511193784": {
+            "instruction": "Search for the best coffee tables on Crate & Barrel",
+            "macro_actions": "{\"macro_actions\":[\"Search for Crate & Barrel on Google\",\"Select Crate & Barrel website from search results\",\"Search for best coffee tables on Crate & Barrel\",\"Show search results for best coffee tables\"]}"
+        },
+        "8174266053139596910": {
+            "instruction": "Clear all items from cart on target.com.",
+            "macro_actions": "{\"macro_actions\":[\"Go to cart page\",\"Show empty cart on target.com\"]}"
+        },
+        "11653124703910166130": {
+            "instruction": "Look up the best selling books on Goodreads.",
+            "macro_actions": "{\"macro_actions\":[\"Search for best selling books\",\"Show best selling books results\"]}"
+        },
+        "3069323130106546394": {
+            "instruction": "Show the shopping cart on walmart.com. Add razer huntsman to the cart on walmart.com",
+            "macro_actions": "{\"macro_actions\": [\"Show shopping cart\", \"Search for razer huntsman\", \"Select razer huntsman\", \"Add razer huntsman to cart\", \"Show shopping cart\"]}"
+        }
+    }
+}
