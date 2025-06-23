@@ -419,13 +419,13 @@ def pavr(args):
             break
 
         elif verification == 1:
-            tried_macro_action.append(response["macro_action_plan"][0])
+            tried_macro_action.append(response["current_macro_action"])
 
         elif verification == 0:
             count += 1
 
             if count > threshold:
-                tried_macro_action.append(response["macro_action_plan"][0])
+                tried_macro_action.append(response["current_macro_action"])
         
         image_bytes = next_image_bytes
             

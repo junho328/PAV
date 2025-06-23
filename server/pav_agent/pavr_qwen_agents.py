@@ -253,42 +253,108 @@ class Planner():
             {instruction}
             Macro Aciton Plan:
             """
+            
+        self.replan_success_prompt = """You are a helpful mobile agent and a good planner.
+        You are given a screenshot of a mobile device, a task, a performed macro action, and a original macro action plan.
+        You need to generate a new macro action plan to complete the task.
         
-    def plan(self, model, processor, task, screenshot_path, app_name, replan = "plan-initial", few_shots=None, previous_macro_action=None):
+        Given screenshot is the screen **after** the performed macro action.
+        And you planned to sequentially execute the original macro action plan in order to complete the given task.
+        Now, based on the screenshot and the task, reassess whether your original macro action plan is still valid.
+        If not, revise your plan and provide a newly updated macro action plan.
         
-        if replan == "plan-initial":
+        Below are some examples of tasks and their corresponing macro action plans, replanned macro actions:
+        ---
+        <Example 1>
+        Task:
+        Add Logitech MX Master 3S to cart.
+        Perfomed Macro Action:
+        [Search for Logitech MX Master 3S, Select Logitech MX Master 3S]
+        Original Macro Action Plan:
+        [Buy the item]
+        Updated Macro Action Plan:
+        [Add to cart]
+        
+        <Example 2>
+        Task:
+        Add the most popular ramen to cart.
+        Performed Macro Action:
+        [Search for ramen]
+        Original Macro Action Plan:
+        [Filter by sale, Select the first item, Add to cart]
+        Updated Macro Action Plan:
+        [Filter by popularity, Select the first item, Add to cart]
+        
+        <Example 3>
+        Task:
+        Add the cheapest sofa to cart.
+        Performed Macro Action:
+        [Search for sofa, Filter by popularity]
+        Original Macro Action Plan:
+        [Select the first item, Add to cart]
+        Updated Macro Action Plan:
+        [Select the first item, Add to cart]
+        ---
+        
+        Now you are given a task, a performed macro action, and an original macro action plan.
+        Generate a newly updated macro action plan to complete the task using the same template as the original macro action plan.
+        You can change the order of the macro actions, add new macro actions, remove existing macro actions, or paraphrase the macro actions
+        And the returned macro action plan should consist only of the remaining steps to be executed, excluding any macro actions that have already been performed.
+        
+        Task: 
+        {instruction}
+        Performed Macro Action: 
+        {previous_macro_action}
+        Original Macro Action Plan: 
+        {macro_action_list}
+        Updated Macro Action Plan:
+        """
+        
+        self.replan_fail_prompt = """You are a helpful mobile agent and a good planner."""
 
+
+        
+    def plan(self, model, processor, task, screenshot_path, app_name, replan = "plan-initial", few_shots=None, macro_action_list=None, previous_macro_action=None):
+        
+       
+        if replan == "plan-initial":          
             if few_shots is not None:
                 prompt = self.composer_prompt.format(few_shots=few_shots, instruction=task)
-            
-            else:
+                
+            else:      
                 if app_name == "google_maps":
                     prompt = self.google_prompt
                 elif app_name == "ali":
                     prompt = self.ali_prompt
+            
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": screenshot_path},
+                        {"type": "text", "text": prompt.format(instruction=task)},
+                    ],
+                }
+            ]
         
         elif replan == "replan-success":
-            pass
+            prompt = self.replan_success_prompt
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": screenshot_path},
+                        {"type": "text", "text": prompt.format(instruction=task, previous_macro_action=previous_macro_action, macro_action_list=macro_action_list)},
+                    ],
+                }
+            ]
 
         elif replan == "replan-fail":
-            pass
+            prompt = self.replan_fail_prompt
 
         else:
             raise NotImplementedError
             
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "image": screenshot_path,
-                    },
-                    {"type": "text", "text": prompt.format(instruction=task)},
-                ],
-            }
-        ]
-
         # Preparation for inference
         text = processor.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True
@@ -370,7 +436,7 @@ class Verifier():
         self.prompt = """You are a strict mobile‑task verifier.
 Input
 ------
-• current_task      : {macro_action}. one high‑level instruction (macro action)
+• current_macro_action      : {macro_action}. one high‑level instruction (macro action)
 • screenshot_before : the screen **right before** the agent’s last action
 • screenshot_after  : the screen **right after** the agent’s last action
 
@@ -385,7 +451,7 @@ Definitions
 
 Hidden Reasoning Steps
 ----------------------
-1. Restate current_task in your own words.
+1. Restate current_macro_action in your own words.
 2. Think about Expectation of End‑State criteria for this task (what must be on‑screen).
 3. Think about Intermediate‑States that would NOT qualify.
 4. Compare screenshots and decide if End‑State is met.
@@ -401,7 +467,7 @@ Output
 ------
 ```json
 {{
-    "current_task": <current_task {macro_action}>,
+    "current_macro_action": <current_macro_action {macro_action}>,
     "expectation": <one concise sentence describing after the task completion>,
     "comparison": <one concise sentence describing the screeshot_after meets the expectation>,
     "task_completed": 0 or 1

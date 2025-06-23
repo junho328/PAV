@@ -43,7 +43,7 @@ class Query(BaseModel):
     app_name: str
 
 @app.post("/predict")    
-def pav(query: Query):
+def pavr(query: Query):
     
     user_query = query.task
     step = query.step
@@ -55,22 +55,52 @@ def pav(query: Query):
         
         with open(screenshot_path, "wb") as f:
             f.write(image_bytes)
-
-        macro_action_plan = planner.plan(
-            model=model, 
-            processor=processor, 
-            task=user_query, 
-            screenshot_path=screenshot_path, 
-            app_name=query.app_name, 
-            replan = query.replan,
-            previous_macro_action=query.previous_macro_action
-        )
-        
-        print(f">>>Planner Output: {macro_action_plan}")
-        
-        with open("./pav_data/macro_plans.json", "w") as f:
-            json.dump(macro_action_plan, f)
             
+        if query.replan == "plan-initial":
+
+            macro_action_plan = planner.plan(
+                model=model, 
+                processor=processor, 
+                task=user_query, 
+                screenshot_path=screenshot_path, 
+                app_name=query.app_name, 
+                replan = query.replan,
+                previous_macro_action=query.previous_macro_action
+            )
+            
+            print(f">>>Planner Output: {macro_action_plan}")
+            
+            with open("./pav_data/macro_plans.json", "w") as f:
+                json.dump(macro_action_plan, f)
+        
+        elif query.replan == "replan-success":
+            with open("./pav_data/macro_plans.json", "r") as f:
+                macro_action_plan = json.load(f)
+            
+            previous_macro_action = query.previous_macro_action.split(", ")
+            
+            macro_action_plan = planner.replan(
+                model=model, 
+                processor=processor,
+                task=user_query,
+                screenshot_path=screenshot_path,
+                app_name=query.app_name,
+                replan=query.replan,
+                macro_action_list=macro_action_plan,
+                previous_macro_action=previous_macro_action
+            )
+            
+            print(f">>>Planner Output: {macro_action_plan}")
+            
+            with open("./pav_data/macro_plans.json", "w") as f:
+                json.dump(macro_action_plan, f)
+        
+        elif query.replan == "replan-fail":
+            pass
+        
+        else:
+            raise NotImplementedError
+                
         current_macro_action = macro_action_plan[0]
         
         micro_action = actor.act(
@@ -89,7 +119,8 @@ def pav(query: Query):
         response = {
             "name": "pav_qwen",
             "arguments": micro_action["arguments"],
-            "macro_action_plan" : macro_action_plan
+            "macro_action_plan" : macro_action_plan,
+            "current_macro_action": current_macro_action,
         }
     
     elif query.role == "actor":
@@ -123,7 +154,7 @@ def pav(query: Query):
             
             if len(macro_action_plan) == 0:
                 print("All macro actions completed!")
-                return {"name": "pav_qwen", "arguments": {"action": "task_completed"}}
+                return {"name": "pav_qwen", "arguments": {"action": "task_completed"}, "current_macro_action": current_macro_action}
             
             with open("./pav_data/macro_plans.json", "w") as f:
                 json.dump(macro_action_plan, f)
@@ -132,7 +163,8 @@ def pav(query: Query):
         
         response = {
             "name": "pav_qwen",
-            "arguments": micro_action["arguments"]
+            "arguments": micro_action["arguments"],
+            "current_macro_action": current_macro_action,
         }
     
     elif query.role == "verifier":
@@ -175,7 +207,7 @@ def pav(query: Query):
                     
             else:
                 
-                return {"task_completed": -1 , "reason": "All macro actions are completed!"}
+                return {"task_completed": -1 , "reason": "All macro actions are completed!", "current_macro_action": current_macro_action}
         else:
             
             print(f"<{current_macro_action}> still in progress!")
