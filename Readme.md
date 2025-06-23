@@ -39,7 +39,12 @@ pip install -r requirements.txt
 huggingface-cli login
 # paste your HF access‑token (READ scope)
 
-# 1‑D. Launch the server
+# 1-D. Few-shot Retrieval
+# /PAV/server
+python shot_composer.py --app_name google_maps --json_file goolge_map_pool.json
+python shot_composer.py --app_name ali --json_file aliexpress_pool.json
+
+# 1‑E. Launch the server
 uvicorn <server file name>:app --host 0.0.0.0 --port 8000
 ```
 
