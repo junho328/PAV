@@ -452,7 +452,7 @@ if __name__ == "__main__":
     parser.add_argument("--image_path", type=str, default="./qwen_7b_baseline_screenshots/0", help="Path to save screenshots")
     parser.add_argument("--max_steps", type=int, default=15, help="Max number of steps before termination")
     parser.add_argument("--app_name", type=str, default="ali", help="App name for planner prompt")
-    parser.add_argument("--threshold", type=int, default="ali", help="The threshold number of verifier failures that triggers a replan")
+    parser.add_argument("--threshold", type=int, default=5, help="The threshold number of verifier failures that triggers a replan")
 
     args = parser.parse_args()
     
