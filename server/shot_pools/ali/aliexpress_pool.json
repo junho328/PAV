@@ -1,0 +1,517 @@
+[
+    {
+        "id": "general_2506786217873899009",
+        "instruction": "Search for a new foundation (skincare) product",
+        "macro_actions": "{\"macro_actions\": [\"Search for new foundation product\", \"Select Sephora website from search results\", \"Show new foundation (skincare) products on Sephora website\"]}"
+    },
+    {
+        "id": "general_17831160965447905307",
+        "instruction": "Search for a new mascara",
+        "macro_actions": "{\"macro_actions\":[\"Search for new mascara\",\"Select a search result for new mascara\",\"Show mascara product page\"]}"
+    },
+    {
+        "id": "general_9838634522982007536",
+        "instruction": "What's the price of the Vizio TV?",
+        "macro_actions": "{\"macro_actions\":[\"Search for the price of the Vizio TV\",\"Select search result for Walmart Vizio TVs\",\"Show Vizio TV prices on Walmart website\"]}"
+    },
+    {
+        "id": "general_8024573815304254524",
+        "instruction": "Search for a new mascara on Sephora",
+        "macro_actions": "{\"macro_actions\":[\"Search for new mascara on Sephora\",\"Show search results for new mascara on Sephora\"]}"
+    },
+    {
+        "id": "general_2627966730758470974",
+        "instruction": "Where can I buy a nice beach sandals?",
+        "macro_actions": "{\"macro_actions\": [\"Search for where to buy nice beach sandals\", \"Show shopping results for beach sandals\"]}"
+    },
+    {
+        "id": "general_4636877193942746235",
+        "instruction": "Where can I buy a nice beach umbrella?",
+        "macro_actions": "{\"macro_actions\":[\"Search for 'Where can I buy a nice beach umbrella?'\",\"Show search results for where to buy a nice beach umbrella\"]}"
+    },
+    {
+        "id": "general_15841519738146998071",
+        "instruction": "Show me some nice wallpapers for my computer",
+        "macro_actions": "{\"macro_actions\":[\"Search for nice wallpapers for computer\",\"Show image results for computer wallpapers\"]}"
+    },
+    {
+        "id": "general_14388998502821822014",
+        "instruction": "Show me some nice wallpapers for my laptop",
+        "macro_actions": "{\"macro_actions\":[\"Search for nice wallpapers for laptop\",\"Show image results for laptop wallpapers\"]}"
+    },
+    {
+        "id": "general_9225729956605909985",
+        "instruction": "Show me my notifications",
+        "macro_actions": "{\"macro_actions\":[\"View notifications panel\"]}"
+    },
+    {
+        "id": "general_5239621015561636912",
+        "instruction": "How much does the new iPad cost?",
+        "macro_actions": "{\"macro_actions\":[\"Search for price of new iPad\",\"Show Google search results\"]}"
+    },
+    {
+        "id": "general_14058471082823418952",
+        "instruction": "How much does a 2x4x8 board cost at Lowes?",
+        "macro_actions": "{\"macro_actions\": [\"Search for 'how much does a 2x4x8 board cost at Lowes?'\", \"Show price result for 2x4x8 board at Lowes\"]}"
+    },
+    {
+        "id": "general_6780084713056743889",
+        "instruction": "What does the iPhone 8 look like on eBay?",
+        "macro_actions": "{\"macro_actions\":[\"Search for what the iPhone 8 looks like on eBay\",\"Select eBay search result\",\"Show iPhone 8 listing on eBay\"]}"
+    },
+    {
+        "id": "general_15076720198997227687",
+        "instruction": "WHat are the new products by Samsung on eBay?",
+        "macro_actions": "{\"macro_actions\":[\"Search for eBay on Google\",\"Select eBay website from search results\",\"Search for new Samsung product on eBay\",\"Show new Samsung products on eBay\"]}"
+    },
+    {
+        "id": "general_5980721719261686102",
+        "instruction": "Search for a new eyeshadow on Sephora",
+        "macro_actions": "{\"macro_actions\":[\"Search for new eyeshadow on Sephora\",\"Show search results for new eyeshadow on Sephora\"]}"
+    },
+    {
+        "id": "web_shopping_10123143201668012126",
+        "instruction": "View the shopping cart on amazon.com. Add \"macbook pro\" to the cart on amazon.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for macbook pro\",\"Select macbook pro from search results\",\"Add macbook pro to cart\",\"View shopping cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_5600317789523477593",
+        "instruction": "Search for the best selling books",
+        "macro_actions": "{\"macro_actions\": [\"Search for best selling books\", \"Select search result for best selling books\", \"Show best selling books\"]}"
+    },
+    {
+        "id": "web_shopping_2844964771861294443",
+        "instruction": "View the shopping cart on ebay. Add \"macbook pro 13 inch\" to the cart on ebay",
+        "macro_actions": "{\"macro_actions\":[\"View shopping cart on eBay\",\"Search for macbook pro 13 inch on eBay\",\"Select macbook pro 13 inch listing\",\"Sign in to eBay\",\"Add macbook pro 13 inch to cart\",\"View shopping cart on eBay\"]}"
+    },
+    {
+        "id": "web_shopping_13614642359721725832",
+        "instruction": "View the shopping cart on target. Add \"logitech g910\" to the cart on target, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for logitech g910\",\"Select logitech g910\",\"Add logitech g910 to cart\",\"View shopping cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_6310031172281240632",
+        "instruction": "Clear the shopping cart on costco.com. Add \"acer nitro\" to the cart on costco.com",
+        "macro_actions": "{\"macro_actions\":[\"Show cart\",\"Clear shopping cart\",\"Search for acer nitro\",\"Select acer nitro product\",\"Add acer nitro to cart\"]}"
+    },
+    {
+        "id": "web_shopping_8505775337951283805",
+        "instruction": "Search for the best gaming mouse on Best Buy.",
+        "macro_actions": "{\"macro_actions\":[\"Select country (United States)\",\"Search for best gaming mouse\",\"Show search results for best gaming mouse\"]}"
+    },
+    {
+        "id": "web_shopping_2549334858085448231",
+        "instruction": "View the shopping cart on ebay.com. Search for razer kraken on ebay.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for razer kraken\",\"Select first search result\",\"Add selected item to cart\",\"View shopping cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_17689430548228061415",
+        "instruction": "Show the shopping cart on bestbuy.",
+        "macro_actions": "{\"macro_actions\":[\"Select United States as the country\",\"Dismiss location permission prompt\",\"Go to shopping cart\",\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_10340300791527619274",
+        "instruction": "Clear the cart on ebay.com.",
+        "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Remove all items from cart\", \"Show empty cart\"]}"
+    },
+    {
+        "id": "web_shopping_11098776293084624497",
+        "instruction": "Add \"usb-a to usb-b\" to the cart on walmart.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for usb-a to usb-b\",\"Select appropriate usb-a to usb-b product\",\"Add usb-a to usb-b to cart\",\"Open cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_13279189939467870096",
+        "instruction": "View the shopping cart on target. Search for razer thresher on target, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\": [\"Search for razer thresher on Target\", \"Select the first entry for razer thresher\", \"Add razer thresher to cart\", \"View the shopping cart on Target\"]}"
+    },
+    {
+        "id": "web_shopping_17114932217533322112",
+        "instruction": "Clear the shopping cart on ebay. Search for \"beats solo 3\" on ebay, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for beats solo 3\",\"Select first search result\",\"Add selected item to cart\"]}"
+    },
+    {
+        "id": "web_shopping_9249948791182926023",
+        "instruction": "Search for \"amazon basics triple a\" on amazon.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for amazon basics triple a\", \"Select first entry\", \"Add amazon basics triple a to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_2104609983651670610",
+        "instruction": "Clear all items from cart on amazon. Search for \"sony triple a\" on amazon, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for sony triple a\",\"Select first search result\",\"Add item to cart\",\"Go to cart\",\"Proceed to checkout\"]}"
+    },
+    {
+        "id": "web_shopping_1635576072551962337",
+        "instruction": "Show the shopping cart on costco.com. Add macbook pro 13 inch to the cart on costco.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for macbook pro 13 inch\",\"Select MacBook Pro 13 inch product\",\"Add MacBook Pro 13 inch to cart\",\"Show shopping cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_5989418114903039486",
+        "instruction": "View the shopping cart on newegg.com.",
+        "macro_actions": "{\"macro_actions\":[\"Select newegg.com from search results\",\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_13150855526426083698",
+        "instruction": "Show the shopping cart on newegg. Add \"jbl charge 4\" to the cart on newegg, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for jbl charge 4\", \"Select JBL product from results\", \"Add JBL product to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_3884973932336373200",
+        "instruction": "Search for \"usb-a\" on ebay.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for usb-a\",\"Select first search result\",\"Add selected item to cart\"]}"
+    },
+    {
+        "id": "web_shopping_5226480875266703884",
+        "instruction": "Search for usb-a on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for usb-a\", \"Select the first entry\", \"Add selected item to cart\", \"Go to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_6303272058629579122",
+        "instruction": "Empty the shopping cart on ebay.com. Add logitech g903 to the cart on ebay.com",
+        "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for logitech g903\",\"Select logitech g903 product\",\"Add logitech g903 to cart\"]}"
+    },
+    {
+        "id": "web_shopping_1984055598827259994",
+        "instruction": "Search for \"amazon basics triple a\" on amazon, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for amazon basics triple a\", \"Select first search result\", \"Add selected item to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_14218745754463664147",
+        "instruction": "Add usb-c to the cart on ebay.com",
+        "macro_actions": "{\"macro_actions\":[\"Search for usb-c\",\"Select a usb-c product\",\"Add usb-c to cart\"]}"
+    },
+    {
+        "id": "web_shopping_6649865574394680303",
+        "instruction": "Clear the shopping cart on amazon. Add asus zenbook to the cart on amazon",
+        "macro_actions": "{\"macro_actions\":[\"Show shopping cart\",\"Clear shopping cart\",\"Search for asus zenbook\",\"Select asus zenbook from results\",\"Show asus zenbook product page\",\"Add asus zenbook to cart\",\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_415824094542831374",
+        "instruction": "Search for a home improvement project you can do.",
+        "macro_actions": "{\"macro_actions\":[\"Search for home improvement project you can do\",\"Show search results with home improvement project ideas\"]}"
+    },
+    {
+        "id": "web_shopping_16576041680454428559",
+        "instruction": "Show the shopping cart on ebay. Add logitech g933 to the cart on ebay",
+        "macro_actions": "{\"macro_actions\":[\"Show shopping cart on ebay\",\"Search for logitech g933\",\"Select logitech g933 from search results\",\"Add logitech g933 to cart\"]}"
+    },
+    {
+        "id": "web_shopping_14469877061943105660",
+        "instruction": "Clear the cart on ebay.com. Add \"razer nari\" to the cart on ebay.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Open cart and clear all items\", \"Search for razer nari\", \"Select razer nari product\", \"Add razer nari to cart\", \"View cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_13465171775482838463",
+        "instruction": "Show the shopping cart on amazon. Search for asus zenbook on amazon, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select first search result\", \"Add asus zenbook to cart\", \"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_1012677770023806463",
+        "instruction": "Add \"panasonic triple a\" to the cart on amazon.com",
+        "macro_actions": "{\"macro_actions\":[\"Search for panasonic triple a\",\"Select panasonic triple a product\",\"Add panasonic triple a to cart\",\"Show cart with panasonic triple a added\"]}"
+    },
+    {
+        "id": "web_shopping_11826618618140434857",
+        "instruction": "Search for the best deal on a 3d printer on aliexpress",
+        "macro_actions": "{\"macro_actions\":[\"Search for 3d printer deals\",\"Show best deals on 3d printers\"]}"
+    },
+    {
+        "id": "web_shopping_6429248070290622023",
+        "instruction": "Clear all items from cart on amazon.com. Search for \"jbl charge 4\" on amazon.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Clear all items from cart on amazon.com\", \"Search for jbl charge 4 on amazon.com\", \"Select the first entry for jbl charge 4\", \"Add JBL Charge 4 to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_7931549998282076093",
+        "instruction": "Clear all items from cart on target. Search for \"beats solo 3\" on target, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Clear all items from cart\",\"Search for beats solo 3\",\"Select first entry for beats solo 3\",\"Add Beats Solo 3 to cart\",\"Go to cart and show updated cart\"]}"
+    },
+    {
+        "id": "web_shopping_10891739002228675543",
+        "instruction": "View the shopping cart on walmart.com. Add razer kraken to the cart on walmart.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for razer kraken\",\"Select razer kraken\",\"Add razer kraken to cart\",\"View shopping cart\",\"Select checkout\",\"Show sign in screen for checkout\"]}"
+    },
+    {
+        "id": "web_shopping_5279571272180310122",
+        "instruction": "Empty the shopping cart on ebay. Add jbl charge 4 to the cart on ebay",
+        "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for jbl charge 4\",\"Select jbl charge 4 from results\",\"Add jbl charge 4 to cart\"]}"
+    },
+    {
+        "id": "web_shopping_10324983806406751063",
+        "instruction": "View the shopping cart on target.com. Search for usb-a on target.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"View shopping cart\",\"Search for usb-a\",\"Select first search result\",\"Add selected item to cart\",\"View shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_9836516851299203975",
+        "instruction": "Search for the Nintendo Switch.",
+        "macro_actions": "{\"macro_actions\":[\"Search for Nintendo Switch\"]}"
+    },
+    {
+        "id": "web_shopping_9277478046835168533",
+        "instruction": "Clear the shopping cart on walmart. Add asus rog to the cart on walmart",
+        "macro_actions": "{\"macro_actions\":[\"Open shopping cart\",\"Remove all items from cart\",\"Search for asus rog\",\"Select asus rog product\",\"Add asus rog to cart\"]}"
+    },
+    {
+        "id": "web_shopping_4804259307009841612",
+        "instruction": "Search for a 24-inch cordless drill.",
+        "macro_actions": "{\"macro_actions\":[\"Search for 24-inch cordless drill\",\"Show search results for 24-inch cordless drill\"]}"
+    },
+    {
+        "id": "web_shopping_12635871165342995249",
+        "instruction": "Search for the best-rated coffee table on Crate & Barrel",
+        "macro_actions": "{\"macro_actions\":[\"Search for best-rated coffee table\",\"Show search results for best-rated coffee table\"]}"
+    },
+    {
+        "id": "web_shopping_1705330505667825610",
+        "instruction": "Search for the best rated tool bag on Lowe's.",
+        "macro_actions": "{\"macro_actions\": [\"Search for best rated tool bag\", \"Show search results for best rated tool bag\"]}"
+    },
+    {
+        "id": "web_shopping_7591171997989899724",
+        "instruction": "Show the shopping cart on newegg. Add \"macbook pro\" to the cart on newegg, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for macbook pro\", \"Select macbook pro product\", \"Add macbook pro to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_1460568062063702279",
+        "instruction": "Empty the shopping cart on costco. Search for \"macbook pro\" on costco, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Empty shopping cart\",\"Search for macbook pro\",\"Select first MacBook Pro entry\",\"Add MacBook Pro to cart\",\"Show cart with MacBook Pro added\"]}"
+    },
+    {
+        "id": "web_shopping_18379146725236431066",
+        "instruction": "Search for 35 best books of all time",
+        "macro_actions": "{\"macro_actions\":[\"Search for 35 best books of all time\",\"Show search results for 35 best books of all time\"]}"
+    },
+    {
+        "id": "web_shopping_8484703210139020812",
+        "instruction": "View the shopping cart on walmart.com.",
+        "macro_actions": "{\"macro_actions\":[\"Go to shopping cart page\",\"View shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_17896139176033135905",
+        "instruction": "Search for energizer triple a on target.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for energizer triple a\",\"Select first entry for energizer triple a\",\"Add energizer triple a to cart\",\"Show cart\"]}"
+    },
+    {
+        "id": "web_shopping_17640345593529309045",
+        "instruction": "Empty the shopping cart on amazon. Add \"logitech g pro\" to the cart on amazon, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for logitech g pro\", \"Select Logitech G PRO X SUPERLIGHT from search results\", \"Add Logitech G PRO X SUPERLIGHT to cart\", \"Go to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_2737419583519325234",
+        "instruction": "Search for floor lamps on article.com",
+        "macro_actions": "{\"macro_actions\":[\"Search for floor lamps\"]}"
+    },
+    {
+        "id": "web_shopping_2287296092308786999",
+        "instruction": "Empty the shopping cart on ebay.com. Search for \"razer blackwidow\" on ebay.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Go to shopping cart\",\"Remove all items from cart\",\"Search for razer blackwidow\",\"Select first search result\",\"Select model/variant\",\"Add to cart\"]}"
+    },
+    {
+        "id": "web_shopping_2873462316220287725",
+        "instruction": "Clear the shopping cart on walmart. Add apple airpods to the cart on walmart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Clear shopping cart\", \"Search for apple airpods\", \"Select apple airpods\", \"Add apple airpods to cart\", \"Go to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_5762206241888007130",
+        "instruction": "Add bose soundlink to the cart on target.com",
+        "macro_actions": "{\"macro_actions\":[\"Search for bose soundlink\",\"Select Bose SoundLink Flex Portable Bluetooth Speaker\",\"Add Bose SoundLink Flex Portable Bluetooth Speaker to cart\"]}"
+    },
+    {
+        "id": "web_shopping_9251965598244179568",
+        "instruction": "View the shopping cart on bestbuy.com. Search for corsair k70 on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for corsair k70\",\"Select first corsair k70 entry\",\"Add corsair k70 to cart\",\"Go to cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_12309704477671632138",
+        "instruction": "Show the shopping cart on target. Search for \"usb-a\" on target, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for usb-a\", \"Select first search result\", \"Add item to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_2252650458193164319",
+        "instruction": "Search for \"bose quietcomfort 35\" on newegg.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for bose quietcomfort 35\",\"Select the first entry from search results\",\"Add selected item to cart\",\"Proceed to checkout\"]}"
+    },
+    {
+        "id": "web_shopping_15316079120141943275",
+        "instruction": "View the shopping cart on amazon.com. Add \"usb-c to usb-a\" to the cart on amazon.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for usb-c to usb-a\",\"Select usb-c to usb-a product\",\"Add usb-c to usb-a to cart\",\"View shopping cart\",\"Select Proceed to checkout\"]}"
+    },
+    {
+        "id": "web_shopping_13699291777869385728",
+        "instruction": "Show the shopping cart on costco.com. Search for \"apple airpods\" on costco.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for apple airpods\",\"Select first apple airpods entry\",\"Add apple airpods to cart\",\"Show the shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_14922621072117868623",
+        "instruction": "Search for lg ultragear on bestbuy.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for lg ultragear\",\"Select first entry for lg ultragear\",\"Add LG UltraGear to cart\",\"Go to cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_4243513655924431778",
+        "instruction": "View the shopping cart on amazon. Search for usb-a on amazon, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for usb-a\", \"Select the first entry\", \"Add selected item to cart\", \"View shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_802911316031266129",
+        "instruction": "Empty the shopping cart on walmart. Add macbook pro 13 inch to the cart on walmart",
+        "macro_actions": "{\"macro_actions\":[\"Empty shopping cart\",\"Search for macbook pro 13 inch\",\"Select macbook pro 13 inch\",\"Add macbook pro 13 inch to cart\"]}"
+    },
+    {
+        "id": "web_shopping_3863218546089667414",
+        "instruction": "Clear the cart on newegg. Add usb-b to the cart on newegg, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Remove all items from cart\", \"Search for usb-b\", \"Select usb-b product\", \"Add usb-b to cart\", \"Go to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_1703027458193854106",
+        "instruction": "Search for \"dell alienware\" on amazon.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for dell alienware\",\"Select first Dell Alienware product entry\",\"Add selected Dell Alienware product to cart\",\"Show cart with Dell Alienware product added\"]}"
+    },
+    {
+        "id": "web_shopping_14468183295619841371",
+        "instruction": "Show the shopping cart on bestbuy.com. Add \"usb-c\" to the cart on bestbuy.com",
+        "macro_actions": "{\"macro_actions\": [\"Show shopping cart on bestbuy.com\", \"Search for usb-c on bestbuy.com\", \"Select usb-c product\", \"Add usb-c product to cart\", \"Show shopping cart on bestbuy.com\"]}"
+    },
+    {
+        "id": "web_shopping_1012541109615624944",
+        "instruction": "Add bose soundlink mini to the cart on ebay, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for bose soundlink mini\", \"Select Bose SoundLink Mini II Speaker from search results\", \"Add Bose SoundLink Mini II Speaker to cart\", \"View cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_6265152253609345526",
+        "instruction": "Empty the shopping cart on ebay. Search for \"dell xps\" on ebay, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Open eBay shopping cart\",\"Remove all items from shopping cart\",\"Search for dell xps\",\"Select first search result\",\"Add selected item to cart\",\"Go to checkout\"]}"
+    },
+    {
+        "id": "web_shopping_14718712990919806018",
+        "instruction": "Clear the cart on amazon.com. Add razer blackwidow to the cart on amazon.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Show cart\",\"Remove all items from cart\",\"Search for razer blackwidow\",\"Select razer blackwidow\",\"Add razer blackwidow to cart\",\"Show cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_17058795715296947173",
+        "instruction": "Search for desk lamps on article.com",
+        "macro_actions": "{\"macro_actions\":[\"Search for desk lamps\",\"Show search results for desk lamps\"]}"
+    },
+    {
+        "id": "web_shopping_15610140923786917165",
+        "instruction": "Add panasonic triple a to the cart on ebay, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for panasonic triple a\", \"Select Panasonic triple a item\", \"Add Panasonic triple a to cart\", \"Go to cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_6645911862311501254",
+        "instruction": "Search for \"razer blackwidow\" on amazon, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\": [\"Search for razer blackwidow\", \"Select first search result\", \"Add razer blackwidow to cart\", \"Show cart\"]}"
+    },
+    {
+        "id": "web_shopping_1380761879627472504",
+        "instruction": "View the shopping cart on amazon. Add \"beats solo 3\" to the cart on amazon, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for beats solo 3\", \"Select beats solo 3\", \"Add beats solo 3 to cart\", \"View shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_11096353099085734576",
+        "instruction": "Show the shopping cart on target. Search for logitech g pro on target, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for logitech g pro\",\"Select the first entry\",\"Add Logitech G Pro to cart\",\"Show shopping cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_17459626714895680107",
+        "instruction": "View the shopping cart on amazon.com. Search for usb-b on amazon.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"View shopping cart\", \"Search for usb-b\", \"Select first search result\", \"Add USB-B to cart\", \"View shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_16911445044905779389",
+        "instruction": "Show the shopping cart on ebay.",
+        "macro_actions": "{\"macro_actions\":[\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_6867958996071732616",
+        "instruction": "Show the shopping cart on bestbuy.com.",
+        "macro_actions": "{\"macro_actions\":[\"Navigate to shopping cart\",\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_14568609347942757887",
+        "instruction": "Empty the shopping cart on bestbuy. Search for logitech g933 on bestbuy, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Remove all items from cart\",\"Search for logitech g933\",\"Select first entry for logitech g933\",\"Add first entry to cart\",\"Go to cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_7648340836693832903",
+        "instruction": "Empty the shopping cart on bestbuy.com. Add macbook pro 15 inch to the cart on bestbuy.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Remove all items from cart\",\"Show empty cart\",\"Search for macbook pro 15 inch\",\"Select macbook pro 15 inch\",\"Add macbook pro 15 inch to cart\",\"Go to cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_373201284857432448",
+        "instruction": "search for 2021 honda civic",
+        "macro_actions": "{\"macro_actions\":[\"Activate search\",\"Enter '2021 honda civic' in search bar\",\"Show search results for '2021 honda civic'\"]}"
+    },
+    {
+        "id": "web_shopping_17655280606865895019",
+        "instruction": "Clear the shopping cart on walmart.com. Search for bose soundlink on walmart.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\": [\"Show cart\", \"Remove all items from cart\", \"Search for bose soundlink\", \"Select the first bose soundlink entry\", \"Add bose soundlink to cart\"]}"
+    },
+    {
+        "id": "web_shopping_7163843552012891298",
+        "instruction": "Search for \"dell alienware\" on ebay, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for dell alienware\",\"Select first search result\",\"Add selected item to cart\"]}"
+    },
+    {
+        "id": "web_shopping_4780696952435945434",
+        "instruction": "Add apple airpods pro to the cart on bestbuy, then select checkout.",
+        "macro_actions": "{\"macro_actions\":[\"Search for apple airpods pro\",\"Select apple airpods pro from search results\",\"Add apple airpods pro to cart\",\"Go to cart\",\"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_8507477878390719690",
+        "instruction": "Show the shopping cart on amazon. Add \"energizer triple a\" to the cart on amazon",
+        "macro_actions": "{\"macro_actions\":[\"Show shopping cart\",\"Search for energizer triple a\",\"Select energizer triple a product\",\"Add energizer triple a to cart\",\"Show shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_16401780355138684639",
+        "instruction": "Show the shopping cart on ebay.com. Add \"usb-b\" to the cart on ebay.com",
+        "macro_actions": "{\"macro_actions\":[\"Show shopping cart on ebay.com\",\"Search for usb-b on ebay.com\",\"Select usb-b product\",\"Select variant/model for usb-b product\",\"Add usb-b to cart on ebay.com\",\"Show shopping cart on ebay.com\"]}"
+    },
+    {
+        "id": "web_shopping_7883547066399687435",
+        "instruction": "Show the shopping cart on walmart.com. Search for usb-c on walmart.com, select the first entry, add it to the cart, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for usb-c\", \"Select the first usb-c item\", \"Add usb-c item to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_16066401796896665460",
+        "instruction": "Clear the cart on costco.com. Search for acer predator on costco.com, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Go to cart\",\"Clear the cart\",\"Search for acer predator\",\"Select first entry for acer predator\",\"Add first entry for acer predator to cart\",\"Show cart\"]}"
+    },
+    {
+        "id": "web_shopping_10752749508676360419",
+        "instruction": "Clear all items from cart on ebay. Add lenovo thinkpad to the cart on ebay",
+        "macro_actions": "{\"macro_actions\": [\"Go to cart\", \"Clear all items from cart\", \"Search for lenovo thinkpad\", \"Select lenovo thinkpad\", \"Add lenovo thinkpad to cart\"]}"
+    },
+    {
+        "id": "web_shopping_12379421322313752436",
+        "instruction": "Search for \"macbook\" on costco, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\":[\"Search for macbook\",\"Select the first entry\",\"Add MacBook to cart\"]}"
+    },
+    {
+        "id": "web_shopping_1326628128020387511",
+        "instruction": "View the shopping cart on newegg. Search for asus zenbook on newegg, select the first entry, and add it to the cart.",
+        "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select first asus zenbook entry\", \"Add asus zenbook to cart\", \"View the shopping cart\"]}"
+    },
+    {
+        "id": "web_shopping_2421093589196422887",
+        "instruction": "Add razer naga to the cart on amazon",
+        "macro_actions": "{\"macro_actions\":[\"Search for razer naga\",\"Select razer naga product\",\"Add razer naga to cart\",\"Show cart\"]}"
+    },
+    {
+        "id": "web_shopping_2493506365023443034",
+        "instruction": "Search for a storage ottoman in the living room",
+        "macro_actions": "{\"macro_actions\":[\"Search for storage ottoman in the living room\",\"Show search results for storage ottoman in the living room\"]}"
+    },
+    {
+        "id": "web_shopping_12213571689286418135",
+        "instruction": "Show the shopping cart on bestbuy.com. Add \"asus zenbook\" to the cart on bestbuy.com, then select checkout.",
+        "macro_actions": "{\"macro_actions\": [\"Search for asus zenbook\", \"Select asus zenbook from results\", \"Add asus zenbook to cart\", \"Show shopping cart\", \"Select checkout\"]}"
+    },
+    {
+        "id": "web_shopping_62602550511193784",
+        "instruction": "Search for the best coffee tables on Crate & Barrel",
+        "macro_actions": "{\"macro_actions\":[\"Search for Crate & Barrel on Google\",\"Select Crate & Barrel website from search results\",\"Search for best coffee tables on Crate & Barrel\",\"Show search results for best coffee tables\"]}"
+    },
+    {
+        "id": "web_shopping_3069323130106546394",
+        "instruction": "Show the shopping cart on walmart.com. Add razer huntsman to the cart on walmart.com",
+        "macro_actions": "{\"macro_actions\": [\"Show shopping cart\", \"Search for razer huntsman\", \"Select razer huntsman\", \"Add razer huntsman to cart\", \"Show shopping cart\"]}"
+    }
+]
