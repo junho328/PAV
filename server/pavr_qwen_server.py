@@ -19,6 +19,8 @@ from pav_agent.pav_qwen_agents import Planner, Actor, Verifier
 import torch
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 
+from shot_composer import FewShotComposer
+
 model_path = "Qwen/Qwen2.5-VL-3B-Instruct"
 # model_path = "Qwen/Qwen2.5-VL-7B-Instruct"
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_path, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2",device_map="auto")
@@ -57,6 +59,13 @@ def pavr(query: Query):
             f.write(image_bytes)
             
         if query.replan == "plan-initial":
+            
+            composer = FewShotComposer(app_name=query.app_name)
+            composer.load("shot_pools")
+            
+            few_shots = composer.build_prompt(user_query, k=3)
+            
+            print(f">>>Few Shot Prompt:\n {few_shots}")
 
             macro_action_plan = planner.plan(
                 model=model, 
@@ -65,7 +74,8 @@ def pavr(query: Query):
                 screenshot_path=screenshot_path, 
                 app_name=query.app_name, 
                 replan = query.replan,
-                previous_macro_action=query.previous_macro_action
+                previous_macro_action=query.previous_macro_action,
+                few_shots=few_shots
             )
             
             print(f">>>Planner Output: {macro_action_plan}")

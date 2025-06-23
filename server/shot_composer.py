@@ -16,6 +16,7 @@ from transformers import AutoModel
 import argparse
 
 from pathlib import Path
+import json
 
 class FewShotComposer:
     """
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--app_name", type=str, default="google_maps")
-    parser.add_argument("--text", type=str, default="human_shot_texts.txt")
+    parser.add_argument("--json_file", type=str, default="google_map_pool.json")
     args = parser.parse_args()
     
     # corpus = [
@@ -117,15 +118,25 @@ if __name__ == "__main__":
     
     corpus = []
     
-    text_path = Path(__file__).parent / "shot_pools" / args.app_name / args.text
+    # text_path = Path(__file__).parent / "shot_pools" / args.app_name / args.text
     
-    with open(text_path, "r") as f:
-        lines = f.readlines()
-        for line in lines:
-            line = line.strip()
-            if line:
-                task, action = line.split(" : ")
-                corpus.append((task, action))
+    # with open(text_path, "r") as f:
+    #     lines = f.readlines()
+    #     for line in lines:
+    #         line = line.strip()
+    #         if line:
+    #             task, action = line.split(" : ")
+    #             corpus.append((task, action))
+    
+    json_path = Path(__file__).parent / "shot_pools" / args.app_name / args.json_file
+    
+    with open(json_path, "r") as f:
+        data = json.load(f)
+    
+    for item in data:
+        instruction = item["instruction"]
+        macro_actions = item["macro_actions"]
+        corpus.append((instruction, macro_actions))
 
     # (1) 인덱스 생성 & 저장
     composer = FewShotComposer(app_name=args.app_name)
