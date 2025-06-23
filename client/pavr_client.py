@@ -29,7 +29,7 @@ def take_screenshot(args, step: int) -> bytes:
     tmp_path.unlink()
     return image_bytes
 
-def send_to_server(args, task, image_bytes, step, role, previous_macro_action, replan, previous_action, app_name) -> dict:
+def send_to_server(args, task, image_bytes, step, role, previous_macro_action, replan, previous_action, count, threshold, app_name) -> dict:
     """
     서버로 task + base64 이미지 전송 → 응답 JSON 반환
     """
@@ -42,6 +42,8 @@ def send_to_server(args, task, image_bytes, step, role, previous_macro_action, r
         "previous_macro_action": previous_macro_action, 
         "replan" : replan,
         "previous_action": previous_action, 
+        "count": count,
+        "threshold": threshold,
         "app_name": app_name
     }
 
@@ -346,7 +348,7 @@ def pavr(args):
         # Plan - Initial
         if step == 0:
             role = "planner"
-            response = send_to_server(args, args.task, image_bytes, step, role, "", "plan-initial", "", args.app_name)
+            response = send_to_server(args, args.task, image_bytes, step, role, "", "plan-initial", "", count, threshold, args.app_name)
             print(">>>Planner Output:", response["macro_action_plan"])
             
             planner_output[step] = response["macro_action_plan"]
@@ -358,7 +360,7 @@ def pavr(args):
 
             role = "planner"
             previous_macro_action = ", ".join(tried_macro_action)
-            response = send_to_server(args, args.task, image_bytes, step, role, previous_macro_action, "replan-success", "", args.app_name)
+            response = send_to_server(args, args.task, image_bytes, step, role, previous_macro_action, "replan-success", "", count, threshold, args.app_name)
             print(">>>Planner Output:", response["macro_action_plan"])
             
             planner_output[step] = response["macro_action_plan"]
@@ -371,7 +373,7 @@ def pavr(args):
 
             role = "planner"
             previous_macro_action = ", ".join(tried_macro_action)
-            response = send_to_server(args, args.task, image_bytes, step, role, previous_macro_action, "replan-fail", "", args.app_name)
+            response = send_to_server(args, args.task, image_bytes, step, role, previous_macro_action, "replan-fail", "", count, threshold, args.app_name)
             print(">>>Planner Output:", response["macro_action_plan"])
             
             planner_output[step] = response["macro_action_plan"]
@@ -383,7 +385,7 @@ def pavr(args):
         elif verification == 0 and count <= threshold:
 
             role = "actor"
-            response = send_to_server(args, args.task, image_bytes, step, role, "", "", str(previous_action), args.app_name)
+            response = send_to_server(args, args.task, image_bytes, step, role, "", "", str(previous_action), count, threshold, args.app_name)
             
         print(">>>Actor Output:", json.dumps(response, indent=2, ensure_ascii=False))
         action_type = run_adb_action(response)
@@ -406,7 +408,7 @@ def pavr(args):
         next_image_bytes = take_screenshot(args, step+1)
         
         role = "verifier"
-        response = send_to_server(args, args.task, next_image_bytes, step, role, "", "", "", args.app_name)
+        response = send_to_server(args, args.task, next_image_bytes, step, role, "", "", "", count, threshold, args.app_name)
         
         verifier_output[step] = response
         verification = response["task_completed"]
