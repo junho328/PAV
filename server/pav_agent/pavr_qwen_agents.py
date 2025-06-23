@@ -300,6 +300,7 @@ class Planner():
         Generate a newly updated macro action plan to complete the task using the same template as the original macro action plan.
         You can change the order of the macro actions, add new macro actions, remove existing macro actions, or paraphrase the macro actions
         And the returned macro action plan should consist only of the remaining steps to be executed, excluding any macro actions that have already been performed.
+        **Never include any macro actions that have already been performed.**
         
         Task: 
         {instruction}
@@ -310,11 +311,68 @@ class Planner():
         Updated Macro Action Plan:
         """
         
-        self.replan_fail_prompt = """You are a helpful mobile agent and a good planner."""
+        self.replan_fail_prompt = """You are a helpful mobile agent and a good planner.
+        You are given a history of screenshots of a mobile device, a task, a previous macro action, and a original macro action plan.
+        You need to generate a new macro action plan to complete the task.
+        
+        Given a history of screenshot is the collection of screen to achieve a previous macro action, but you failied to achieve the previous macro action.
+        So you need to think about why the previous macro action failed by examining the history of screenshots.
+        And a original macro action plan is the sequence of plan you planned before to complete the given task.
+        
+        Now, based on the history of screenshots, the task, and the original macro action plan, you have to replan the macro action plan.
+        You can change the order of the macro actions, add new macro actions, remove existing macro actions, or paraphrase the macro actions.
+        
+        Below are some examples of tasks and their corresponing macro action plans, replanned macro actions:
+        ---
+        <Example 1>
+        Task:
+        Add Logitech MX Master 3S to cart.
+        Previous Macro Action:
+        Select Logitech MX Master 3S
+        Original Macro Action Plan:
+        [Buy the item]
+        Updated Macro Action Plan:
+        [Choose Logitech MX Master 3S, Add to cart]
+        
+        <Example 2>
+        Task:
+        Add the most popular ramen to cart.
+        Previous Macro Action:
+        Search for ramen
+        Original Macro Action Plan:
+        [Filter by popularity, Select the first item, Add to cart]
+        Updated Macro Action Plan:
+        [Search for ramen, Filter by popularity, Select the first item, Add to cart]
+        
+        <Example 3>
+        Task:
+        Add the cheapest sofa to cart.
+        Previous Macro Action:
+        Filter by popularity
+        Original Macro Action Plan:
+        [Select the first item, Add to cart]
+        Updated Macro Action Plan:
+        [Filter by price, Select the first item, Add to cart]
+        ---
+        
+        Now you are given a task, a previous macro action, and an original macro action plan.
+        Generate a newly updated macro action plan to complete the task using the same template as the original macro action plan.
+        You can change the order of the macro actions, add new macro actions, remove existing macro actions.
+        I think you can also paraphrase the previous macro action to make it more suitable for the task.
+        And the returned macro action plan should consist only of the remaining steps to be executed.
+        
+        Task: 
+        {instruction}
+        Previous Macro Action: 
+        {previous_macro_action}
+        Original Macro Action Plan: 
+        {macro_action_list}
+        Updated Macro Action Plan:
+        """
 
 
         
-    def plan(self, model, processor, task, screenshot_path, app_name, replan = "plan-initial", few_shots=None, macro_action_list=None, previous_macro_action=None):
+    def plan(self, model, processor, task, screenshot_path, app_name, replan = "plan-initial", few_shots=None, macro_action_list=None, previous_macro_action=None, step=None, threshold=None):
         
        
         if replan == "plan-initial":          
@@ -351,6 +409,15 @@ class Planner():
 
         elif replan == "replan-fail":
             prompt = self.replan_fail_prompt
+            img_screenshots =  [{"type": "image", "image": f"./pavr_data/screenshot_{step-threshold+1+i}.png"} for i in range(threshold)]
+            messages = [
+                {
+                    "role": "user",
+                    "content": img_screenshots +[
+                        {"type": "text", "text": prompt.format(instruction=task, previous_macro_action=previous_macro_action, macro_action_list=macro_action_list)},
+                    ],
+                }
+            ]
 
         else:
             raise NotImplementedError
