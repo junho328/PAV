@@ -111,15 +111,17 @@ def main(args):
     random.seed(42)
     for data in [general_data, google_apps_data, web_shopping_data]:
         random.shuffle(data)
-        
-    client = OpenAI(api_key=args.api_key)
+    
+    api_key = os.getenv('OPENAI_API_KEY')
+    
+    client = OpenAI(api_key=api_key)
     subsets = ["general", "google_apps", "web_shopping"]
 
     idx = 0
     gpt_response = {}
     for subset_data in [general_data, google_apps_data, web_shopping_data]:
         
-        for task in subset_data[:40]:
+        for task in subset_data[:100]:
                
             subset =  subsets[idx]
             task_id = task["folder"].split("-")[-1]
@@ -166,8 +168,7 @@ def main(args):
         
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Process some integers.")
-    parser.add_argument('--api_key', type=str, required=True, help='OpenAI API key')
+    parser = argparse.ArgumentParser()
     parser.add_argument('--base_dir', type=str, default='/home/jhna/PAV/android_in_the_zoo/train', help='Base directory for the dataset')
     parser.add_argument("--output_path", type=str, default="gpt4_aitz_output.json", help="Path to save the output JSON file")
     args = parser.parse_args()
