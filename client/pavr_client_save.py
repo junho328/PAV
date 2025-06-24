@@ -1,7 +1,7 @@
 import base64, io, subprocess, tempfile, requests, json, time, os
 import argparse
 from pathlib import Path
-# from webjudge.run import parallel_eval
+from webjudge.run_single import parallel_eval
 from PIL import Image
 import shlex
 
@@ -429,7 +429,13 @@ def pav(args):
         verifier_output[step] = response
         
         print(f"\n>>>Verifier Output: {response}")
-        output_results["final_result_response"] = response["comparison"]
+
+        verification = response["task_completed"]
+        if verification == -1:
+            output_results["final_result_response"] = final_verification_desc
+        else:
+            output_results["final_result_response"] = response["comparison"]
+            final_verification_desc = response["comparison"]
         
         if response["task_completed"] == -1:
             
@@ -598,7 +604,7 @@ if __name__ == "__main__":
     parser1.add_argument("--method", type=str, default="pavr", help="Method to use (pav, baseline)")
     parser1.add_argument("--task", type=str, required=True, help="Text task to perform")
     parser1.add_argument("--image_path", type=str, default="./qwen_3b_screenshots", help="Path to save screenshots")
-    parser1.add_argument("--max_steps", type=int, default=15, help="Max number of steps before termination")
+    parser1.add_argument("--max_steps", type=int, default=30, help="Max number of steps before termination")
     parser1.add_argument("--app_name", type=str, default="google_maps", help="App name for planner prompt")
     parser1.add_argument("--task_number", type=str, required=True, help="Task index")
     parser1.add_argument("--threshold", type=int, default=5, help="The threshold number of verifier failures that triggers a replan")
@@ -611,6 +617,7 @@ if __name__ == "__main__":
     parser2.add_argument("--output_path", type=str, default='PAV/WebJudge_output', help="The output path")
     parser2.add_argument('--score_threshold', type=int, default=3)
     parser2.add_argument('--num_worker', type=int, default=1)
+    parser2.add_argument('--eval', type=bool, default=1, help='1(True): evaluation(default), 0(False): only saving mode')
     args = parser2.parse_args()
 
     args.output_path = args.image_path + '/'+ args.app_name + '/'+ args.method + '_' + args.task_number
@@ -623,6 +630,9 @@ if __name__ == "__main__":
     elif args.method == "pavr":
         pavr(args)
     
+    if args.eval == 1:
+        parallel_eval(args)
+
 # ADB path
 # export ANDROID_HOME=$HOME/Library/Android/sdk
 # export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -638,4 +648,4 @@ if __name__ == "__main__":
 # adb shell monkey -p com.google.android.apps.maps -c android.intent.category.LAUNCHER 1
 # adb shell monkey -p com.google.android.apps.maps -c android.intent.category.LAUNCHER 1
 
-# python client/client.py --task "Please display the route to KAIST College of Engineering." --task_number 1
+# python -m client.pavr_client_save --task "Please add restaurant Yori to 'Want to go' list." --task_number 12
