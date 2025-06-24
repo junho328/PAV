@@ -92,7 +92,7 @@
     {
         "id": "google_apps_7129822688131153570",
         "instruction": "Check the weather",
-        "macro_actions": "{\"macro_actions\":[\"Open app drawer\",\"Open Chrome browser\",\"Search for weather\",\"Show weather information\"]}"
+        "macro_actions": "{\"macro_actions\":[\"Search for weather\",\"Show weather information\"]}"
     },
     {
         "id": "google_apps_9961943735210722720",
@@ -102,7 +102,7 @@
     {
         "id": "google_apps_7177822086172972573",
         "instruction": "Search for vegetarian restaurants on Maps",
-        "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for vegetarian restaurants\",\"Show list of vegetarian restaurants\"]}"
+        "macro_actions": "{\"macro_actions\":[\"Tap search bar\",\"Search for vegetarian restaurants\",\"Show list of vegetarian restaurants\"]}"
     },
     {
         "id": "google_apps_9346491593160717398",
@@ -112,7 +112,7 @@
     {
         "id": "google_apps_8496839468108700631",
         "instruction": "Search for sushi restaurants on Maps",
-        "macro_actions": "{\"macro_actions\":[\"Open Maps app\",\"Tap search bar\",\"Search for sushi restaurants\",\"Show sushi restaurants on map\"]}"
+        "macro_actions": "{\"macro_actions\":[\"Tap search bar\",\"Search for sushi restaurants\",\"Show sushi restaurants on map\"]}"
     },
     {
         "id": "web_shopping_9836516851299203975",
