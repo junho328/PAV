@@ -135,9 +135,11 @@ if __name__ == "__main__":
     
     for item in data:
         instruction = item["instruction"]
-        macro_actions = item["macro_actions"]
+        raw_macro_actions = item["macro_actions"]
+        macro_actions = json.loads(raw_macro_actions)
+        macro_actions = [macro.replace("\\","") for macro in macro_actions["macro_actions"]]
         corpus.append((instruction, macro_actions))
-
+    
     # (1) 인덱스 생성 & 저장
     composer = FewShotComposer(app_name=args.app_name)
     composer.build_index(corpus)
