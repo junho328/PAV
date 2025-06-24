@@ -151,7 +151,7 @@ if __name__ == "__main__":
     parser.add_argument('--mode', type=str, default='WebJudge_general_eval', help='the mode of evaluation')
     parser.add_argument('--model', type=str, default='gpt-4o')
     parser.add_argument("--trajectories_dir", type=str, default='./qwen_3b_screenshots/google_maps', help="Path to trajectories directory")
-    parser.add_argument("--api_key", type=str, default="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", help="The api key")
+    parser.add_argument("--api_key", type=str, required=True, help="The api key")
     parser.add_argument("--output_path", type=str, default='./WebJudge_output', help="The output path")
     parser.add_argument('--score_threshold', type=int, default=3)
     parser.add_argument('--num_worker', type=int, default=1)
