@@ -20,8 +20,8 @@ def extract_step(fname):
     
 def auto_eval(args, task_set, final_predicted_labels, model):
     ################## get the already done task id ###############
-    # output_json_path = os.path.join(args.output_path, f"{args.app_name}_{args.method}_score_threshold_{args.score_threshold}_auto_eval_results.json")
-    output_json_path = os.path.join(args.output_path, f"google_maps__pav__score_threshold_{args.score_threshold}_auto_eval_results.json")
+    output_json_path = os.path.join(args.output_path, f"{args.app_name}__{args.method}__score_threshold_{args.score_threshold}__autoeval_results.json")
+    # output_json_path = os.path.join(args.output_path, f"google_maps__pav__score_threshold_{args.score_threshold}_auto_eval_results.json")
     already_ids = []
     if os.path.exists(output_json_path):
         with open(output_json_path,"r") as f:
@@ -117,8 +117,8 @@ def auto_eval(args, task_set, final_predicted_labels, model):
         print(f"Finish evaluation for {task_description}")
         print("="*20)
         os.makedirs(args.output_path, exist_ok=True)
-        # with open(os.path.join(args.output_path, f"{args.mode}_{args.model}_score_threshold_{args.score_threshold}_auto_eval_results.json"), "a+") as f_out:
-        with open(os.path.join(args.output_path, f"google_maps__pav__score_threshold_{args.score_threshold}_auto_eval_results.json"), "a+") as f_out:
+        with open(os.path.join(args.output_path, f"{args.app_name}__{args.method}__score_threshold_{args.score_threshold}__autoeval_results.json"), "a+") as f_out:
+        # with open(os.path.join(args.output_path, f"google_maps__pav__score_threshold_{args.score_threshold}_auto_eval_results.json"), "a+") as f_out:
             f_out.write(json.dumps(output_results) + "\n")
     
     return final_predicted_labels
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     parser.add_argument('--mode', type=str, default='WebJudge_general_eval', help='the mode of evaluation')
     parser.add_argument('--model', type=str, default='gpt-4o')
     parser.add_argument("--trajectories_dir", type=str, default='./qwen_3b_screenshots/google_maps', help="Path to trajectories directory")
-    parser.add_argument("--api_key", type=str, required=True, help="The api key")
+    parser.add_argument("--api_key", type=str, default="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", help="The api key")
     parser.add_argument("--output_path", type=str, default='./WebJudge_output', help="The output path")
     parser.add_argument('--score_threshold', type=int, default=3)
     parser.add_argument('--num_worker', type=int, default=1)
