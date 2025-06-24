@@ -1,0 +1,1 @@
+This is a map and navigation application. Its primary functions are to search for specific places and provide routes for driving, public transit, or walking. It displays real-time trafficand allows searching for nearby points of interest like restaurants and cafes. Additionally, you can check menu,photo,review or other details of specific place.
